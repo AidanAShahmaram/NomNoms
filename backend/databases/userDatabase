@@ -1,0 +1,21 @@
+// models/dataModel.js
+
+const mongoose = require('mongoose');
+
+const userData = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+  },
+});
+
+const userInfo = mongoose.model('userInfo', userData);
+
+module.exports = userInfo;

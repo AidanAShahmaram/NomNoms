@@ -1,0 +1,21 @@
+// models/dataModel.js
+
+const mongoose = require('mongoose');
+
+const restaurantData = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  cuisineType: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+  },
+});
+
+const restaurantInfo = mongoose.model('restaurantInfo', restaurantData);
+
+module.exports = restaurantInfo;
