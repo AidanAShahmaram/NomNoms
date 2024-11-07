@@ -1,8 +1,13 @@
+
 // Handling errors
 const express = require('express');
 const errorHandler = require('./errors.js');
 
 const app = express();
+
+//Request Body Reader
+const bodyParser = require('body-parser');
+
 
 
 // Using mongoDB
@@ -10,7 +15,12 @@ const app = express();
 const mongoose = require('mongoose');
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1/mern_database', {
+const pass= 'SaxophoneDisco';
+const url = `mongodb+srv://sacks:${pass}@saxtest.vlggo.mongodb.net/?retryWrites=true&w=majority&appName=SAXTEST`;
+
+console.log(pass, url);
+
+mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -29,10 +39,12 @@ app.use((req, res, next) => {
   });
 
 // Middleware for routes related to data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
 const ownerRoutes = require('./routes/owners');
 app.use('/data', ownerRoutes);
 const userRoutes = require('./routes/users');
-app.use('/data', userRoutes);
+app.use('/user', userRoutes);
 
 // Use the error handling middleware
 app.use(errorHandler);

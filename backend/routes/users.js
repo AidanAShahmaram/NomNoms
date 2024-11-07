@@ -2,9 +2,10 @@
 
 const express = require('express');
 const router = express.Router();
-const Data = require('../databases/userDatabase');
+const User = require('../databases/userDatabase');
 const bcrypt = require('bcrypt');
 const rounds = 10;
+
 
 // Define a route
 router.get('/', async(req, res) => {
@@ -13,7 +14,6 @@ router.get('/', async(req, res) => {
 
 //GET user authentication
 router.get('/login', async (req, res) => {
-    res.send('Users please login here');// this gets executed when user visit http://localhost:3000/users/login
     const {user, password} = req.body;
     const passhash= await bcrypt.hash(password, rounds);
     //checks if account exists and password matches
@@ -31,16 +31,14 @@ router.get('/login', async (req, res) => {
 
 // POST user sign up
 router.post('/signup', async (req, res) => {
-    const {user, password, description} = req.body;
-
-    const passhash = await bcrypt.hash(password, rounds);
-    
-    const newData = new userInfo({user, passhash, description});
     try {
-      const savedData = await newData.save();
-      res.json(savedData);
+	const {user, password, description} = req.body;
+	const passhash = await bcrypt.hash(password, rounds);
+	const newData = new User({"username": user, "password": passhash, "description": description});
+	const savedData = await newData.save();
+	res.json(savedData);
     } catch (error) {
-      res.json({ message: error.message });
+	res.json({ message: error.message });
     }
     
   });
