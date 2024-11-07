@@ -3,32 +3,46 @@
 const express = require('express');
 const router = express.Router();
 const Data = require('../databases/userDatabase');
+const bcrypt = require('bcrypt');
+const rounds = 10;
 
 // Define a route
 router.get('/', async(req, res) => {
     res.send('Users Page');// this gets executed when user visit http://localhost:3000/users
 });
 
+//GET user authentication
 router.get('/login', async (req, res) => {
     res.send('Users please login here');// this gets executed when user visit http://localhost:3000/users/login
-    // GET all data
+    const {user, password} = req.body;
+    const passhash= await bcrypt.hash(password, rounds);
+    //checks if account exists and password matches
     try {
-            const allData = await Data.find();
-            res.json(allData);
-        } catch (error) {
+        const account = await Data.find({username: user});
+        if(account && account.password == password){
+	    res.json({status: true, content: ""}); 
+	} else {
+	    res.json({status: false, constant: "User account does not exist"});
+	}
+    } catch (error) {
             res.json({ message: error.message });
-        }
+    }
 });
 
-// POST new data
-router.post('/login', async (req, res) => {
-    const newData = new Data(req.body);
+// POST user sign up
+router.post('/signup', async (req, res) => {
+    const {user, password, description} = req.body;
+
+    const passhash = await bcrypt.hash(password, rounds);
+    
+    const newData = new userInfo({user, passhash, description});
     try {
       const savedData = await newData.save();
       res.json(savedData);
     } catch (error) {
       res.json({ message: error.message });
     }
+    
   });
   
 
