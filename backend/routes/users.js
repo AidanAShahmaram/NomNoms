@@ -13,19 +13,21 @@ router.get('/', async(req, res) => {
 });
 
 //GET user authentication
+//status codes: 200 - success, 400 - username not found, 401 - passwords does not match
 router.get('/login', async (req, res) => {
     const {user, password} = req.body;
-    const passhash= await bcrypt.hash(password, rounds);
-    //checks if account exists and password matches
-    try {
-        const account = await Data.find({username: user});
-        if(account && account.password == password){
-	    res.json({status: true, content: ""}); 
-	} else {
-	    res.json({status: false, constant: "User account does not exist"});
-	}
-    } catch (error) {
-            res.json({ message: error.message });
+    
+    //checks if account exists
+    const account = await Data.find({username: user});
+    if(!account)
+	return res.status(400).json({msg: "Invalid Username"});
+
+    const validPass = bcrypt.comare(password, account.password);
+
+    if(validPass){
+	res.status(200).json({content: "Success"}); 
+    } else {
+	res.status(401).json({content: "Incorrect Password"});
     }
 });
 
