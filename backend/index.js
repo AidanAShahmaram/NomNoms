@@ -45,6 +45,8 @@ const ownerRoutes = require('./routes/owners');
 app.use('/data', ownerRoutes);
 const userRoutes = require('./routes/users');
 app.use('/user', userRoutes);
+const entranceRoutes = require('./routes/entrance');
+app.use('/entrance', entranceRoutes);
 
 // Use the error handling middleware
 app.use(errorHandler);

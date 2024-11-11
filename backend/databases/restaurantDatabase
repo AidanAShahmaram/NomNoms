@@ -1,4 +1,4 @@
-// models/dataModel.js
+x// models/dataModel.js
 
 const mongoose = require('mongoose');
 

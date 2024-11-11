@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../databases/userDatabase');
+const jwt = require('bcrypt');
 const bcrypt = require('bcrypt');
 const rounds = 10;
 
