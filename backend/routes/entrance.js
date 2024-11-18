@@ -50,13 +50,19 @@ router.get('/login/user', async (req, res) => {
 });
 
 // POST user sign up
-//status codes: 403 = already exists
+//status codes: 403 - already exists, 400 - invalid password creation
 router.post('/signup/user', async (req, res) => {
     
     const {username, password, description} = req.body;
     const account = await User.findOne({username: username});
     if(account){
 	return res.status(403).json({msg: "This username already exists"});
+    }
+
+    p_check = password_check(password)
+
+    if(!p_check.valid){
+	return res.status(400).json({msg: p_check.msg});
     }
     
     const passhash = await bcrypt.hashSync(password, rounds);
@@ -91,7 +97,7 @@ router.get('/login/owner', async (req, res) => {
 });
 
 // POST owner sign up
-//status codes: 403 - already exists
+//status codes: 403 - already exists, 400 - invalid password creation
 router.post('/signup/owner', async (req, res) => {
     
     const {username, password, restaurant, description} = req.body;
@@ -99,13 +105,34 @@ router.post('/signup/owner', async (req, res) => {
     if(account){
 	return res.status(403).json({msg: "This username already exists"});
     }
+
+    p_check = password_check(password)
+
+    if(!p_check.valid){
+	return res.status(400).json({msg: p_check.msg});
+    }
     
     const passhash = await bcrypt.hashSync(password, rounds);
     const newData = new Owner({"username": username, "password": passhash, "restaurant": restaurant, "description": description});
     const savedData = await newData.save();
     res.json(savedData);
     
-  })
+})
+
+function password_check(pass){
+    const regex = /^[a-zA-Z0-9!@#$%^&*_+;':?><,.~=-]+$/;
+    if(pass.length < 8){
+	return({valid: false, msg: "password is too short"});
+    } else if (pass.length > 20) {
+	return({valid: false, msg: "password is too long"});
+    } else if(!regex.test(pass)){
+	return({valid: false, msg: "password contains invalid character(s) - valid characters include: a-zA-Z0-9!@#$%^&*_+;':?><,.~=-"});
+    }
+
+    return {valid: true, msg: "valid password"};
+	
+}
+    
 
 // export the router module so that server.js file can use it
 module.exports = router;
