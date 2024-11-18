@@ -1,0 +1,25 @@
+const mongoose = require('mongoose');
+
+const commentData = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true
+  },
+  message: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: String,
+    required: true
+  },
+  rating: {
+    type: Number,
+    min: 1,
+    max: 5
+  }
+});
+
+const comment  = mongoose.model('comment', commentData);
+
+module.exports = comment;

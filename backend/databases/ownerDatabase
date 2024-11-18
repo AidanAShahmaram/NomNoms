@@ -1,6 +1,7 @@
 // models/dataModel.js
 
 const mongoose = require('mongoose');
+const Restaurant = ('./restaurantDatabase')
 
 const ownerData = new mongoose.Schema({
   username: {
@@ -11,13 +12,10 @@ const ownerData = new mongoose.Schema({
     type: String,
     required: true,
   },
-  restaurant: {
-    type: String,
-    required: false,
-  },
-  description: {
-    type: String,
-  },
+  restaurants: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Restaurant'
+  }]
 });
 
 const ownerInfo = mongoose.model('ownerInfo', ownerData);
