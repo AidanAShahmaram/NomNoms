@@ -8,6 +8,10 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const rounds = 10;
 
+//When server is run, token_key should be placed in the .env file
+//however for testing a fake key will be used
+const REPLACE = "fakeKey";
+
 
 // Define a route
 router.get('/', async(req, res) => {
@@ -31,67 +35,22 @@ router.get('/login/user', async (req, res) => {
 	}
     });
 
+
+    //creates token for client side
+    //token will become inavlid after the time specified
+    const token = jwt.sign({ "username": username,
+			    msg: "Successful Login"},
+			   REPLACE,
+			   { expiresIn: '1h'});
+			   
+			   
+
     
-    return res.status(200).json({msg: "Success"});
+    return res.status(200).json({ token });
 });
 
 // POST user sign up
 //status codes: 403 = already exists
-router.post('/signup/user', async (req, res) => {
-    
-    const {username, password, description} = req.body;
-    const account = await User.findOne({username: username});
-    if(account){
-	return res.status(403).json({msg: "This username already exists"});
-    }
-    
-    const passhash = await bcrypt.hashSync(password, rounds);
-    const newData = new User({"username": username, "password": passhash, "description": description});
-    const savedData = await newData.save();
-    res.json(savedData);
-    
-  });
-  
-
-// routes for users
-
-const express = require('express');
-const router = express.Router();
-const User = require('../databases/userDatabase');
-const Owner = require('../databases/userDatabase');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const rounds = 10;
-
-
-// Define a route
-router.get('/', async(req, res) => {
-    res.send('Users Page');// this gets executed when user visit http://localhost:3000/users
-});
-
-//GET user authentication
-//status codes: 200 - success, 400 - username not found, 401 - passwords does not match
-router.get('/login/user', async (req, res) => {
-    const {username, password} = req.body;
-    
-    //checks if account exists
-    const account = await User.findOne({username: username});
-    console.log(account);
-    if(!account)
-	return res.status(400).json({msg: "Invalid Username"});
-
-    const validPass = bcrypt.compare(password, account.password, (err, res) => {
-	if(err){
-	    return res.status(401).json({msg: "Incorrect Password"});
-	}
-    });
-
-    
-    return res.status(200).json({msg: "Success"});
-});
-
-// POST user sign up
-//status codes: 403 - already exists
 router.post('/signup/user', async (req, res) => {
     
     const {username, password, description} = req.body;
@@ -146,3 +105,6 @@ router.post('/signup/owner', async (req, res) => {
     res.json(savedData);
     
   });
+
+// export the router module so that server.js file can use it
+module.exports = router;
