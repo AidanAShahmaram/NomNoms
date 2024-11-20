@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const ownerInfo = require('../databases/ownerDatabase');
 const restaurantInfo = require('../databases/ownerDatabase');
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken'); //Don't think we need this here (?)
 
 const middleware_route = require('../index.js')
 
@@ -36,12 +36,13 @@ router.post('/login', async (req, res) => {
   
 
 router.get('/view_restaurants', async (req, res) => {
-    res.send('View your restaurant');// this gets executed when user visit http://localhost:3000/owners/restaurant_mods
+    res.send('View your restaurants');// this gets executed when user visit http://localhost:3000/owners/restaurant_mods
     try {
-        const allData = await Data.find();
-        res.json(allData);
+        const allData = await ownerInfo.find();
+        res.json(ownerInfo.restaurants);
+        //Can mod so vals get sent out in a different format if that's easier
       } catch (error) {
-        res.json({ message: error.message });
+        res.json({ message: "No restaurants found"});
       }
 
 });
@@ -66,7 +67,7 @@ router.post('/view_restaurants', decodeToken, async (req, res) => {
     }
     //adding restaurant
     owner.restaurants.push(restaurantSaved._id);
-    await owner.save(); //need await so owber is fully modified before proceeding
+    await owner.save(); //need await so owner is fully modified before proceeding
 
     res.json({message: "Restaurant added"});
   } catch (error){
