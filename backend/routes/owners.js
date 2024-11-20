@@ -1,7 +1,11 @@
 // routes/products.js
 const express = require('express');
 const router = express.Router();
-const Data = require('../databases/ownerDatabase');
+const ownerInfo = require('../databases/ownerDatabase');
+const restaurantInfo = require('../databases/ownerDatabase');
+const jwt = require('jsonwebtoken'); //Don't think we need this here (?)
+
+const middleware_route = require('../index.js')
 
 // Define a route
 router.get('/', async(req, res) => {
@@ -31,35 +35,65 @@ router.post('/login', async (req, res) => {
   });
   
 
-router.get('/restaurant_mods', async (req, res) => {
-    res.send('View your restaurant');// this gets executed when user visit http://localhost:3000/owners/restaurant_mods
+router.get('/view_restaurants', async (req, res) => {
+    res.send('View your restaurants');// this gets executed when user visit http://localhost:3000/owners/restaurant_mods
     try {
-        const allData = await Data.find();
-        res.json(allData);
+        const allData = await ownerInfo.find();
+        res.json(ownerInfo.restaurants);
+        //Can mod so vals get sent out in a different format if that's easier
       } catch (error) {
-        res.json({ message: error.message });
+        res.json({ message: "No restaurants found"});
       }
 
 });
 
 // POST new data
-router.post('/restaurant_mods', async (req, res) => {
-    const newData = new Data(req.body);
-    try {
-      const savedData = await newData.save();
-      res.json(savedData);
-    } catch (error) {
-      res.json({ message: error.message });
-    }
-  });
-
-
-// PUT update data
-router.put('/:id', async (req, res) => {
+//Same page for viewing + modifying?
+router.post('/view_restaurants', decodeToken, async (req, res) => {
   try {
-    const updatedData = await Data.updateOne(
-      { _id: req.params.id },
-      { $set: req.body }
+    const newRestaurant = new restaurantInfo({
+      name: req.body.name,
+      address: req.body.address, 
+      tags: req.body.tags,
+      description: req.body.description});
+
+    const restaurantSaved = await newRestaurant.save(); //adding to restaurant database
+
+    //pulling owner info so that we can add restauarant to it
+    //NOTE: _id automatically created by every mongo database
+    const owner = await ownerInfo.findOne({_id: req.owner_token});
+    if(!owner){
+      return res.json({message: "Owner not attached to this token"});
+    }
+    //adding restaurant
+    owner.restaurants.push(restaurantSaved._id);
+    await owner.save(); //need await so owner is fully modified before proceeding
+
+    res.json({message: "Restaurant added"});
+  } catch (error){
+    res.json({ message: error.message });
+  }
+});
+
+// PUT update data -> modifying a restaurant's values
+router.put('/modify_restaurant/:restaurantId', decodeToken, async (req, res) => {
+  //restaurantId should be a string here (same as the string MongoDB would store for the restaurant)
+  //NOT the same as "._id"
+  try {
+    const {restaurantId} = req.params; //pull Id from the URL -> FIGURE OUT HOW TO GET URL TO GIVE THIS
+    const owner = await ownerInfo.findById(req.owner_token); //find the owner using token
+    if (!owner){
+      return res.status(404).json({message: "Owner not found"});
+    }
+    const isRightRestaurant = owner.restaurants.some((restaurant) => restaurant.toString() == restaurantId);
+    //checks if owner accessing their own restaurant
+    //.some() checks whether at least one element in array passes the test (aka having that id)
+    if (!isRightRestaurant){ 
+      return res.status(403).json({message: "You don't own this restaurant"});
+    }
+    const updatedData = await restaurantInfo.findByIdAndUpdate(restaurantId)(
+      { $set: req.body }, //will merge old values with new changes
+      {new: true} //returns new values instead of old
     );
     res.json(updatedData);
   } catch (error) {
