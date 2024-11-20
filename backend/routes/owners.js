@@ -1,7 +1,11 @@
 // routes/products.js
 const express = require('express');
 const router = express.Router();
-const Data = require('../databases/ownerDatabase');
+const ownerInfo = require('../databases/ownerDatabase');
+const restaurantInfo = require('../databases/ownerDatabase');
+const jwt = require('jsonwebtoken');
+
+const middleware_route = require('../index.js')
 
 // Define a route
 router.get('/', async(req, res) => {
@@ -31,7 +35,7 @@ router.post('/login', async (req, res) => {
   });
   
 
-router.get('/restaurant_mods', async (req, res) => {
+router.get('/view_restaurants', async (req, res) => {
     res.send('View your restaurant');// this gets executed when user visit http://localhost:3000/owners/restaurant_mods
     try {
         const allData = await Data.find();
@@ -43,16 +47,32 @@ router.get('/restaurant_mods', async (req, res) => {
 });
 
 // POST new data
-router.post('/restaurant_mods', async (req, res) => {
-    const newData = new Data(req.body);
-    try {
-      const savedData = await newData.save();
-      res.json(savedData);
-    } catch (error) {
-      res.json({ message: error.message });
-    }
-  });
+//Same page for viewing + modifying?
+router.post('/view_restaurants', decodeToken, async (req, res) => {
+  try {
+    const newRestaurant = new restaurantInfo({
+      name: req.body.name,
+      address: req.body.address, 
+      tags: req.body.tags,
+      description: req.body.description});
 
+    const restaurantSaved = await newRestaurant.save(); //adding to restaurant database
+
+    //pulling owner info so that we can add restauarant to it
+    //NOTE: _id automatically created by every mongo database
+    const owner = await ownerInfo.findOne({_id: req.owner_token});
+    if(!owner){
+      return res.json({message: "Owner not attached to this token"});
+    }
+    //adding restaurant
+    owner.restaurants.push(restaurantSaved._id);
+    await owner.save(); //need await so owber is fully modified before proceeding
+
+    res.json({message: "Restaurant added"});
+  } catch (error){
+    res.json({ message: error.message });
+  }
+});
 
 // PUT update data
 router.put('/:id', async (req, res) => {

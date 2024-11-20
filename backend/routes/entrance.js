@@ -92,8 +92,15 @@ router.get('/login/owner', async (req, res) => {
 	}
     });
 
-    
-    return res.status(200).json({msg: "Success"});
+    //creates token for owner side -> need this for restaurants to be added to specific account
+    //token will become inavlid after the time specified
+    const token = jwt.sign({
+            owner_token: account._id, //_id automatically created by mongo database
+            msg: "Successful Login"},
+       REPLACE,
+       { expiresIn: '1h'});
+       
+    return res.status(200).json({ token });
 });
 
 // POST owner sign up
