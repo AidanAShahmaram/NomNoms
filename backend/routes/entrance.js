@@ -46,7 +46,7 @@ router.get('/login/user', async (req, res) => {
 			   
 
     
-    return res.status(200).json({ token });
+    return res.status(200).json({ "token": token });
 });
 
 // POST user sign up
@@ -68,7 +68,7 @@ router.post('/signup/user', async (req, res) => {
     const passhash = await bcrypt.hashSync(password, rounds);
     const newData = new User({"username": username, "password": passhash, "description": description});
     const savedData = await newData.save();
-    res.json(savedData);
+    res.json("account": savedData);
     
   });
   
@@ -92,8 +92,15 @@ router.get('/login/owner', async (req, res) => {
 	}
     });
 
+    //creates token for client side
+    //token will become inavlid after the time specified
+    const token = jwt.sign({ "username": username,
+			    msg: "Successful Login"},
+			   REPLACE,
+			   { expiresIn: '1h'});
+
     
-    return res.status(200).json({msg: "Success"});
+    return res.status(200).json({ "token": token });
 });
 
 // POST owner sign up
@@ -115,7 +122,7 @@ router.post('/signup/owner', async (req, res) => {
     const passhash = await bcrypt.hashSync(password, rounds);
     const newData = new Owner({"username": username, "password": passhash, "restaurant": restaurant, "description": description});
     const savedData = await newData.save();
-    res.json(savedData);
+    res.json(("account": savedData);
     
 })
 
