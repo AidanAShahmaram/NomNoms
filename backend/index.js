@@ -55,3 +55,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+const A = require('./databases/ownerDatabase')
+const B = require('./databases/restaurantDatabase')
+const C = require('./databases/commentDatabase')
