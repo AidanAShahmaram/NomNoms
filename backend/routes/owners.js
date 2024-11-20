@@ -75,12 +75,22 @@ router.post('/view_restaurants', decodeToken, async (req, res) => {
   }
 });
 
-// PUT update data
-router.put('/:id', async (req, res) => {
+// PUT update data -> modifying a restaurant's values
+router.put('/modify_restaurant/:restaurantId', decodeToken, async (req, res) => {
   try {
-    const updatedData = await Data.updateOne(
-      { _id: req.params.id },
-      { $set: req.body }
+    const {restaurantId} = req.params.id; //pull Id from the URL -> NOT SURE IF IT'LL WORK
+    const owner = await ownerInfo.findById(req.owner_token); //find the owner using token
+    if (!owner){
+      return res.status(404).json({message: "Owner not found"});
+    }
+    const isRightRestaurant = owner.restaurants.some((restaurant) => restaurant._id.toString());
+    //checks if owner accessing their own restaurant
+    //.some() checks whether at least one element in array passes the test (aka having that id)
+    if (!isRightRestaurant){ 
+      return res.status(403).json({message: "You don't own this restaurant"});
+    }
+    const updatedData = await restaurantInfo.findByIdandUpdate(restaurantId)(
+      { $set: req.body } //will merge old values with new changes
     );
     res.json(updatedData);
   } catch (error) {
