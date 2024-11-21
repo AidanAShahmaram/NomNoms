@@ -22,6 +22,11 @@ router.get('/', async(req, res) => {
 //status codes: 200 - success, 400 - username not found, 401 - passwords does not match
 router.get('/login/user', async (req, res) => {
     const {username, password} = req.body;
+
+    //checks that a username and password are given
+    if(!username || !password){
+	return res.status(400).json({msg: "Missing parameters: requires a \"username\" and \"password\""})
+    }
     
     //checks if account exists
     const account = await User.findOne({username: username});
@@ -52,15 +57,21 @@ router.get('/login/user', async (req, res) => {
 // POST user sign up
 //status codes: 403 - already exists, 400 - invalid password creation
 router.post('/signup/user', async (req, res) => {
-    
     const {username, password, description} = req.body;
-    const account = await User.findOne({username: username});
+
+    //checks that a username and password are given
+    if(!username || !password){
+	return res.status(400).json({msg: "Missing parameters: requires a \"username\" and \"password\""})
+    }
+
+    //checks for existing user
+    await User.findOne({username: username});
     if(account){
 	return res.status(403).json({msg: "This username already exists"});
     }
 
+    //makes sure password is valid
     p_check = password_check(password)
-
     if(!p_check.valid){
 	return res.status(400).json({msg: p_check.msg});
     }
@@ -79,6 +90,11 @@ router.post('/signup/user', async (req, res) => {
 //status codes: 200 - success, 400 - username not found, 401 - passwords does not match
 router.get('/login/owner', async (req, res) => {
     const {username, password} = req.body;
+
+    //checks that a username and password are given
+    if(!username || !password){
+	return res.status(400).json({msg: "Missing parameters: requires a \"username\" and \"password\""})
+    }
     
     //checks if account exists
     const account = await Owner.findOne({username: username});
@@ -105,8 +121,13 @@ router.get('/login/owner', async (req, res) => {
 // POST owner sign up
 //status codes: 403 - already exists, 400 - invalid password creation
 router.post('/signup/owner', async (req, res) => {
-    
     const {username, password, restaurant, description} = req.body;
+
+    //checks that a username and password are given
+    if(!username || !password){
+	return res.status(400).json({msg: "Missing parameters: requires a \"username\" and \"password\""})
+    }
+    
     const account = await Owner.findOne({username: username});
     if(account){
 	return res.status(403).json({msg: "This username already exists"});
