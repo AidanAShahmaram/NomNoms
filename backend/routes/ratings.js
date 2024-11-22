@@ -7,7 +7,7 @@ const Restaurant = require('../databases/restuarantDatabase');
 const decodeToken = require('../token_middleware.js')
 
 //gets the average rating for the given restaurant id
-router.get('/$(id)/total_rating',async (req, res) => {
+router.get('/$(id)/average_rating',async (req, res) => {
     restaurant_id = req.params.id;
     
     //finds restaurant
