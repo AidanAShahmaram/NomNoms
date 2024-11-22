@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const Restaurant = require('../databases/restuarantDatabase');
 
-const middleware_route = require('../index.js')
+const decodeToken = require('../token_middleware.js')
 
 //gets the average rating for the given restaurant id
 router.get('/$(id)/total_rating',async (req, res) => {
