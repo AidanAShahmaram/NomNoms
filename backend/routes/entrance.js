@@ -1,4 +1,4 @@
-// routes for users
+// routes for entrance
 
 const express = require('express');
 const router = express.Router();
@@ -30,7 +30,7 @@ router.get('/login/user', async (req, res) => {
     
     //checks if account exists
     const account = await User.findOne({username: username});
-    console.log(account);
+    
     if(!account)
 	return res.status(400).json({msg: "Invalid Username"});
 
@@ -65,7 +65,7 @@ router.post('/signup/user', async (req, res) => {
     }
 
     //checks for existing user
-    await User.findOne({username: username});
+    const account = await User.findOne({username: username});
     if(account){
 	return res.status(403).json({msg: "This username already exists"});
     }
@@ -98,7 +98,7 @@ router.get('/login/owner', async (req, res) => {
     
     //checks if account exists
     const account = await Owner.findOne({username: username});
-    console.log(account);
+    
     if(!account)
 	return res.status(400).json({msg: "Invalid Username"});
 
