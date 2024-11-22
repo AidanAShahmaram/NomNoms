@@ -79,7 +79,7 @@ router.post('/signup/user', async (req, res) => {
     const passhash = await bcrypt.hashSync(password, rounds);
     const newData = new User({"username": username, "password": passhash, "description": description});
     const savedData = await newData.save();
-    res.json("account": savedData);
+    res.status(200).json({"account": savedData});
     
   });
   
@@ -142,7 +142,7 @@ router.post('/signup/owner', async (req, res) => {
     const passhash = await bcrypt.hashSync(password, rounds);
     const newData = new Owner({"username": username, "password": passhash, "restaurant": restaurant, "description": description});
     const savedData = await newData.save();
-    res.json(("account": savedData);
+    res.status(200).json({"account": savedData});
     
 })
 
