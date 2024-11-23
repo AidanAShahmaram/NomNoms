@@ -16,6 +16,7 @@ export function HeaderDiv() {
             {/* <h1>NomNoms</h1> */}
             <img id="logo-title" src={logo} alt="NomNoms logo" />
             <p>Discover new restaurants near you</p>
+            <button className="get-started">Get Started</button>
         </div>
       );
 }

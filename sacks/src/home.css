@@ -131,3 +131,19 @@ p {
     background-repeat: no-repeat;
     background-position: center; 
 }
+
+.get-started {
+    background-color: #FFBA3C;
+    border-width: 0px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.get-started:hover {
+    background-color: #FFA500;
+}
+
