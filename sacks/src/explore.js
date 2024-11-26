@@ -3,7 +3,7 @@ import './explore.css';
 
 export function Explore() {
       return (
-        <div>
+        <div className="explore-page">
             <h1>Explore</h1>
             <CuisineCard />
         </div>
@@ -21,23 +21,42 @@ export function CuisineCard() {
             image: "/russian.png"
         },
         {
-            name: "Russian",
-            image: "/russian.png"
+            name: "Iranian",
+            image: "/iranian.png"
         },
         {
-            name: "Russian",
-            image: "/russian.png"
+            name: "Indian",
+            image: "/indian.png"
+        },
+        {
+            name: "Thai",
+            image: "/thai.png"
+        },
+        {
+            name: "Chinese",
+            image: "/chinese.png"
+        },
+        {
+            name: "Japanese",
+            image: "/japanese.png"
+        },
+        {
+            name: "Mexican",
+            image: "/mexican.png"
+        },
+        {
+            name: "French",
+            image: "/french.png"
         }
     ];
 
     return (
          <div className="cuisine-card">
+            
             {cuisines.map((cuisine, index) => (
-                <div key={index} className="cuisine-card">
-                    <img src={cuisine.image} alt={cuisine.name} className="cuisine-image" />
-                    <div className="overlay-text">
-                        <h2>{cuisine.name}</h2>
-                    </div>
+                <div class="image-container">
+                    <img src={cuisine.image} alt={cuisine.name}/>
+                    <div class="centered-text">{cuisine.name}</div>
                 </div>
             ))}
         </div>
