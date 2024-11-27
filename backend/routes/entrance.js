@@ -1,4 +1,4 @@
-// routes for users
+// routes for entrance
 
 const express = require('express');
 const router = express.Router();
@@ -22,10 +22,15 @@ router.get('/', async(req, res) => {
 //status codes: 200 - success, 400 - username not found, 401 - passwords does not match
 router.get('/login/user', async (req, res) => {
     const {username, password} = req.body;
+
+    //checks that a username and password are given
+    if(!username || !password){
+	return res.status(400).json({msg: "Missing parameters: requires a \"username\" and \"password\""})
+    }
     
     //checks if account exists
     const account = await User.findOne({username: username});
-    console.log(account);
+    
     if(!account)
 	return res.status(400).json({msg: "Invalid Username"});
 
@@ -46,21 +51,27 @@ router.get('/login/user', async (req, res) => {
 			   
 
     
-    return res.status(200).json({ token });
+    return res.status(200).json({ "token": token });
 });
 
 // POST user sign up
 //status codes: 403 - already exists, 400 - invalid password creation
 router.post('/signup/user', async (req, res) => {
-    
     const {username, password, description} = req.body;
+
+    //checks that a username and password are given
+    if(!username || !password){
+	return res.status(400).json({msg: "Missing parameters: requires a \"username\" and \"password\""})
+    }
+
+    //checks for existing user
     const account = await User.findOne({username: username});
     if(account){
 	return res.status(403).json({msg: "This username already exists"});
     }
 
+    //makes sure password is valid
     p_check = password_check(password)
-
     if(!p_check.valid){
 	return res.status(400).json({msg: p_check.msg});
     }
@@ -68,7 +79,7 @@ router.post('/signup/user', async (req, res) => {
     const passhash = await bcrypt.hashSync(password, rounds);
     const newData = new User({"username": username, "password": passhash, "description": description});
     const savedData = await newData.save();
-    res.json(savedData);
+    res.status(200).json({"account": savedData});
     
   });
   
@@ -79,10 +90,15 @@ router.post('/signup/user', async (req, res) => {
 //status codes: 200 - success, 400 - username not found, 401 - passwords does not match
 router.get('/login/owner', async (req, res) => {
     const {username, password} = req.body;
+
+    //checks that a username and password are given
+    if(!username || !password){
+	return res.status(400).json({msg: "Missing parameters: requires a \"username\" and \"password\""})
+    }
     
     //checks if account exists
     const account = await Owner.findOne({username: username});
-    console.log(account);
+    
     if(!account)
 	return res.status(400).json({msg: "Invalid Username"});
 
@@ -91,9 +107,8 @@ router.get('/login/owner', async (req, res) => {
 	    return res.status(401).json({msg: "Incorrect Password"});
 	}
     });
-
     //creates token for owner side -> need this for restaurants to be added to specific account
-    //token will become inavlid after the time specified
+    //token will become invalid after the time specified
     const token = jwt.sign({
             owner_token: account._id, //_id automatically created by mongo database
             msg: "Successful Login"},
@@ -106,8 +121,13 @@ router.get('/login/owner', async (req, res) => {
 // POST owner sign up
 //status codes: 403 - already exists, 400 - invalid password creation
 router.post('/signup/owner', async (req, res) => {
-    
     const {username, password, restaurant, description} = req.body;
+
+    //checks that a username and password are given
+    if(!username || !password){
+	return res.status(400).json({msg: "Missing parameters: requires a \"username\" and \"password\""})
+    }
+    
     const account = await Owner.findOne({username: username});
     if(account){
 	return res.status(403).json({msg: "This username already exists"});
@@ -122,7 +142,7 @@ router.post('/signup/owner', async (req, res) => {
     const passhash = await bcrypt.hashSync(password, rounds);
     const newData = new Owner({"username": username, "password": passhash, "restaurant": restaurant, "description": description});
     const savedData = await newData.save();
-    res.json(savedData);
+    res.status(200).json({"account": savedData});
     
 })
 

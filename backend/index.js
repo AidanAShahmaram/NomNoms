@@ -8,21 +8,6 @@ const app = express();
 //Request Body Reader
 const bodyParser = require('body-parser');
 
-const jwt = require('jsonwebtoken');
-//Middleware for handling the token (for owner id retrieval)
-//Will automatically look in middleware for this function
-function decodeToken(req, res, next){
-  const token = req.header('Authorization');
-  //Authorization = request header
-  try{
-    const decoded = jwt.verify(token, 'REPLACE');
-    req.owner_token = decoded.owner_token;
-    next(); //need next to continue to route handler/next middleware
-  } catch(error){
-    res.status(401).json({error: "No token found"});
-  }
-}
-module.exports = decodeToken;
 
 // Using mongoDB
 
@@ -61,6 +46,8 @@ const userRoutes = require('./routes/users');
 app.use('/user', userRoutes);
 const entranceRoutes = require('./routes/entrance');
 app.use('/entrance', entranceRoutes);
+const ratingRoutes = require('./routes/ratings');
+app.use('/rating', ratingRoutes)
 
 // Use the error handling middleware
 app.use(errorHandler);
@@ -69,3 +56,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+const A = require('./databases/ownerDatabase')
+const B = require('./databases/restaurantDatabase')
+const C = require('./databases/commentDatabase')
