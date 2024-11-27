@@ -5,6 +5,7 @@ const router = express.Router();
 const User = require('../databases/userDatabase');
 const jwt = require('bcrypt');
 const bcrypt = require('bcrypt');
+const restaurantInfo = require('../databases/restaurantDatabase');
 const rounds = 10;
 
 
@@ -46,11 +47,33 @@ router.post('/signup', async (req, res) => {
     
   });
   
-
-router.get('/restaurants', async (req, res) => {
-    res.send('View restaurants here');// this gets executed when user visit http://localhost:3000/users/restaurants
+//use sends us to a search url ex: http://test.com?name=John&age=21
+router.use('/restaurants_search', async (req, res, next) => { //Page for searching/filtering
+    const filters = req.query; //user input
+    const foundRestaurants = restaurantInfo.filter(restaurants => {
+      //can call restaurants like that?
+      let isValid = true;
+      for(key in filters){ //query makes key-value pairs
+        isValid = isValid && restaurants[key] == filters[key];
+      }
+      return isValid;
+    });
+res.json(foundRestaurants); //sends as json file
 });
 
+//use sends us to a filter url
+router.use('/restaurants_filter', async (req, res, next) => { //Page for searching/filtering
+  const filters = req.query.tags ? req.query.tags.split(',') : []; 
+  //get user input in key-value pairs and turn into an array of tags
+  if (filters.length == 0){
+    return res.status(400).json({error: "No tags provided"});
+  }
+  const query = {
+      tags: { $all: filters} //$all means we need all tags to be included
+  }
+  const filteredRestaurants = await restauarantInfo.find(query);
+  res.json(filteredRestaurants); //sends as json file
+});
 
 
 // PUT update data

@@ -13,7 +13,7 @@ const restaurantData = new mongoose.Schema({
     required: true,
   },
   tags: {
-    types: String
+    types: [String], //array of strings
   },
   description: {
     type: String,

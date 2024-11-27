@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const ownerInfo = require('../databases/ownerDatabase');
-const restaurantInfo = require('../databases/ownerDatabase');
+const restaurantInfo = require('../databases/restauarntDatabase');
 const jwt = require('jsonwebtoken'); //Don't think we need this here (?)
 
 const middleware_route = require('../index.js')
