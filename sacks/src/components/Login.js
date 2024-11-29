@@ -1,3 +1,6 @@
+import "./Login.css"
+
+
 export const Login = () => {
 
 
@@ -11,17 +14,17 @@ export const Login = () => {
         
         <center><form>
             <h1>Login</h1>
-            <label for="username"> Username </label>
+            <label class="input-label" for="username"> Username </label>
             <br></br>
-            <input type="username" placeholder="Username" id="username" required></input>
-            <br></br>
-            <br></br>
-            <label for="password"> Password </label>
-            <br></br>
-            <input type="password" placeholder="Password" id="password" required></input>
+            <input class="input-box" type="username" placeholder="Username" id="username" required></input>
             <br></br>
             <br></br>
-            <button onclick="">Log In</button>
+            <label class="input-label" for="password"> Password </label>
+            <br></br>
+            <input class="input-box" type="password" placeholder="Password" id="password" required></input>
+            <br></br>
+            <br></br>
+            <button class="submit" onclick="">Log In</button>
             <br></br>
             <br></br>
         </form>

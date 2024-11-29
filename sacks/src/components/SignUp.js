@@ -58,23 +58,23 @@ export const SignUp = () => {
             
         <form onSubmit={handleSubmitSignUp}>
             <h1>Sign Up</h1>
-            <label for="username"> Create Username </label>
+            <label class="input-label" for="username"> Create Username </label>
             <br></br>
-            <input type="username" value={username} onChange={changeUsername} placeholder="Username" id="username" required></input>
-            <br></br>
-            <br></br>
-            <label for="email"> Email </label>
-            <br></br>
-            <input type="email" value={email} onChange={changeEmail} placeholder="Email" id="email" required></input>
+            <input class="input-box" type="username" value={username} onChange={changeUsername} placeholder="Username" id="username" required></input>
             <br></br>
             <br></br>
-            <label for="password"> Password </label>
+            <label class="input-label" for="email"> Email </label>
             <br></br>
-            <input type="password" value={password} onChange={changePassword} placeholder="Password" id="password" required></input>
+            <input class="input-box" type="email" value={email} onChange={changeEmail} placeholder="Email" id="email" required></input>
+            <br></br>
+            <br></br>
+            <label class="input-label" for="password"> Password </label>
+            <br></br>
+            <input class="input-box" type="password" value={password} onChange={changePassword} placeholder="Password" id="password" required></input>
             <br></br>
             <br></br>
             
-            <button>Sign Up</button>
+            <button class="submit">Sign Up</button>
             <br></br>
             <br></br>
         </form>

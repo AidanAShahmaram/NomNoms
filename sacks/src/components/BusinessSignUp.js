@@ -101,34 +101,34 @@ export const BusinessSignUp = () => {
             
         <form onSubmit={handleSubmitSignUp}>
             <h1>Business Sign Up</h1>
-            <label for="username"> Create Username </label>
+            <label class="input-label" for="username"> Username </label>
             <br></br>
-            <input class="signUp" type="username" value={username} onChange={changeUsername} placeholder="Username" id="username" required></input>
-            <br></br>
-            <br></br>
-            <label for="email"> Email </label>
-            <br></br>
-            <input class="signUp" type="email" value={email} onChange={changeEmail} placeholder="Email" id="email" required></input>
+            <input class="input-box" type="username" value={username} onChange={changeUsername} placeholder="Username" id="username" required></input>
             <br></br>
             <br></br>
-            <label for="password"> Password </label>
+            <label class="input-label" for="email"> Email </label>
             <br></br>
-            <input class="signUp" type="password" value={password} onChange={changePassword} placeholder="Password" id="password" required></input>
-            <br></br>
-            <br></br>
-            <label for="Address"> Address </label>
-            <br></br>
-            <input class="signUp" type="address" value={address} onChange={changeAddress} placeholder="Address" id="address" required></input>
+            <input class="input-box" type="email" value={email} onChange={changeEmail} placeholder="Email" id="email" required></input>
             <br></br>
             <br></br>
-            <label for="city"> City </label>
+            <label class="input-label" for="password"> Password </label>
             <br></br>
-            <input class="signUp" type="city" value={city} onChange={changeCity} placeholder="City" id="city" required></input>
+            <input class="input-box" type="password" value={password} onChange={changePassword} placeholder="Password" id="password" required></input>
             <br></br>
             <br></br>
-            <label for="state"> State </label>
+            <label class="input-label" for="Address"> Address </label>
             <br></br>
-            <select class="signUp">
+            <input class="input-box" type="address" value={address} onChange={changeAddress} placeholder="Address" id="address" required></input>
+            <br></br>
+            <br></br>
+            <label class="input-label" for="city"> City </label>
+            <br></br>
+            <input class="input-box" type="city" value={city} onChange={changeCity} placeholder="City" id="city" required></input>
+            <br></br>
+            <br></br>
+            <label class="input-label" for="state"> State </label>
+            <br></br>
+            <select class="input-box">
                 <option value="Alabama">Alabama</option>
                 <option value="Alaska">Alaska</option>
                 <option value="Arizona">Arizona</option>
@@ -189,31 +189,31 @@ export const BusinessSignUp = () => {
             <br></br>
             <br></br>
 
-            <label for="zipCode"> Zip Code </label>
+            <label class="input-label" for="zipCode"> Zip Code </label>
             <br></br>
-            <input class="signUp" type="zipCode" value={zipCode} onChange={changeZipCode} placeholder="e.g., 90095" id="zipCode" required></input>
-            <br></br>
-            <br></br>
-
-            <label for="phoneNumber"> Phone Number </label>
-            <br></br>
-            <input class="signUp" type="tel" value={phoneNumber} onChange={changePhoneNumber} placeholder="(123) 456-7890" id="phoneNumber" required></input>
+            <input class="input-box" type="zipCode" value={zipCode} onChange={changeZipCode} placeholder="e.g., 90095" id="zipCode" required></input>
             <br></br>
             <br></br>
 
-            <label for="link"> Website Link </label>
+            <label class="input-label" for="phoneNumber"> Phone Number </label>
             <br></br>
-            <input class="signUp" type="url" value={websiteLink} onChange={changeWebsiteLink} placeholder="website.com" id="websiteLink" required></input>
-            <br></br>
-            <br></br>
-
-            <label for="descriptionTags"> Description Tags </label>
-            <br></br>
-
+            <input class="input-box" type="tel" value={phoneNumber} onChange={changePhoneNumber} placeholder="(123) 456-7890" id="phoneNumber" required></input>
             <br></br>
             <br></br>
 
-            <button>Sign Up</button>
+            <label class="input-label" for="link"> Website Link </label>
+            <br></br>
+            <input class="input-box" type="url" value={websiteLink} onChange={changeWebsiteLink} placeholder="website.com" id="websiteLink" required></input>
+            <br></br>
+            <br></br>
+
+            <label class="input-label" for="descriptionTags"> Description Tags </label>
+            <br></br>
+
+            <br></br>
+            <br></br>
+
+            <button class="submit">Sign Up</button>
             <br></br>
             <br></br>
         </form>
