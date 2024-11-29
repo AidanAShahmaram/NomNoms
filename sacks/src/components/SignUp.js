@@ -1,4 +1,6 @@
 import './SignUp.css'
+import React, { useState } from 'react';
+
 
 export const SignUp = () => {
 
@@ -7,30 +9,45 @@ export const SignUp = () => {
     const [password, setPassword] = useState("");
 
 
-    function getSignUpInfo() {
-        const [signUpInfo, setSignUpInfo] = useState({
-            
-        });
 
+    const handleSubmitSignUp = async (e) => {
 
-    }
+        e.preventDefault();
+        
+        const signUpFormData = {
+            username, 
+            email,
+            password
+        }
+
+        
+
+        const jsonData = JSON.stringify(signUpFormData);
+
+        
+        console.log("JSON: " + jsonData + "\n \n");
+     
+    };
 
     const changeUsername = (event) => {
         setUsername(event.target.value)
+        console.log("Username: " + event.target.value + "\n");
     }
 
     const changeEmail = (event) => {
         setEmail(event.target.value)
+        console.log("Email: " + event.target.value + "\n");
     }
 
     const changePassword = (event) => {
         setPassword(event.target.value)
+        console.log("Password: " + event.target.value + "\n");
     }
 
     return (
         <>
             
-        <form>
+        <form onSubmit={handleSubmitSignUp}>
             <h1>Sign Up</h1>
             <label for="username"> Create Username </label>
             <br></br>
@@ -47,11 +64,7 @@ export const SignUp = () => {
             <input type="password" value={password} onChange={changePassword} placeholder="Password" id="password" required></input>
             <br></br>
             <br></br>
-            <label for="confirm_password"> Confirm Password </label>
-            <br></br>
-            <input type="password" placeholder="Confirm Password" id="confirm_password" required></input>
-            <br></br>
-            <br></br>
+            
             <button>Sign Up</button>
             <br></br>
             <br></br>
