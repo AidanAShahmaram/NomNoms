@@ -1,0 +1,24 @@
+
+.choose-login {
+    text-align: center;
+    background-color: skyblue;
+    padding:30px;
+    margin: 20%;
+}
+
+.button {
+    width: 30%; 
+    margin: 20px; 
+    padding: 20px;
+    border: solid;
+    border-radius: 30px;
+    border-width: 3px;
+    border-color: orange;
+    background-color: lightgoldenrodyellow;
+
+}
+
+a {
+    color: brown;
+    text-decoration: none;
+  }

@@ -35,14 +35,11 @@ export const BusinessSignUp = () => {
 
 
         try {
-            const response = await axios.post('http://localhost:3000', { username: username, email: email, password: password });
+            const response = await axios.post('http://localhost:3000', { username: username, email: email, password: password, address: address, city: city, state: state, zipCode: zipCode, phoneNumber: phoneNumber, websiteLink: websiteLink, descriptionTags: descriptionTags });
             console.log("Response: " + response + "\n");
         } catch (error) {
             console.error(error.response);
         }
-
-
-        
 
         const jsonData = JSON.stringify(signUpFormData);
 
@@ -128,7 +125,7 @@ export const BusinessSignUp = () => {
             <br></br>
             <label class="input-label" for="state"> State </label>
             <br></br>
-            <select class="input-box">
+            <select class="input-box" onChange={changeState}>
                 <option value="Alabama">Alabama</option>
                 <option value="Alaska">Alaska</option>
                 <option value="Arizona">Arizona</option>

@@ -2,7 +2,9 @@ form {
     text-align: center;
 }
 
-
+img {
+    width: 10%; 
+}
 
 .input-box {
     padding: 5px;
