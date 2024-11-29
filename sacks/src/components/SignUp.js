@@ -1,6 +1,6 @@
 import './SignUp.css'
 import React, { useState } from 'react';
-
+import axios from 'axios';
 
 export const SignUp = () => {
 
@@ -19,6 +19,15 @@ export const SignUp = () => {
             email,
             password
         }
+
+
+        try {
+            const response = await axios.post('http://localhost:3000', { username: username, email: email, password: password });
+            console.log("Response: " + response + "\n");
+        } catch (error) {
+            console.error(error.response);
+        }
+
 
         
 
