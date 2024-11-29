@@ -1,3 +1,13 @@
 form {
     text-align: center;
 }
+
+
+
+.signUp {
+    padding: 5px;
+    border-style: solid;
+    border-radius: 30px;
+    border-color: orange;
+    background-color: lightyellow;
+}
