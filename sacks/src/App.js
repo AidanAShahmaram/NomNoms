@@ -1,31 +1,42 @@
 // import { useEffect, useState } from 'react';
-import useOnLoad from './onLoad';
-import logo from './logo.svg';
 import './App.css';
+import {HeaderDiv, IntroBox, PathDiv} from './home';
+import Footer from './footer';
+import Filter from './filter';
+import Explore from './explore';
+import Navbar from './components/Navbar'
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
-  const { isLoading, loadDisplay } = useOnLoad(3000);
   return (
-    <div className="Loader">
-      {isLoading ? loadDisplay() :
-      (
-        <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      )}
-    </div>
+    <>
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={
+            <>
+              <HeaderDiv />
+              <IntroBox />
+              <PathDiv />
+            </>
+            } />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/search" element={<Filter />} />
+        </Routes>
+      </div>
+      <Footer />
+    </>
+
   );
 }
 
 export default App;
+
+
+
+// {/* <Explore /> */}
+    //  {/* <Filter /> */}
+      // <HeaderDiv />
+      // <IntroBox />
+      // <PathDiv></PathDiv>
+      // <Footer />
