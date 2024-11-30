@@ -1,0 +1,32 @@
+body {
+    background-color: cornsilk; 
+}
+
+h1 {
+    color: darkorange;
+}
+
+.input-box {
+    padding: 5px;
+    border-style: solid;
+    border-radius: 30px;
+    border-color: orange;
+    border-width: 2px; 
+    background-color: lightyellow;
+}
+
+.submit {
+    color: brown;
+    padding: 5px;
+    border-style: solid;
+    border-radius: 30px;
+    border-color: orange;
+    border-width: 2px; 
+    background-color: orange;
+}
+
+.input-label {
+    color: orange;
+    /*font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif */
+
+}

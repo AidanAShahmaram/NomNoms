@@ -1,0 +1,22 @@
+
+.choose-signup {
+    text-align: center;
+    padding:30px;
+}
+
+.button {
+    width: 30%; 
+    margin: 20px; 
+    padding: 20px;
+    border: solid;
+    border-radius: 30px;
+    border-width: 3px;
+    border-color: orange;
+    background-color: lightgoldenrodyellow;
+
+}
+
+a {
+    color: brown;
+    text-decoration: none;
+  }

@@ -1,0 +1,76 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    background-color: transparent;
+}
+
+.navbar-logo {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.logo {
+    width: 50px;
+    margin-right: 20px;
+}
+
+.nav-link {
+    margin-left: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.nav-link:hover {
+    color: orange;
+}
+
+.active {
+    color: #FF4600;
+}
+
+/* .explore {
+    margin: 5px;
+}
+
+.search {
+    margin: 5px;
+} */
+
+.login {
+    margin: 5px;
+    background-color: transparent;
+}
+
+.login:hover {
+    background-color: white;
+}
+
+.signup {
+    margin: 5px;
+    background-color: #FFBA3C;
+}
+
+.signup:hover {
+    background-color: #FFA500;
+}
+
+.login-signup {
+    margin-left: auto;
+}
+
+.login-signup button {
+    border-radius: 44px;
+    border-width: 1.5px;
+    font-size: 18px;
+    padding: 10px;
+    width: 89px;
+}
+
+
+
