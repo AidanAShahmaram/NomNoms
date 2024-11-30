@@ -1,3 +1,4 @@
+
 import './Navbar.css';
 import logo from '../assets/logo-icononly.png';
 import { NavLink } from 'react-router-dom';
@@ -22,7 +23,7 @@ export const Navbar = () => {
                 <button className="login" onclick="window.location.href='./Login.js'">Log in</button>
                 <button className="signup" onclick="window.location.href='./SignUp.js'">Sign Up</button>
             </div>
-            
+
         </div>
     )
 }
