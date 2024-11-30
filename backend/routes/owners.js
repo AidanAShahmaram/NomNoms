@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const ownerInfo = require('../databases/ownerDatabase');
-const restaurantInfo = require('../databases/restauarntDatabase');
+const restaurantInfo = require('../databases/restaurantDatabase');
 const jwt = require('jsonwebtoken'); //Don't think we need this here (?)
 
 const decodeToken = require('../token_middleware.js');

@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const Restaurant = require('../databases/restuarantDatabase');
+const Restaurant = require('../databases/restaurantDatabase');
 
 const decodeToken = require('../token_middleware.js')
 
@@ -54,9 +54,6 @@ router.post('/$(id)/user_rating',decodeToken, async (req, res) => {
     restaurant.ratings.set(username, newRating);
 
     await restaurant.save();
-
-    //updates restaurant rating attributes
-    restaurant.rating_count = restaurant.rating_count
 
     res.status(200).json({ msg: "Rating Sucessfully Updated!" });
 
