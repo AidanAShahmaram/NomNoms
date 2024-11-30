@@ -123,10 +123,11 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, tags,
             <h1 className="title">{title}</h1>
             
             {/*Tags - they are an array prop*/}
-            <div className="tags">
+            {/*Tags className is labels - they are an array prop*/}
+            <div className="labels">
                 {tags.length > 0 ? (
                 tags.map((tag, index) => (
-                    <span key={index} className="tag">
+                    <span key={index} className="label">
                         {tag}
                     </span>
                     ))

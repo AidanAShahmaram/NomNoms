@@ -21,16 +21,16 @@
     margin: 10px;
 }
 
-/* Container for the tags */
-.tags {
+/* Container for the labels */
+.labels {
     /* Flexbox */
     display: flex;
-    /* Distribute tags equally */
+    /* Distribute labels equally */
     justify-content: space-evenly;
     padding: 5px;                
 }
 
-.tag {
+.label {
     background-color: #7ecbff; 
     color: rgb(0, 0, 0);
     /* Create oval shape dimensions */
@@ -48,8 +48,8 @@
 }
 
 /* Hover effect */
-.tag:hover {
-    /* Slightly enlarge the tag on hover */
+.label:hover {
+    /* Slightly enlarge the label on hover */
     transform: scale(1.2);
 }
 

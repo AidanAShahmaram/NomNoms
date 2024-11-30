@@ -5,43 +5,42 @@ import RestaurantCard from './RestaurantCard';
 export function Explore() {
       return (
         <div className="explore-page">
-            <h1>Explore</h1>
+            <div className="h1-explore">Explore</div>
             <CuisineCard />
             <div className="cards">
-          <RestaurantCard className="restaurant-card"
-          title="Brewster's Cafe"
-          pic="https://sprudge.com/wp-content/uploads/2021/11/animal-crossing-the-roost-brianna-fox-priest.jpg"
-          weblink="https://animalcrossing.fandom.com/wiki/The_Roost"
-          address="Animal Crossing"
-          phone="(123) 456-7890"
-          ratingInit={3.7}
-          tags={["Cozy", "Family-Friendly", "Coffee"]}
-          id="Brewster's Cafe"
-          user="Johnny"
-          />
-          <RestaurantCard className="restaurant-card"
-          title="Brewster's Cafe"
-          pic="https://sprudge.com/wp-content/uploads/2021/11/animal-crossing-the-roost-brianna-fox-priest.jpg"
-          weblink="https://animalcrossing.fandom.com/wiki/The_Roost"
-          address="Animal Crossing"
-          phone="(123) 456-7890"
-          ratingInit={3.7}
-          tags={["Cozy", "Family-Friendly", "Coffee"]}
-          id="Brewster's Cafe"
-          user="Johnny"
-          />
-          <RestaurantCard className="restaurant-card"
-          title="Brewster's Cafe"
-          pic="https://sprudge.com/wp-content/uploads/2021/11/animal-crossing-the-roost-brianna-fox-priest.jpg"
-          weblink="https://animalcrossing.fandom.com/wiki/The_Roost"
-          address="Animal Crossing"
-          phone="(123) 456-7890"
-          ratingInit={3.7}
-          tags={["Cozy", "Family-Friendly", "Coffee"]}
-          id="Brewster's Cafe"
-          user="Johnny"
-          />
-        </div>
+                <RestaurantCard className="restaurant-card"
+                title="Brewster's Cafe"
+                pic="https://sprudge.com/wp-content/uploads/2021/11/animal-crossing-the-roost-brianna-fox-priest.jpg"
+                weblink="https://animalcrossing.fandom.com/wiki/The_Roost"
+                address="Animal Crossing"
+                phone="(123) 456-7890"
+                ratingInit={3.7}
+                tags={["Cozy", "Family-Friendly", "Coffee"]}
+                id="Brewster's Cafe"
+                user="Johnny"
+                />
+                <RestaurantCard className="restaurant-card"
+                title="Brewster's Cafe"
+                pic="https://sprudge.com/wp-content/uploads/2021/11/animal-crossing-the-roost-brianna-fox-priest.jpg"
+                weblink="https://animalcrossing.fandom.com/wiki/The_Roost"
+                address="Animal Crossing"
+                phone="(123) 456-7890"
+                ratingInit={3.7}
+                tags={["Cozy", "Family-Friendly", "Coffee"]}
+                id="Brewster's Cafe"
+                user="Johnny"
+                />
+                <RestaurantCard className="restaurant-card"
+                title="Brewster's Cafe"
+                pic="https://sprudge.com/wp-content/uploads/2021/11/animal-crossing-the-roost-brianna-fox-priest.jpg"
+                weblink="https://animalcrossing.fandom.com/wiki/The_Roost"
+                address="Animal Crossing"
+                phone="(123) 456-7890"
+                ratingInit={3.7}
+                tags={["Cozy", "Family-Friendly", "Coffee"]}
+                id="Brewster's Cafe"
+                />
+            </div>
         </div>
       );
 }

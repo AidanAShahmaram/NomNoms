@@ -1,3 +1,14 @@
+.h1-explore {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    color: black;
+    margin-top: 0.67em;
+    /* margin-bottom: 0.67em; */
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .explore-page {
     display: flex;
     justify-content: center;
@@ -16,7 +27,8 @@
 .image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* image covers container while maintaining aspect ratio */
+    /* image covers container while maintaining aspect ratio */
+    object-fit: cover; 
     filter: brightness(0.65);
     border-radius: 20px;
 }
@@ -28,8 +40,10 @@
 .centered-text {
     position: absolute;
     top: 50%;
-    left: 50%; /* moves top left corner of the text to the center of the image-container */
-    transform: translate(-50%, -50%); /* moves element to the left and upwards by 50% of its own width */
+    /* moves top left corner of the text to the center of the image-container */
+    left: 50%; 
+     /* moves element to the left and upwards by 50% of its own width */
+    transform: translate(-50%, -50%);
     color: white; 
     font-size: 20px; 
     font-weight: 600; 
@@ -41,4 +55,15 @@
     gap: 20px; 
     max-width: 490px;
     margin: 50px auto;
+}
+
+.cards {
+    display: flex;
+    /* wrap to next row when space is filled */
+    flex-wrap: wrap;
+}
+
+.restaurant-card {
+    /* Space between rows */
+    margin-bottom: 20px;
 }
