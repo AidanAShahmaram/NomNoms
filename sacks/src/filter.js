@@ -12,17 +12,19 @@ export function Filter() {
 export function SelectTag() {
     // array of cuisine tag names
     const cuisineTags = [
-        'American', 'Brazilian', 'Bulgarian', 'Chinese', 
-        'French', 'German', 'Indian', 'Indonesian', 
-        'Iranian', 'Italian', 'Japanese', 'Mexican', 
-        'Russian', 'Taiwanese', 'Thai', 'Vietnamese'
+        'American', 'Brazilian', 'Bulgarian', 'Chinese', 'Cuban',
+        'Ethiopian', 'French', 'German', 'Guatemalan', 'Indian',
+        'Indonesian', 'Iranian', 'Italian', 'Japanese', 'Jamaican',
+        'Korean', 'Mexican', 'Moroccan', 'Nigerian', 'Peruvian',
+        'Russian', 'Taiwanese', 'Thai', 'Venezuelan', 'Vietnamese'
     ];
 
     // array of general tag names
     const generalTags = [
-        'Breakfast', 'Brunch', 'Buffet', 'Casual dining', 
-        'Cozy', 'Family-friendly', 'Fast food', 'Fine dining',
-        'Gluten-free', 'Halal', 'Organic', 'Pet-friendly',
+        'Bar', 'Breakfast', 'Brunch', 'Buffet', 'Casual dining', 
+        'Coffee Shop', 'Cozy', 'Family-friendly', 'Fast food', 'Fine dining',
+        'Gluten-free', 'Gourmet', 'Halal', 'Healthy', 'Kosher',
+        'Organic', 'Pet-friendly', 'Pescetarian', 'Pub', 'Romantic',
         'Street food', 'Take out', 'Vegan', 'Vegetarian'
     ];
 
