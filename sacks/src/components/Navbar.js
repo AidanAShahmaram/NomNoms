@@ -20,8 +20,13 @@ export const Navbar = () => {
             {/* <input type="searchbar" placeholder="Search for restaurants" id="searchbar"></input> */}
             
             <div className="login-signup">
-                <button className="login" onclick="window.location.href='./Login.js'">Log in</button>
-                <button className="signup" onclick="window.location.href='./SignUp.js'">Sign Up</button>
+                <NavLink to="/chooselogin">
+                    <button className="login">Log in</button>
+                </NavLink>
+                
+                <NavLink to="/choosesignup">
+                    <button className="signup">Sign Up</button>
+                </NavLink>
             </div>
 
         </div>

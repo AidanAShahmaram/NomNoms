@@ -5,14 +5,18 @@ import {HeaderDiv, IntroBox, PathDiv} from './home';
 import Footer from './footer';
 import Filter from './filter';
 import Explore from './explore';
+
 import Navbar from './components/Navbar'
 import ChooseLogin from './components/ChooseLogin.js';
 import ChooseSignUp from './components/ChooseSignUp.js';
+
 import Login from './components/Login.js'
 import BusinessLogin from './components/BusinessLogin.js';
 import SignUp from './components/SignUp.js'
 import BusinessSignUp from './components/BusinessSignUp.js';
+
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
 
 
 function App() {
@@ -30,12 +34,14 @@ function App() {
             } />
           <Route path="/explore" element={<Explore />} />
           <Route path="/search" element={<Filter />} />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/chooselogin" element={<ChooseLogin />} />
           <Route path="/choosesignup" element={<ChooseSignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/businesslogin" element={<BusinessLogin />} />
-          <Route path="/signup" element={<SignUp />} />
           <Route path="/businesssignup" element={<BusinessSignUp />} />
+          <Route path="/businesslogin" element={<BusinessLogin />} />
+          
         </Routes>
       </div>
       <Footer />
