@@ -1,6 +1,56 @@
 import './SignUp.css'
 import React, { useState } from 'react';
 import axios from 'axios';
+import Select from "react-select"
+
+const cuisineOptions = [
+    {value: "Russian", label: "Russian"},
+    {value: "Iranian", label: "Iranian"},
+    {value: "Indian", label: "Indian"},
+    {value: "Thai", label: "Thai"},
+    {value: "Bulgarian", label: "Bulgarian"},
+    {value: "Chinese", label: "Chinese"},
+    {value: "Japanese", label: "Japanese"},
+    {value: "Mexican", label: "Mexican"},
+    {value: "French", label: "French"},
+    {value: "American", label: "American"},
+    {value: "Italian", label: "Italian"},
+    {value: "Vietnamese", label: "Vietnamese"},
+    {value: "Brazilian", label: "Brazilian"},
+    {value: "German", label: "German"},
+    {value: "Taiwanese", label: "Taiwanese"},
+    {value: "Indonesian", label: "Indonesian"},
+    {value: "Korean", label: "Korean"},
+    {value: "Peruvian", label: "Peruvian"},
+    {value: "Guatemalan", label: "Guatemalan"},
+    {value: "Ethiopian", label: "Ethiopian"},
+    {value: "Moroccan", label: "Noroccan"},
+    {value: "Cuban", label: "Cuban"},
+    {value: "", label: ""},
+    {value: "", label: ""},
+    {value: "", label: ""},
+
+];
+
+const restaurantDescriptors = [
+    {value: "family-friendly", label: "Family-friendly"},
+    {value: "casual-dining", label: "Casual dining"}, 
+    {value: "fine-dining", label: "Fine Dining"}, 
+    {value: "street-food", label: "Street Food"}, 
+    {value: "fast-food", label: "Fast Food"}, 
+    {value: "breakfast", label: "Breakfast"},
+    {value: "brunch", label: "Brunch"}, 
+    {value: "buffet", label: "Buffet"}, 
+    {value: "take-out", label: "Take out"}, 
+    {value: "organic", label: "Organic"},
+    {value: "vegetarian", label: "Vegetarian"},
+    {value: "vegan", label: "Vegan"}, 
+    {value: "halal", label: "Halal"},
+    {value: "gluten-free", label: "gluten-free"}, 
+    {value: "pet-friendly", label: "pet-friendly"}, 
+    {value: "cozy", label: "cozy"}, 
+];
+
 
 export const BusinessSignUp = () => {
 
@@ -13,7 +63,9 @@ export const BusinessSignUp = () => {
     const [zipCode, setZipCode] = useState(""); 
     const [phoneNumber, setPhoneNumber] = useState("");
     const [websiteLink, setWebsiteLink] = useState(""); 
-    const [descriptionTags, setDescriptionTags] = useState("");
+    const [selectedCuisineOptions, setSelectedCuisineOptions] = useState([]);
+    const [selectedRestaurantDescriptorsOptions, setSelectedRestaurantDescriptorsOptions] = useState([]);
+    
 
 
     const handleSubmitSignUp = async (e) => {
@@ -30,12 +82,13 @@ export const BusinessSignUp = () => {
             zipCode,
             phoneNumber,
             websiteLink,
-            descriptionTags
+            selectedCuisineOptions,
+            selectedRestaurantDescriptorsOptions
         }
 
 
         try {
-            const response = await axios.post('http://localhost:3000', { username: username, email: email, password: password, address: address, city: city, state: state, zipCode: zipCode, phoneNumber: phoneNumber, websiteLink: websiteLink, descriptionTags: descriptionTags });
+            const response = await axios.post('http://localhost:3000', { username: username, email: email, password: password, address: address, city: city, state: state, zipCode: zipCode, phoneNumber: phoneNumber, websiteLink: websiteLink, cuisine: selectedCuisineOptions, restaurantDescriptors: selectedRestaurantDescriptorsOptions });
             console.log("Response: " + response + "\n");
         } catch (error) {
             console.error(error.response);
@@ -93,9 +146,48 @@ export const BusinessSignUp = () => {
         console.log("Website Link: " + event.target.value + "\n");
     }
 
+    const handleCuisineSelection = (selectedOption) => {
+        setSelectedCuisineOptions(selectedOption);
+    }
+
+    const handleRestaurantSelection = (selectedOption) => {
+        setSelectedRestaurantDescriptorsOptions(selectedOption);
+    }
+
+    const selectStyle = {
+        control: (provided) => ({
+          ...provided,
+          width: '40%',  // Control width is 40% of the screen width
+          margin: '0 auto', // Optional: Center the select box horizontally
+          borderRadius: '20px',
+          borderWidth: '2px',
+          borderColor: 'orange', 
+          backgroundColor: 'lightyellow',
+          textAlign: 'center'
+        }),
+        menu: (provided) => ({
+          ...provided,
+          width: '40%',  // Dropdown menu width also 40%
+          textAlign: 'center',
+          borderRadius: '20px',
+          
+        }),
+        option: (provided) => ({
+            ...provided,
+            textAlign: 'center',     // Center text inside the options
+          }),
+      
+          // Style for the single option item selected
+          singleValue: (provided) => ({
+            ...provided,
+            textAlign: 'center',     // Center the selected value text
+          }),
+      
+    };
+
     return (
         <>
-            
+        <center><img src="../../logo.png" alt="logo"></img></center>
         <form onSubmit={handleSubmitSignUp}>
             <h1>Business Sign Up</h1>
             <label class="input-label" for="username"> Username </label>
@@ -204,8 +296,21 @@ export const BusinessSignUp = () => {
             <br></br>
             <br></br>
 
-            <label class="input-label" for="descriptionTags"> Description Tags </label>
+            
+
+            <label class="input-label" for="cuisine"> Cuisine </label>
             <br></br>
+            <div class="select">
+                <Select options={cuisineOptions} value={selectedCuisineOptions} onChange={handleCuisineSelection} styles={selectStyle}/>
+            </div>
+            <br></br>
+            
+            
+            <label class="input-label" for="restaurantDescriptionTags"> Restaurant Descriptors Tags </label>
+            <br></br>
+            <div class="select">
+                <Select options={restaurantDescriptors} value={selectedRestaurantDescriptorsOptions} onChange={handleRestaurantSelection} styles={selectStyle}/>
+            </div>
 
             <br></br>
             <br></br>

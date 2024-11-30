@@ -49,7 +49,7 @@ export const Login = () => {
         
         <center><img src="../../logo.png" alt="logo"></img></center>
         <center><form onSubmit={handleSubmitLogin}>
-            <h1>Login</h1>
+            <h1>Foodie Login</h1>
             <label class="input-label" for="username"> Username </label>
             <br></br>
             <input class="input-box" type="username" onChange={changeUsername} placeholder="Username" id="username" required></input>

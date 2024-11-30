@@ -1,3 +1,4 @@
+import "./Login.css"
 
 export const BusinessLogin = () => {
 
@@ -9,24 +10,26 @@ export const BusinessLogin = () => {
     }
 
     return (
-        
+        <>
+        <center><img src="../../logo.png" alt="logo"></img></center>
         <center><form>
-            <h1>Login</h1>
+            <h1>Business Login</h1>
             <label for="username"> Username </label>
             <br></br>
-            <input type="username" placeholder="Username" id="username" required></input>
+            <input class="input-box" type="username" placeholder="Username" id="username" required></input>
             <br></br>
             <br></br>
             <label for="password"> Password </label>
             <br></br>
-            <input type="password" placeholder="Password" id="password" required></input>
+            <input class="input-box" type="password" placeholder="Password" id="password" required></input>
             <br></br>
             <br></br>
-            <button onclick="">Log In</button>
+            <button class="submit" onclick="">Log In</button>
             <br></br>
             <br></br>
         </form>
         </center>
+        </>
     )
 } 
 

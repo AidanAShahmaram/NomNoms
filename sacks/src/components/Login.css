@@ -2,6 +2,10 @@ body {
     background-color: cornsilk; 
 }
 
+h1 {
+    color: darkorange;
+}
+
 .input-box {
     padding: 5px;
     border-style: solid;
