@@ -67,6 +67,9 @@
 .footer p {
     color: white;
     font-size: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    margin: 0;
 }
 
 @media (max-width: 768px) {

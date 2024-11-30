@@ -1,24 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 
-h1 {
+.h1-filter {
     font-family: 'DM Sans', sans-serif;
     font-size: 30px;
     margin: 0;
+    display: block;
+    font-weight: bold;
+    color: black;
 }
 
-h2 {
+.h2-filter {
     font-family: 'DM Sans', sans-serif;
     font-size: 20px;
     margin: 0;
+    display: block;
+    font-weight: bold;
 }
 
-h3 {
+/* .h3-filter {
     font-family: 'DM Sans', sans-serif;
     font-size: 20px;
     font-weight: 500;
     margin: 0;
-}
+    display: block;
+    font-weight: bold;
+} */
 
 .tag {
     background-color: transparent;

@@ -12,10 +12,10 @@ export function HeaderDiv() {
     
       return (
         <div className="header-div" style={divStyle}>
-            <p>Welcome to</p>
+            <div className="p-home">Welcome to</div>
             {/* <h1>NomNoms</h1> */}
             <img id="logo-title" src={logo} alt="NomNoms logo" />
-            <p>Discover new restaurants near you</p>
+            <div className="p-home">Discover new restaurants near you</div>
             <button className="get-started">Get Started</button>
         </div>
       );
@@ -30,8 +30,8 @@ export function IntroBox() {
         <div className="centered-div">
             <div className="intro-div" style={divStyle}>
             <div className="body-text">
-                <h2>What is NomNoms?</h2>
-                <h3>We want to create a community where restaurant owners and users can come together and discover new food!</h3>
+                <div className="h2-home">What is NomNoms?</div>
+                <div className="h3-home">We want to create a community where restaurant owners and users can come together and discover new food!</div>
             </div>
             <div className="rectangle"></div>
             </div>
@@ -46,7 +46,7 @@ export function PathDiv() {
     
       return (
         <div className="centered-div1">
-            <h1>How it works</h1>
+            <div className="h1-home">How it works</div>
             <div className="path-div" style={divStyle}>
             </div> 
         </div>

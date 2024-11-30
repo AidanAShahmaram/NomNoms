@@ -56,9 +56,9 @@ export function SelectTag() {
     return (
         <div className="filter-div">
             <div className="padding"></div>
-            <h1>Search</h1>
+            <div className="h1-filter">Search</div>
             <div className="padding"></div>
-            <h2>Cuisine</h2>
+            <div className="h2-filter">Cuisine</div>
             <div className="tags-div">
                 {cuisineTags.map((tag) => (
                     <button key={tag} onClick={() => handleClick(tag)} className={`tag ${selectedTags[tag] ? 'on' : 'off'}`}> 
@@ -67,7 +67,7 @@ export function SelectTag() {
                 ))}
             </div>
             <div className="padding"></div>
-            <h2>General</h2>
+            <div className="h2-filter">General</div>
             <div className="tags-div">
                 {generalTags.map((tag) => (
                     <button key={tag} onClick={() => handleClick(tag)} className={`tag ${selectedTags[tag] ? 'on' : 'off'}`}> 
