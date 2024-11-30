@@ -1,0 +1,116 @@
+.restaurant-card {
+    display: flex;
+    flex-direction: column;
+    margin: 30px auto;
+    max-width: 600px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 22.5px;
+    text-align: center;
+    cursor: url("./assets/pizza_mouse.png"), auto;
+}
+
+.title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 24px;
+}
+
+.pic {
+    border: 2px solid darkslategray;
+    margin: 10px;
+}
+
+/* Container for the tags */
+.tags {
+    /* Flexbox */
+    display: flex;
+    /* Distribute tags equally */
+    justify-content: space-evenly;
+    padding: 5px;                
+}
+
+.tag {
+    background-color: #7ecbff; 
+    color: rgb(0, 0, 0);
+    /* Create oval shape dimensions */
+    padding: 10px 20px;           
+    /* Create oval shaped corners */
+    border-radius: 30px;
+    font-size: 18px;  
+    font-weight: bold;
+    /* Make everything uppercase */
+    text-transform: uppercase;
+    /* Light shadow for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    /* Helps smooth the hover effect */
+    transition: transform 0.25s ease-in-out;
+}
+
+/* Hover effect */
+.tag:hover {
+    /* Slightly enlarge the tag on hover */
+    transform: scale(1.2);
+}
+
+.rating {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+}
+
+p0 {
+    font-size: 16px;
+    font-style: italic;
+    color: #ff5b49;
+    text-align: center;
+}
+
+.additional {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 8px;
+}
+
+.expand-button {
+    background-color: lightgray;
+    color: black;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: crosshair;
+}
+
+.expand-button:hover {
+    background-color: #acdeff; 
+}
+
+.comments-button {
+    background-color: lightgray;
+    color: black;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: crosshair;
+}
+
+.comments-button:hover {
+    background-color: #ffacae; 
+}
+
+.comments-section {
+    background-color: navajowhite;
+}
+
+.comments-header {
+    text-decoration: underline;
+}
+
+.comment {
+    border-radius: 10px;
+    max-width: 85%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: auto;
+    padding: 2px;
+    background-color: blanchedalmond;
+}

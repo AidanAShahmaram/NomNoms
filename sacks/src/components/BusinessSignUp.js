@@ -2,6 +2,7 @@ import './SignUp.css'
 import React, { useState } from 'react';
 import axios from 'axios';
 import Select from "react-select"
+import logo from '../assets/logo-icononly.png';
 
 
 const cuisineOptions = [
@@ -188,7 +189,9 @@ export const BusinessSignUp = () => {
 
     return (
         <>
-        <center><img src="../../logo.png" alt="logo"></img></center>
+
+        <center><img src={logo} alt="logo"></img></center>
+
         <form onSubmit={handleSubmitSignUp}>
             <h1>Business Sign Up</h1>
             <label class="input-label" for="username"> Username </label>

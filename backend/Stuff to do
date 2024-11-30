@@ -1,0 +1,23 @@
+
+1. Complete login/signup -> add token, password limits (Aidan)
+2. Restaurant creation/editing (owners) -> adding tags (Sofia)
+    - Add address, switch to list for owners
+3. Restaurant viewing -> commenting (for users) (no tracking for now)
+    - Restaurant creation -> general database
+4. Searching -> Basic search (full name), if time partial search
+5. Filtering
+6. Rating(?)
+
+Restaurant info:
+Address
+Name
+Link to Menu
+Tags
+Comments
+
+User info:
+Name
+Password
+
+Rating -> store number of stars, current average, new val
+Photos (if time)

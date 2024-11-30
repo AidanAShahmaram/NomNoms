@@ -1,0 +1,39 @@
+// models/dataModel.js
+
+const mongoose = require('mongoose');
+const Comment = require('./commentDatabase')
+
+const restaurantData = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  tags: {
+    types: [String], //array of strings
+  },
+  description: {
+    type: String,
+  },
+  comments: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment'
+  }],
+  rating_total: {
+    type: Number
+  },
+  rating_count: {
+    type: Number
+  },
+  ratings: {
+    type: Map,
+    of: Number
+  }
+});
+
+const restaurantInfo = mongoose.model('restaurantInfo', restaurantData);
+
+module.exports = restaurantInfo;
