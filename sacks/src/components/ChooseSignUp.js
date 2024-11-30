@@ -10,6 +10,7 @@ export const ChooseSignUp = () => {
         <>
             <div class="choose-signup">
                 <center><img src={logo} alt="logo"></img></center>
+
                 <h1> Welcome! </h1>
                 <p> Who would you like to sign up as? </p>
                 <Link to="/signup"><button class="button"> Foodie </button></Link>

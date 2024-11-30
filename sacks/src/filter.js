@@ -82,9 +82,6 @@ export function SelectTag() {
                 {/* This should send get request for the correct restaurant cards*/}
                
             </div>
-            
-
-            
         </div>
     );
 }

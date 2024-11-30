@@ -50,9 +50,10 @@ export function CuisineCard() {
         }
     ];
 
+    // make an array of cuisines, and add cards to each 
+    // dynamically generating html/css for each cuisine with their respective images
     return (
          <div className="cuisine-card">
-            
             {cuisines.map((cuisine, index) => (
                 <div class="image-container">
                     <img src={cuisine.image} alt={cuisine.name}/>
@@ -65,6 +66,6 @@ export function CuisineCard() {
 
 export default Explore;
 
-// make an array of cuisines, and add cards to each 
+
 
       

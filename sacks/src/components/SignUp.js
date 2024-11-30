@@ -56,7 +56,9 @@ export const SignUp = () => {
 
     return (
         <>
+
         <center><img src={logo} alt="logo"></img></center>
+
         <form onSubmit={handleSubmitSignUp}>
             <h1>Foodie Sign Up</h1>
             <label class="input-label" for="username"> Create Username </label>

@@ -1,21 +1,23 @@
 // import { useEffect, useState } from 'react';
+
 import './App.css';
 import {HeaderDiv, IntroBox, PathDiv} from './home';
 import Footer from './footer';
 import Filter from './filter';
 import Explore from './explore';
 
-import ChooseLogin from './components/ChooseLogin';
-import ChooseSignUp from './components/ChooseSignUp';
+import Navbar from './components/Navbar'
+import ChooseLogin from './components/ChooseLogin.js';
+import ChooseSignUp from './components/ChooseSignUp.js';
 
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import BusinessLogin from './components/BusinessLogin';
-import BusinessSignUp from './components/BusinessSignUp';
+import Login from './components/Login.js'
+import BusinessLogin from './components/BusinessLogin.js';
+import SignUp from './components/SignUp.js'
+import BusinessSignUp from './components/BusinessSignUp.js';
+
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 
-import Navbar from './components/Navbar';
-import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
@@ -32,6 +34,7 @@ function App() {
             } />
           <Route path="/explore" element={<Explore />} />
           <Route path="/search" element={<Filter />} />
+
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/chooselogin" element={<ChooseLogin />} />

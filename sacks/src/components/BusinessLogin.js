@@ -1,6 +1,7 @@
 import "./Login.css"
 import logo from '../assets/logo-icononly.png';
 
+
 export const BusinessLogin = () => {
 
 
@@ -12,7 +13,9 @@ export const BusinessLogin = () => {
 
     return (
         <>
+
         <center><img src={logo} alt="logo"></img></center>
+
         <center><form>
             <h1>Business Login</h1>
             <label for="username"> Username </label>

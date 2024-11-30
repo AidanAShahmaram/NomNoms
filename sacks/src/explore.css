@@ -30,7 +30,6 @@
     top: 50%;
     left: 50%; /* moves top left corner of the text to the center of the image-container */
     transform: translate(-50%, -50%); /* moves element to the left and upwards by 50% of its own width */
-
     color: white; 
     font-size: 20px; 
     font-weight: 600; 
