@@ -1,6 +1,7 @@
 import './SignUp.css'
 import React, { useState } from 'react';
 import axios from 'axios';
+import logo from '../assets/logo-icononly.png';
 
 export const SignUp = () => {
 
@@ -55,7 +56,7 @@ export const SignUp = () => {
 
     return (
         <>
-        <center><img src="../../logo.png" alt="logo"></img></center>
+        <center><img src={logo} alt="logo"></img></center>
         <form onSubmit={handleSubmitSignUp}>
             <h1>Foodie Sign Up</h1>
             <label class="input-label" for="username"> Create Username </label>
