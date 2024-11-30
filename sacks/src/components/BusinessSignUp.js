@@ -6,51 +6,59 @@ import logo from '../assets/logo-icononly.png';
 
 
 const cuisineOptions = [
-    {value: "Russian", label: "Russian"},
-    {value: "Iranian", label: "Iranian"},
-    {value: "Indian", label: "Indian"},
-    {value: "Thai", label: "Thai"},
+    {value: "American", label: "American"},
+    {value: "Brazilian", label: "Brazilian"},
     {value: "Bulgarian", label: "Bulgarian"},
     {value: "Chinese", label: "Chinese"},
-    {value: "Japanese", label: "Japanese"},
-    {value: "Mexican", label: "Mexican"},
-    {value: "French", label: "French"},
-    {value: "American", label: "American"},
-    {value: "Italian", label: "Italian"},
-    {value: "Vietnamese", label: "Vietnamese"},
-    {value: "Brazilian", label: "Brazilian"},
-    {value: "German", label: "German"},
-    {value: "Taiwanese", label: "Taiwanese"},
-    {value: "Indonesian", label: "Indonesian"},
-    {value: "Korean", label: "Korean"},
-    {value: "Peruvian", label: "Peruvian"},
-    {value: "Guatemalan", label: "Guatemalan"},
-    {value: "Ethiopian", label: "Ethiopian"},
-    {value: "Moroccan", label: "Noroccan"},
     {value: "Cuban", label: "Cuban"},
-    {value: "", label: ""},
-    {value: "", label: ""},
-    {value: "", label: ""},
+    {value: "Ethiopian", label: "Ethiopian"},
+    {value: "French", label: "French"},
+    {value: "German", label: "German"},
+    {value: "Guatemalan", label: "Guatemalan"},
+    {value: "Indian", label: "Indian"},
+    {value: "Indonesian", label: "Indonesian"},
+    {value: "Iranian", label: "Iranian"},
+    {value: "Italian", label: "Italian"},
+    {value: "Japanese", label: "Japanese"},
+    {value: "Jamaican", label: "Jamaican"},
+    {value: "Korean", label: "Korean"},
+    {value: "Mexican", label: "Mexican"},
+    {value: "Moroccan", label: "Moroccan"},
+    {value: "Nigerian", label: "Nigerian"},
+    {value: "Peruvian", label: "Peruvian"},
+    {value: "Russian", label: "Russian"},
+    {value: "Taiwanese", label: "Taiwanese"},
+    {value: "Thai", label: "Thai"},
+    {value: "Venezuelan", label: "Venezuelan"},
+    {value: "Vietnamese", label: "Vietnamese"}
 
 ];
 
 const restaurantDescriptors = [
-    {value: "family-friendly", label: "Family-friendly"},
-    {value: "casual-dining", label: "Casual dining"}, 
-    {value: "fine-dining", label: "Fine Dining"}, 
-    {value: "street-food", label: "Street Food"}, 
-    {value: "fast-food", label: "Fast Food"}, 
     {value: "breakfast", label: "Breakfast"},
-    {value: "brunch", label: "Brunch"}, 
-    {value: "buffet", label: "Buffet"}, 
-    {value: "take-out", label: "Take out"}, 
-    {value: "organic", label: "Organic"},
-    {value: "vegetarian", label: "Vegetarian"},
-    {value: "vegan", label: "Vegan"}, 
+    {value: "brunch", label: "Brunch"},
+    {value: "buffet", label: "Buffet"},
+    {value: "casual-dining", label: "Casual dining"},
+    {value: "coffee shop", label: "Coffee Shop"},
+    {value: "cozy", label: "Cozy"},
+    {value: "family-friendly", label: "Family-friendly"},
+    {value: "fast-food", label: "Fast Food"},
+    {value: "fine-dining", label: "Fine Dining"},
+    {value: "gluten-free", label: "Gluten-free"},
+    {value: "gourmet", label: "Gourmet"},
     {value: "halal", label: "Halal"},
-    {value: "gluten-free", label: "gluten-free"}, 
-    {value: "pet-friendly", label: "pet-friendly"}, 
-    {value: "cozy", label: "cozy"}, 
+    {value: "healthy", label: "Healthy"},
+    {value: "kosher", label: "Kosher"},
+    {value: "organic", label: "Organic"},
+    {value: "pet-friendly", label: "Pet-friendly"},
+    {value: "pescetarian", label: "Pescetarian"},
+    {value: "pub", label: "Pub"},
+    {value: "romantic", label: "Romantic"},
+    {value: "street-food", label: "Street Food"},
+    {value: "sweets", label: "Sweets"},
+    {value: "take-out", label: "Take out"},
+    {value: "vegetarian", label: "Vegetarian"},
+    {value: "vegan", label: "Vegan"} 
 ];
 
 
@@ -64,7 +72,8 @@ export const BusinessSignUp = () => {
     const [state, setState] = useState("");
     const [zipCode, setZipCode] = useState(""); 
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [websiteLink, setWebsiteLink] = useState(""); 
+    const [websiteLink, setWebsiteLink] = useState("");
+    const [imageLink, setImageLink] = useState(""); 
     const [selectedCuisineOptions, setSelectedCuisineOptions] = useState([]);
     const [selectedRestaurantDescriptorsOptions, setSelectedRestaurantDescriptorsOptions] = useState([]);
     
@@ -84,6 +93,7 @@ export const BusinessSignUp = () => {
             zipCode,
             phoneNumber,
             websiteLink,
+            imageLink,
             selectedCuisineOptions,
             selectedRestaurantDescriptorsOptions
         }
@@ -148,6 +158,11 @@ export const BusinessSignUp = () => {
         console.log("Website Link: " + event.target.value + "\n");
     }
 
+    const changeImageLink = (event) => {
+        setImageLink(event.target.value)
+        console.log("Image Link: " + event.target.value + "\n");
+    }
+
     const handleCuisineSelection = (selectedOption) => {
         setSelectedCuisineOptions(selectedOption);
     }
@@ -159,8 +174,8 @@ export const BusinessSignUp = () => {
     const selectStyle = {
         control: (provided) => ({
           ...provided,
-          width: '40%',  // Control width is 40% of the screen width
-          margin: '0 auto', // Optional: Center the select box horizontally
+          width: '40%',  
+          margin: '0 auto',
           borderRadius: '20px',
           borderWidth: '2px',
           borderColor: 'orange', 
@@ -169,14 +184,14 @@ export const BusinessSignUp = () => {
         }),
         menu: (provided) => ({
           ...provided,
-          width: '40%',  // Dropdown menu width also 40%
+          width: '40%',  
           textAlign: 'center',
-          borderRadius: '20px',
           
         }),
         option: (provided) => ({
             ...provided,
-            textAlign: 'center',     // Center text inside the options
+            textAlign: 'center', 
+            
           }),
       
           // Style for the single option item selected
@@ -300,12 +315,18 @@ export const BusinessSignUp = () => {
             <br></br>
             <br></br>
 
+            <label class="input-label" for="link"> Image Link </label>
+            <br></br>
+            <input class="input-box" type="url" value={imageLink} onChange={changeImageLink} placeholder="website.com/image.png" id="websiteLink" required></input>
+            <br></br>
+            <br></br>
+
             
 
             <label class="input-label" for="cuisine"> Cuisine </label>
             <br></br>
             <div class="select">
-                <Select options={cuisineOptions} value={selectedCuisineOptions} onChange={handleCuisineSelection} styles={selectStyle}/>
+                <Select options={cuisineOptions} value={selectedCuisineOptions} onChange={handleCuisineSelection} styles={selectStyle} isMulti={true}/>
             </div>
             <br></br>
             
@@ -313,7 +334,7 @@ export const BusinessSignUp = () => {
             <label class="input-label" for="restaurantDescriptionTags"> Restaurant Descriptors Tags </label>
             <br></br>
             <div class="select">
-                <Select options={restaurantDescriptors} value={selectedRestaurantDescriptorsOptions} onChange={handleRestaurantSelection} styles={selectStyle}/>
+                <Select options={restaurantDescriptors} value={selectedRestaurantDescriptorsOptions} onChange={handleRestaurantSelection} styles={selectStyle} isMulti={true}/>
             </div>
 
             <br></br>
