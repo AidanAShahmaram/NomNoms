@@ -15,14 +15,17 @@ import BusinessLogin from './components/BusinessLogin.js';
 import SignUp from './components/SignUp.js'
 import BusinessSignUp from './components/BusinessSignUp.js';
 
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, useLocation} from 'react-router-dom';
 
 
 
 function App() {
+  const location = useLocation();
+  const noNavbarFooter = ['/choosesignup', '/chooselogin', '/signup', '/login', 'businesssignup', 'businesslogin'];
+  /* Using location, navbar and footer will not show for signup/login pages */
   return (
     <>
-      <Navbar />
+      {!noNavbarFooter.includes(location.pathname) && <Navbar />}
       <div className="container">
         <Routes>
           <Route path="/" element={
@@ -41,10 +44,9 @@ function App() {
           <Route path="/choosesignup" element={<ChooseSignUp />} />
           <Route path="/businesssignup" element={<BusinessSignUp />} />
           <Route path="/businesslogin" element={<BusinessLogin />} />
-          
         </Routes>
       </div>
-      <Footer />
+      {!noNavbarFooter.includes(location.pathname) && <Footer />}
     </>
 
   );
