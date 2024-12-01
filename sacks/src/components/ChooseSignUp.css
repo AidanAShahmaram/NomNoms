@@ -1,11 +1,16 @@
 
 .choose-signup {
-    text-align: center;
-    padding:30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
 }
 
-.button {
-    width: 30%; 
+.choose-button {
+    width: 200px; 
+    height: 200px;
     margin: 20px; 
     padding: 20px;
     border: solid;
@@ -14,6 +19,10 @@
     border-color: orange;
     background-color: lightgoldenrodyellow;
     font-size: 15px;
+}
+
+.choose-button:hover {
+    background-color: orange;
 }
 
 .choose-signup-img {

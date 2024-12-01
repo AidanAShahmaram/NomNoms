@@ -21,7 +21,7 @@ import { Routes, Route, useLocation} from 'react-router-dom';
 
 function App() {
   const location = useLocation();
-  const noNavbarFooter = ['/choosesignup', '/chooselogin', '/signup', '/login', 'businesssignup', 'businesslogin'];
+  const noNavbarFooter = ['/choosesignup', '/chooselogin', '/signup', '/login', '/businessignup', '/businesslogin'];
   /* Using location, navbar and footer will not show for signup/login pages */
   return (
     <>
