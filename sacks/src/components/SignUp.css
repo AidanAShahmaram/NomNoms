@@ -24,6 +24,11 @@ form {
     padding-right: 50px; */ 
 }
 
+.business-signup-form {
+    display: flex;
+    justify-content: center;
+}
+
 .h1-signup {
     color: darkorange;
     display: block;
@@ -71,12 +76,27 @@ form {
     font-family: DM Sans;
     font-weight: 500;
     align-self: flex-start;
-    
-
-    /*font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif */
 }
 
+.location-div {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    background-color: grey;
+    width: 100%;
+    gap: 50px;
+}
 
+.address-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50px;
+}
+
+.address-div .input-box {
+    width: 100%;
+}
 
 .input-div {
     display: flex;

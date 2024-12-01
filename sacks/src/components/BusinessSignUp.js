@@ -204,38 +204,55 @@ export const BusinessSignUp = () => {
 
     return (
         <>
-        <div className="signup-img"></div>
-        <center><img src={logo} alt="logo" className="signup-img"></img></center>
 
+        <div className="signup-page">
+            <div className="signup-img"></div>
+            <div className="signup-right">
+            
+    
+            <center>
+                <img src={logo} alt="logo" className="signup-logo"></img>
+            </center>
+
+        <div className="business-signup-form">
         <form onSubmit={handleSubmitSignUp}>
             <div className="h1-signup">Business Sign Up</div>
-            <label class="input-label" for="username"> Username </label>
-            <br></br>
-            <input class="input-box" type="username" value={username} onChange={changeUsername} placeholder="Username" id="username" required></input>
-            <br></br>
-            <br></br>
-            <label class="input-label" for="email"> Email </label>
-            <br></br>
-            <input class="input-box" type="email" value={email} onChange={changeEmail} placeholder="Email" id="email" required></input>
-            <br></br>
-            <br></br>
-            <label class="input-label" for="password"> Password </label>
-            <br></br>
-            <input class="input-box" type="password" value={password} onChange={changePassword} placeholder="Password" id="password" required></input>
-            <br></br>
-            <br></br>
-            <label class="input-label" for="Address"> Address </label>
-            <br></br>
-            <input class="input-box" type="address" value={address} onChange={changeAddress} placeholder="Address" id="address" required></input>
-            <br></br>
-            <br></br>
-            <label class="input-label" for="city"> City </label>
-            <br></br>
-            <input class="input-box" type="city" value={city} onChange={changeCity} placeholder="City" id="city" required></input>
-            <br></br>
-            <br></br>
+            
+            <div className="input-div">
+                <label class="input-label" for="username"> Username </label>
+                <input class="input-box" type="username" value={username} onChange={changeUsername} placeholder="Username" id="username" required></input>
+            </div>
+
+            <div className="input-div">
+                <label class="input-label" for="email"> Email </label>
+                <input class="input-box" type="email" value={email} onChange={changeEmail} placeholder="Email" id="email" required></input>
+            </div>
+
+            <div className="input-div">
+                <label class="input-label" for="password"> Password </label>
+                <input class="input-box" type="password" value={password} onChange={changePassword} placeholder="Password" id="password" required></input>
+            </div>
+
+            {/* <div className="input-div">
+                <input class="input-box" type="password" value={password} onChange={changePassword} placeholder="Password" id="password" required></input>
+                <label class="input-label" for="Address"> Address </label>
+            </div> */}
+            
+            <div className="location-div">
+                <div className="address-div">
+                    <label class="input-label" for="Address"> Address </label>
+                    <input class="input-box" type="address" value={address} onChange={changeAddress} placeholder="Address" id="address" required></input>   
+                </div>
+                <div className="address-div">
+                    <label class="input-label" for="city"> City </label>
+                    <input class="input-box" type="city" value={city} onChange={changeCity} placeholder="City" id="city" required></input>
+                </div>
+            </div>
+            
+            
+
+            <div className="input-div">
             <label class="input-label" for="state"> State </label>
-            <br></br>
             <select class="input-box" onChange={changeState} id="State">
                 <option value="" disabled selected>Select a state</option>
                 <option value="Alabama">Alabama</option>
@@ -295,58 +312,53 @@ export const BusinessSignUp = () => {
                 <option value="Wisconsin">Wisconsin</option>
                 <option value="Wyoming">Wyoming</option>
             </select>
-            <br></br>
-            <br></br>
-
-            <label class="input-label" for="zipCode"> Zip Code </label>
-            <br></br>
-            <input class="input-box" type="zipCode" value={zipCode} onChange={changeZipCode} placeholder="e.g., 90095" id="zipCode" required></input>
-            <br></br>
-            <br></br>
-
-            <label class="input-label" for="phoneNumber"> Phone Number </label>
-            <br></br>
-            <input class="input-box" type="tel" value={phoneNumber} onChange={changePhoneNumber} placeholder="(123) 456-7890" id="phoneNumber" required></input>
-            <br></br>
-            <br></br>
-
-            <label class="input-label" for="link"> Website Link </label>
-            <br></br>
-            <input class="input-box" type="url" value={websiteLink} onChange={changeWebsiteLink} placeholder="website.com" id="websiteLink" required></input>
-            <br></br>
-            <br></br>
-
-            <label class="input-label" for="link"> Image Link </label>
-            <br></br>
-            <input class="input-box" type="url" value={imageLink} onChange={changeImageLink} placeholder="website.com/image.png" id="websiteLink" required></input>
-            <br></br>
-            <br></br>
-
-            
-
-            <label class="input-label" for="cuisine"> Cuisine </label>
-            <br></br>
-            <div class="select">
-                <Select options={cuisineOptions} value={selectedCuisineOptions} onChange={handleCuisineSelection} styles={selectStyle} isMulti={true}/>
             </div>
-            <br></br>
-            
-            
-            <label class="input-label" for="restaurantDescriptionTags"> Restaurant Descriptors Tags </label>
-            <br></br>
-            <div class="select">
-                <Select options={restaurantDescriptors} value={selectedRestaurantDescriptorsOptions} onChange={handleRestaurantSelection} styles={selectStyle} isMulti={true}/>
+           
+            <div className="input-div">
+                <label class="input-label" for="zipCode"> Zip Code </label>
+                <input class="input-box" type="zipCode" value={zipCode} onChange={changeZipCode} placeholder="e.g., 90095" id="zipCode" required></input>
             </div>
 
-            <br></br>
-            <br></br>
+            <div className="input-div">
+                <label class="input-label" for="phoneNumber"> Phone Number </label>
+                <input class="input-box" type="tel" value={phoneNumber} onChange={changePhoneNumber} placeholder="(123) 456-7890" id="phoneNumber" required></input>
+            </div>
+            
+            <div className="input-div">
+                <label class="input-label" for="link"> Website Link </label>
+                <input class="input-box" type="url" value={websiteLink} onChange={changeWebsiteLink} placeholder="website.com" id="websiteLink" required></input>
+            </div>
+         
+
+            <div className="input-div">
+                <label class="input-label" for="link"> Image Link </label>
+                <input class="input-box" type="url" value={imageLink} onChange={changeImageLink} placeholder="website.com/image.png" id="websiteLink" required></input>
+            </div>
+            
+           
+
+            <div className="input-div">
+                <label class="input-label" for="cuisine"> Cuisine </label>
+                <div class="select">
+                    <Select options={cuisineOptions} value={selectedCuisineOptions} onChange={handleCuisineSelection} styles={selectStyle} isMulti={true}/>
+                </div>
+            </div>
+            
+            <div className="input-div">
+                <label class="input-label" for="restaurantDescriptionTags"> Restaurant Descriptors Tags </label>
+                <div class="select">
+                    <Select options={restaurantDescriptors} value={selectedRestaurantDescriptorsOptions} onChange={handleRestaurantSelection} styles={selectStyle} isMulti={true}/>
+                </div>
+            </div>
 
             <button class="submit">Sign Up</button>
-            <br></br>
-            <br></br>
+          
         </form>
+
+        </div>
         
-        
+        </div>
+        </div>
         
         </>
     )
