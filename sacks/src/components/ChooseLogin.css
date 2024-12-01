@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 .choose-login {
     display: flex;
     justify-content: center;
@@ -24,19 +26,22 @@
     font-size: 2em;
     font-weight: bold;
     margin-top: 0.67em;
-    margin-bottom: 0.67em;
+    margin-bottom: 10px;
     margin-left: 0;
     margin-right: 0;
+    font-family: DM Sans;
 }
 
 .p-choose-login {
-    font-size: 2vw;
-    margin-top: 0.5em;
+    font-size: 20px;
+    margin-top: 10px;
     margin-bottom: 0.5em;
     margin-left: 0;
     margin-right: 0;
+    font-family: DM Sans;
+    font-weight: 500;
 }
 
 .choose-login-img {
-    width: 10%; 
+    width: 80px; 
 }

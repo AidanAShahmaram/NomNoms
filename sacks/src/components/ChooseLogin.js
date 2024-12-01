@@ -18,9 +18,9 @@ export const ChooseLogin = () => {
     return (
         <>
             <div class="choose-login" style={divStyle}>
-                <center><img src={logo} alt="logo" className="choose-login-img"></img></center>
+                <img src={logo} alt="logo" className="choose-login-img"></img>
 
-                <div className="h1-choose-login"> Welcome! </div>
+                <div className="h1-choose-login"> Welcome Back! </div>
                 <div className="p-choose-login"> Who are you logging in as today? </div>
                 <div className="choose-buttons">
                     <Link to="/login"><button class="choose-button"> User </button></Link>
