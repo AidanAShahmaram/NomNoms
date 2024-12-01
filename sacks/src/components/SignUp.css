@@ -2,10 +2,20 @@ form {
     text-align: center;
 }
 
-img {
+.signup-img {
     width: 10%; 
 }
 
+.h1-signup {
+    color: darkorange;
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+}
 
 .input-box {
     padding: 5px;
@@ -29,5 +39,14 @@ img {
 .input-label {
     color: orange;
     /*font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif */
-
 }
+
+/* Light gray color for the default "Select a state" option
+#state option[value=""] {
+    color: lightgray;
+}
+
+When a valid state is selected, the text color should be black
+#state:valid {
+    color: black;
+} */

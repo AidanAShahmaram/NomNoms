@@ -49,10 +49,10 @@ export const Login = () => {
     return (
         <>
         
-        <center><img src={logo} alt="logo"></img></center>
+        <center><img src={logo} alt="logo" className="login-img"></img></center>
 
         <center><form onSubmit={handleSubmitLogin}>
-            <h1>Foodie Login</h1>
+            <div className="h1-login">Foodie Login</div>
             <label class="input-label" for="username"> Username </label>
             <br></br>
             <input class="input-box" type="username" onChange={changeUsername} placeholder="Username" id="username" required></input>
@@ -63,7 +63,7 @@ export const Login = () => {
             <input class="input-box" type="password" onChange={changePassword} placeholder="Password" id="password" required></input>
             <br></br>
             <br></br>
-            <button class="submit">Log In</button>
+            <button class="submit-login">Log In</button>
             <br></br>
             <br></br>
         </form>

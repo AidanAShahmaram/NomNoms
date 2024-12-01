@@ -120,7 +120,7 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, tags,
 
     return (
         <div className="restaurant-card">
-            <h1 className="title">{title}</h1>
+            <div className="title">{title}</div>
             
             {/*Tags - they are an array prop*/}
             {/*Tags className is labels - they are an array prop*/}

@@ -13,10 +13,33 @@
     border-width: 3px;
     border-color: orange;
     background-color: lightgoldenrodyellow;
-
+    font-size: 15px;
 }
 
-a {
+.choose-signup-img {
+    width: 10%; 
+}
+
+.h1-choose-signup {
+    color: black;
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.p-choose-signup {
+    font-size: 2vw;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* a {
     color: brown;
     text-decoration: none;
-  }
+} */

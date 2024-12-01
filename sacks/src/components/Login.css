@@ -1,9 +1,24 @@
-body {
+/* body {
     background-color: cornsilk; 
+} */
+
+/* .background {
+    background-color: cornsilk;
+} */
+
+.h1-login {
+    color: darkorange;
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
 }
 
-h1 {
-    color: darkorange;
+.login-img {
+    width: 10%; 
 }
 
 .input-box {
@@ -15,7 +30,7 @@ h1 {
     background-color: lightyellow;
 }
 
-.submit {
+.submit-login {
     color: brown;
     padding: 5px;
     border-style: solid;

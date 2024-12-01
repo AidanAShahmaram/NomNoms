@@ -57,10 +57,10 @@ export const SignUp = () => {
     return (
         <>
 
-        <center><img src={logo} alt="logo"></img></center>
+        <center><img src={logo} alt="logo" className="signup-img"></img></center>
 
         <form onSubmit={handleSubmitSignUp}>
-            <h1>Foodie Sign Up</h1>
+            <div className="h1-signup">Foodie Sign Up</div>
             <label class="input-label" for="username"> Create Username </label>
             <br></br>
             <input class="input-box" type="username" value={username} onChange={changeUsername} placeholder="Username" id="username" required></input>

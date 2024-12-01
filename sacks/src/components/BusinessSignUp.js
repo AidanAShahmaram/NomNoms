@@ -57,8 +57,8 @@ const restaurantDescriptors = [
     {value: "street-food", label: "Street Food"},
     {value: "sweets", label: "Sweets"},
     {value: "take-out", label: "Take out"},
-    {value: "vegetarian", label: "Vegetarian"},
-    {value: "vegan", label: "Vegan"} 
+    {value: "vegan", label: "Vegan"},
+    {value: "vegetarian", label: "Vegetarian"}
 ];
 
 
@@ -205,10 +205,10 @@ export const BusinessSignUp = () => {
     return (
         <>
 
-        <center><img src={logo} alt="logo"></img></center>
+        <center><img src={logo} alt="logo" className="signup-img"></img></center>
 
         <form onSubmit={handleSubmitSignUp}>
-            <h1>Business Sign Up</h1>
+            <div className="h1-signup">Business Sign Up</div>
             <label class="input-label" for="username"> Username </label>
             <br></br>
             <input class="input-box" type="username" value={username} onChange={changeUsername} placeholder="Username" id="username" required></input>
@@ -236,7 +236,8 @@ export const BusinessSignUp = () => {
             <br></br>
             <label class="input-label" for="state"> State </label>
             <br></br>
-            <select class="input-box" onChange={changeState}>
+            <select class="input-box" onChange={changeState} id="State">
+                <option value="" disabled selected>Select a state</option>
                 <option value="Alabama">Alabama</option>
                 <option value="Alaska">Alaska</option>
                 <option value="Arizona">Arizona</option>

@@ -11,10 +11,10 @@ export const ChooseLogin = () => {
     return (
         <>
             <div class="choose-login">
-                <center><img src={logo} alt="logo"></img></center>
+                <center><img src={logo} alt="logo" className="choose-login-img"></img></center>
 
-                <h1> Welcome! </h1>
-                <p> Who are you logging in as today? </p>
+                <div className="h1-choose-login"> Welcome! </div>
+                <div className="p-choose-login"> Who are you logging in as today? </div>
                 <Link to="/login"><button class="button"> User </button></Link>
                 <Link to="/businesslogin"><button class="button"> Business </button></Link>
                 
