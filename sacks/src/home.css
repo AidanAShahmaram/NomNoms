@@ -14,7 +14,7 @@
 
 .h1-home {
     font-family: 'DM Sans', sans-serif;
-    font-size: 7.5vw;
+    font-size: 7vw;
     margin: 0;
     display: block;
     font-weight: bold;
@@ -23,7 +23,7 @@
 
 .h2-home {
     font-family: 'DM Sans', sans-serif;
-    font-size: 4vw;
+    font-size: 3.5vw;
     margin: 0;
     display: block;
     font-weight: bold;
@@ -36,7 +36,7 @@
 
 .h3-home {
     font-family: 'DM Sans', sans-serif;
-    font-size: 2.7vw;
+    font-size: 2vw;
     font-weight: 500;
     margin: 0;
     display: block;
@@ -144,6 +144,10 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center; 
+}
+
+.path-padding {
+    padding: 100px;
 }
 
 .get-started {

@@ -1,9 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 form {
     text-align: center;
+    font-family: DM Sans;
 }
 
-.signup-img {
-    width: 10%; 
+.signup-page {
+    display: flex;
+    align-items: center;
+}
+
+.signup-right {
+    width: 50vw;
+   
+}
+
+.signup-form {
+    /* background-color: white; */
+    /* background-color: white;
+    max-width: 50vw;
+    /* height: 500px;
+    padding-left: 50px;
+    padding-right: 50px; */ 
+}
+
+.business-signup-form {
+    display: grid;
+    justify-content: center;
 }
 
 .h1-signup {
@@ -15,30 +38,138 @@ form {
     margin-bottom: 0.67em;
     margin-left: 0;
     margin-right: 0;
+    font-family: DM Sans;
 }
 
 .input-box {
     padding: 5px;
     border-style: solid;
-    border-radius: 30px;
+    border-radius: 10px;
     border-color: orange;
     border-width: 2px; 
     background-color: lightyellow;
+    font-family: DM Sans;
+    height: 30px;
+    width: 300px;
 }
 
 .submit {
-    color: brown;
+    color: rgb(92, 1, 1);;
     padding: 5px;
     border-style: solid;
     border-radius: 30px;
     border-color: orange;
     border-width: 2px; 
     background-color: orange;
+    font-family: DM Sans;
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.submit:hover {
+    background-color: darkorange;
 }
 
 .input-label {
-    color: orange;
-    /*font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif */
+    color: darkorange;
+    font-family: DM Sans;
+    font-weight: 500;
+    align-self: flex-start;
+}
+
+.location-div {
+    display: flex;
+    flex-direction: row;
+
+    /* display: grid;
+    grid-template-columns: repeat(1fr 1fr);
+    width: 100%; */
+    /* gap: 50px; */
+}
+
+.address-div1 {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50px; */
+    width: 220px;
+    margin-right: 35px;
+}
+
+.address-div2 {
+    width: 100px;
+    
+}
+
+.address-div3 {
+    width: 100px;
+    margin-right: 56px;
+}
+
+.address-div4 {
+    width: 100px;
+}
+
+.address-div1 .input-box {
+    width: 235px;
+}
+
+.address-div2 .input-box {
+    width: 100px;
+}
+
+.address-div3 .input-box {
+    width: 150px;
+    height: 45px;
+}
+
+.address-div4 .input-box {
+    width: 100px;
+}
+
+.input-div {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.signup-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signup-img {
+    width: 50vw;
+    height: 100vh;
+}
+
+.signup-img1 {
+    background-image: url(../../public/business-signup-bg.jpg);
+    width: 50vw;
+    height: 140vh;
+}
+
+@media (max-width: 768px) {
+    .signup-img {
+        width: 0px;
+        height: 0px;
+    }
+
+    .signup-right {
+        width: 100vw;
+        margin-top: 16vh;
+    }
+}
+
+.signup-logo {
+    width: 80px;
+}
+
+.select {
 }
 
 /* Light gray color for the default "Select a state" option

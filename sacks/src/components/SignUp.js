@@ -2,6 +2,7 @@ import './SignUp.css'
 import React, { useState } from 'react';
 import axios from 'axios';
 import logo from '../assets/logo-icononly.png';
+import img1 from '../assets/signup-img1.png';
 
 export const SignUp = () => {
 
@@ -54,37 +55,49 @@ export const SignUp = () => {
         console.log("Password: " + event.target.value + "\n");
     }
 
+    const divStyle = {
+        backgroundImage: `url(${img1})`, 
+        backgroundSize: 'cover',
+    };
+
     return (
-        <>
+        
+        <div className="signup-page">
+            <div className="signup-img" style={divStyle}></div>
+            <div className="signup-right">
+            <div className="signup-form">
 
-        <center><img src={logo} alt="logo" className="signup-img"></img></center>
+           
+            <center><img src={logo} alt="logo" className="signup-logo"></img></center>
 
-        <form onSubmit={handleSubmitSignUp}>
-            <div className="h1-signup">Foodie Sign Up</div>
-            <label class="input-label" for="username"> Create Username </label>
-            <br></br>
-            <input class="input-box" type="username" value={username} onChange={changeUsername} placeholder="Username" id="username" required></input>
-            <br></br>
-            <br></br>
-            <label class="input-label" for="email"> Email </label>
-            <br></br>
-            <input class="input-box" type="email" value={email} onChange={changeEmail} placeholder="Email" id="email" required></input>
-            <br></br>
-            <br></br>
-            <label class="input-label" for="password"> Password </label>
-            <br></br>
-            <input class="input-box" type="password" value={password} onChange={changePassword} placeholder="Password" id="password" required></input>
-            <br></br>
-            <br></br>
-            
-            <button class="submit">Sign Up</button>
-            <br></br>
-            <br></br>
+            <form onSubmit={handleSubmitSignUp}>
+                <div className="h1-signup">Foodie Sign Up</div>
+
+            <div className="signup-inputs">
+                <div className="input-div">
+                    <label class="input-label" for="username"> Create Username </label>
+                    <input class="input-box" type="username" value={username} onChange={changeUsername} placeholder="Username" id="username" required></input>
+                </div>
+
+                <div className="input-div">
+                    <label class="input-label" for="email"> Email </label>
+                    <input class="input-box" type="email" value={email} onChange={changeEmail} placeholder="Email" id="email" required></input>
+                </div>
+                
+                <div className="input-div">
+                    <label class="input-label" for="password"> Password </label>
+                    <input class="input-box" type="password" value={password} onChange={changePassword} placeholder="Password" id="password" required></input>
+                </div>
+            </div>  
+                <button class="submit">Sign Up</button>
+             
         </form>
+
+        </div>
         
+        </div>
         
-        
-        </>
+        </div>
     )
 
 }

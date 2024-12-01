@@ -81,11 +81,6 @@
 .logos {
     display: flex;
     align-items: center;
-    /* display: flex;
-    justify-content: center;
-    align-items: center;  */
-    /* flex-direction: row;
-    align-self: flex-start; */
 }
 
 .logos img {
