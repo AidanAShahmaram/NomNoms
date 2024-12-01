@@ -12,7 +12,7 @@
     }
 }
 
-.footer-left {
+.footerLeft {
     height: 40px;
     width: 150px;
     align-self: flex-end;
@@ -20,15 +20,15 @@
     margin-left: 40px;
 }
 
-.footer-left img {
+.footerLeft img {
     height: 50px;
 }
 
-.footer-padding {
+.footerPadding {
     padding-right: 600px;
 }
 
-.footer-middle {
+.footerMiddle {
     height: 80px;
     width: 250px;
     /* background-color: grey; */
