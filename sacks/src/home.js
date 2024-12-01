@@ -4,6 +4,7 @@ import backgroundImage from './assets/plates-background.png';
 import logo from './assets/nomnoms-logo.png';
 import introBackground from './assets/intro-rectangle-background.png';
 import pathBackground from './assets/how-it-works.png';
+import {NavLink} from 'react-router-dom';
 
 export function HeaderDiv() {
     const divStyle = {
@@ -15,7 +16,9 @@ export function HeaderDiv() {
             <div className="p-home">Welcome to</div>
             <img id="logo-title" src={logo} alt="NomNoms logo" />
             <div className="p-home">Discover new restaurants near you</div>
-            <button className="get-started">Get Started</button>
+            <NavLink to="/choosesignup">
+              <button className="get-started">Get Started</button>
+            </NavLink>
         </div>
       );
 }
