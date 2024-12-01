@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Select from "react-select"
 import logo from '../assets/logo-icononly.png';
+import background from '../assets/business-signup-bg.jpg';
 
 
 const cuisineOptions = [
@@ -202,11 +203,15 @@ export const BusinessSignUp = () => {
       
     };
 
+    const divStyle = {
+        backgroundImage: `$({background})`,
+        backgroundSize: 'cover',
+    };
     return (
         <>
 
         <div className="signup-page">
-            <div className="signup-img"></div>
+            <div className="signup-img1" style={divStyle}></div>
             <div className="signup-right">
             
     
@@ -239,19 +244,18 @@ export const BusinessSignUp = () => {
             </div> */}
             
             <div className="location-div">
-                <div className="address-div">
+                <div className="address-div1">
                     <label class="input-label" for="Address"> Address </label>
                     <input class="input-box" type="address" value={address} onChange={changeAddress} placeholder="Address" id="address" required></input>   
                 </div>
-                <div className="address-div">
+                <div className="address-div2">
                     <label class="input-label" for="city"> City </label>
                     <input class="input-box" type="city" value={city} onChange={changeCity} placeholder="City" id="city" required></input>
                 </div>
             </div>
             
-            
-
-            <div className="input-div">
+            <div className="location-div">
+            <div className="address-div3">
             <label class="input-label" for="state"> State </label>
             <select class="input-box" onChange={changeState} id="State">
                 <option value="" disabled selected>Select a state</option>
@@ -314,9 +318,11 @@ export const BusinessSignUp = () => {
             </select>
             </div>
            
-            <div className="input-div">
+            <div className="address-div4">
                 <label class="input-label" for="zipCode"> Zip Code </label>
                 <input class="input-box" type="zipCode" value={zipCode} onChange={changeZipCode} placeholder="e.g., 90095" id="zipCode" required></input>
+            </div>
+
             </div>
 
             <div className="input-div">

@@ -25,7 +25,7 @@ form {
 }
 
 .business-signup-form {
-    display: flex;
+    display: grid;
     justify-content: center;
 }
 
@@ -79,23 +79,54 @@ form {
 }
 
 .location-div {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    background-color: grey;
-    width: 100%;
-    gap: 50px;
+    display: flex;
+    flex-direction: row;
+
+    /* display: grid;
+    grid-template-columns: repeat(1fr 1fr);
+    width: 100%; */
+    /* gap: 50px; */
 }
 
-.address-div {
-    display: flex;
+.address-div1 {
+    /* display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 50px;
+    width: 50px; */
+    width: 220px;
+    margin-right: 35px;
 }
 
-.address-div .input-box {
-    width: 100%;
+.address-div2 {
+    width: 100px;
+    
+}
+
+.address-div3 {
+    width: 100px;
+    margin-right: 56px;
+}
+
+.address-div4 {
+    width: 100px;
+}
+
+.address-div1 .input-box {
+    width: 235px;
+}
+
+.address-div2 .input-box {
+    width: 100px;
+}
+
+.address-div3 .input-box {
+    width: 150px;
+    height: 45px;
+}
+
+.address-div4 .input-box {
+    width: 100px;
 }
 
 .input-div {
@@ -112,9 +143,14 @@ form {
 }
 
 .signup-img {
-    background-color: black;
     width: 50vw;
     height: 100vh;
+}
+
+.signup-img1 {
+    background-image: url(../../public/business-signup-bg.jpg);
+    width: 50vw;
+    height: 140vh;
 }
 
 @media (max-width: 768px) {
@@ -131,6 +167,9 @@ form {
 
 .signup-logo {
     width: 80px;
+}
+
+.select {
 }
 
 /* Light gray color for the default "Select a state" option
