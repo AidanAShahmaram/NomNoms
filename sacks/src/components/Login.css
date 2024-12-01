@@ -6,6 +6,16 @@
     background-color: cornsilk;
 } */
 
+.login-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    font-weight: 500;
+}
+
 .h1-login {
     color: darkorange;
     display: block;
@@ -15,10 +25,11 @@
     margin-bottom: 0.67em;
     margin-left: 0;
     margin-right: 0;
+    font-weight: 600;
 }
 
 .login-img {
-    width: 10%; 
+    width: 80px; 
 }
 
 .input-box {
@@ -31,13 +42,20 @@
 }
 
 .submit-login {
-    color: brown;
+    color: rgb(86, 4, 4);
     padding: 5px;
     border-style: solid;
     border-radius: 30px;
     border-color: orange;
     border-width: 2px; 
+    padding: 10px;
     background-color: orange;
+    font-family: DM Sans;
+    font-size: 15px;
+}
+
+.submit-login:hover {
+    background-color: darkorange;
 }
 
 .input-label {

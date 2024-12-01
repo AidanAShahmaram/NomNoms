@@ -9,7 +9,7 @@ export const BusinessLogin = () => {
     }
 
     return (
-        <>
+        <div className="login-div">
         <center><img src={logo} alt="logo" className="login-img"></img></center>
 
         <center><form>
@@ -29,7 +29,7 @@ export const BusinessLogin = () => {
             <br></br>
         </form>
         </center>
-        </>
+        </div>
     )
 } 
 

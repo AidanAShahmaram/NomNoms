@@ -47,7 +47,7 @@ export const Login = () => {
     }
 
     return (
-        <>
+        <div className="login-div">
         
         <center><img src={logo} alt="logo" className="login-img"></img></center>
 
@@ -69,7 +69,7 @@ export const Login = () => {
         </form>
         </center>
 
-        </>
+        </div>
     )
 } 
 
