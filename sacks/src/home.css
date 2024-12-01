@@ -146,6 +146,10 @@
     background-position: center; 
 }
 
+.path-padding {
+    padding: 100px;
+}
+
 .get-started {
     background-color: #FFBA3C;
     border-width: 0px;

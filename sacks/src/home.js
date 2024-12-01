@@ -7,13 +7,12 @@ import pathBackground from './assets/how-it-works.png';
 
 export function HeaderDiv() {
     const divStyle = {
-        backgroundImage: `url(${backgroundImage})`, // Set the background image dynamically
+        backgroundImage: `url(${backgroundImage})`, 
       };
     
       return (
         <div className="header-div" style={divStyle}>
             <div className="p-home">Welcome to</div>
-            {/* <h1>NomNoms</h1> */}
             <img id="logo-title" src={logo} alt="NomNoms logo" />
             <div className="p-home">Discover new restaurants near you</div>
             <button className="get-started">Get Started</button>
@@ -23,7 +22,7 @@ export function HeaderDiv() {
 
 export function IntroBox() {
     const divStyle = {
-        backgroundImage: `url(${introBackground})`, // Set the background image dynamically
+        backgroundImage: `url(${introBackground})`, 
     };
     
       return (
@@ -41,14 +40,18 @@ export function IntroBox() {
 
 export function PathDiv() {
     const divStyle = {
-        backgroundImage: `url(${pathBackground})`, // Set the background image dynamically
+        backgroundImage: `url(${pathBackground})`, 
+        backgroundSize: 'cover',
+        backgroundPosition: 'top center',
+        height: '110vh',
+        width: '100vw', 
     };
     
       return (
         <div className="centered-div1">
             <div className="h1-home">How it works</div>
-            <div className="path-div" style={divStyle}>
-            </div> 
+            <div className="path-div" style={divStyle}></div> 
+            <div className="path-padding"></div>
         </div>
       );
 }
