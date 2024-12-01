@@ -15,8 +15,8 @@ function Footer() {
             <div className="footer-padding"></div>
             <div className="footer-middle">
                 <p>Home</p>
-                <p>About</p>
-                <p>Contact</p>
+                <p>Explore</p>
+                <p>Search</p>
             </div>
             <div className="footer-right">
                 <p>Stay Connected</p>

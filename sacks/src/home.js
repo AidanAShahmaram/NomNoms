@@ -43,7 +43,7 @@ export function PathDiv() {
         backgroundImage: `url(${pathBackground})`, 
         backgroundSize: 'cover',
         backgroundPosition: 'top center',
-        height: '110vh',
+        height: '120vh',
         width: '100vw', 
     };
     
