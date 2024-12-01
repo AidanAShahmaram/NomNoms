@@ -204,7 +204,7 @@ export const BusinessSignUp = () => {
 
     return (
         <>
-
+        <div className="signup-img"></div>
         <center><img src={logo} alt="logo" className="signup-img"></img></center>
 
         <form onSubmit={handleSubmitSignUp}>
