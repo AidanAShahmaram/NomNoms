@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import RestaurantCard from './RestaurantCard';
 import './filter.css'
 
 export function Filter() {
@@ -50,7 +52,33 @@ export function SelectTag() {
     // setSelectedTags({}) resets the entire state to an empty object, removes all the key-value pairs (tags) from selectedTags
     const resetTags = () => {
         setSelectedTags({});
-    }
+    };
+
+    // async - allows use of await, handle operations like API call
+    const submitTags = async () => {
+        // extracts the keys (tags) from selectedTags object and puts into a list of tags
+        // Object.keys(selectedTags) - gets the keys from selectedTags
+        // .filter((tag) => selectedTags[tags]) - filters to only include those that have been selected
+        const selectedTagList = Object.keys(selectedTags).filter((tag) => selectedTags[tag]);
+        
+        if (selectedTagList.length === 0) { // if there are no selected tags
+            alert("Please select at least one tag!");
+            return;
+        }
+
+        
+        try { // make API request
+            const response = await axios.get('/restaurants_filter', { // sends HTTP GET request 
+                params: {tags: selectedTagList.join(',')}, // specifies query parameters, combines array into string of tags separated by commas
+            });
+            setRestaurants(response.data); // updates the state of restaurants with data from API response
+            setError(null); // success, clears any previous error
+        }
+        catch(err) { // if request fails
+            console.error('Error fetching filtered restaurants');
+            setError('Failted to load restaurants. Please try again'); // updates state with error
+        }
+    };
 
     // using map function, which iterates over the array to create a button for each tag
     return (
@@ -79,11 +107,29 @@ export function SelectTag() {
             <div className="manage-tags">
                 <div>
                     <button className="reset-button" onClick={resetTags}>Reset All</button>
-                    <button className="submit-button">Submit</button>
+                    <button className="submit-button" onClick={submitTags}>Submit</button>
                 </div>
-                {/* This should send get request for the correct restaurant cards*/}
-               
             </div>
+
+            <div className="restaurant-cards">
+                {error && <p className="error">{error}</p>}
+                {restaurants.map((restaurant) => (
+                    <RestaurantCard 
+                        key={restaurant.id}
+                        className="restaurant-card"
+                        title={restaurant.name}
+                        pic={restaurant.pic}
+                        weblink={restaurant.weblink}
+                        address={restaurant.address}
+                        phone={restaurant.phone}
+                        ratingInit={restaurant.rating}
+                        tags={restaurant.tags}
+                        id={restaurant.id}
+                        user={restaurant.user}
+                    />
+                ))}
+            </div>
+
         </div>
     );
 }
