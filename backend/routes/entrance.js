@@ -48,9 +48,6 @@ router.get('/login/user', async (req, res) => {
 			   REPLACE,
 			   { expiresIn: '1h'});
 			   
-			   
-
-    
     return res.status(200).json({ "token": token });
 });
 

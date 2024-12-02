@@ -2,8 +2,12 @@
 // Handling errors
 const express = require('express');
 const errorHandler = require('./errors.js');
-
+const cors = require('cors');
 const app = express();
+
+app.use(cors({
+    origin: "http://localhost3000",
+}));
 
 //Request Body Reader
 const bodyParser = require('body-parser');
@@ -52,7 +56,7 @@ app.use('/rating', ratingRoutes)
 // Use the error handling middleware
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
