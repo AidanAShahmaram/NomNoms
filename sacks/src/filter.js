@@ -32,6 +32,8 @@ export function SelectTag() {
 
     // Use state to keep track of which tags are selected/not selected
     const [selectedTags, setSelectedTags] = useState({});
+    const [restaurants, setRestaurants] = useState({}); // stores restaurants that are filtered
+    const [error, setError] = useState(null); // error handling
 
     /* 
     Toggle the selection of tags
@@ -110,7 +112,7 @@ export function SelectTag() {
                     <button className="submit-button" onClick={submitTags}>Submit</button>
                 </div>
             </div>
-
+{/* 
             <div className="restaurant-cards">
                 {error && <p className="error">{error}</p>}
                 {restaurants.map((restaurant) => (
@@ -128,7 +130,7 @@ export function SelectTag() {
                         user={restaurant.user}
                     />
                 ))}
-            </div>
+            </div> */}
 
         </div>
     );

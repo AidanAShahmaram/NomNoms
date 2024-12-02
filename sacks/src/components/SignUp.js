@@ -18,13 +18,13 @@ export const SignUp = () => {
         
         const signUpFormData = {
             username, 
-            email,
+            // email,
             password
         }
 
 
         try {
-            const response = await axios.post('http://localhost:3000', { username: username, email: email, password: password });
+            const response = await axios.post('http://localhost:3001/entrance/signup/user', { username: username, password: password });
             console.log("Response: " + response + "\n");
         } catch (error) {
             console.error(error.response);
