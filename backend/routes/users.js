@@ -50,8 +50,8 @@ router.post('/signup', async (req, res) => {
 //use sends us to a search url ex: http://test.com?name=John&age=21
 router.use('/restaurants_search', async (req, res, next) => { //Page for searching/filtering
     const filters = req.query; //user input
-    
-    const foundRestaurants = restaurantInfo.filter(restaurants => {
+    //need to use find since filter isn't part of MongoDB
+    /*const foundRestaurants = restaurantInfo.find(restaurants => {
       //can call restaurants like that?
       let isValid = true;
       for(key in filters){ //query makes key-value pairs
@@ -59,6 +59,16 @@ router.use('/restaurants_search', async (req, res, next) => { //Page for searchi
       }
       return isValid;
     });
+    if(foundRestaurants === 0){
+      console.log("No restaurants found");
+    }*/
+   if(Object.keys(filter).length === 0){
+    return res.status(400).json({error: "No search criteria provided"});
+   }
+   const foundRestaurants = await restaurantInfo.find(filters);
+  if(foundRestaurants.length === 0){
+    console.log("No restaurants found");
+  }
 res.json(foundRestaurants); //sends as json file
 });
 
@@ -74,6 +84,7 @@ router.use('/restaurants_filter', async (req, res, next) => { //Page for searchi
   const query = {
       tags: { $all: filters} //$all means we need all tags to be included
   }
+  //.find is a database query function so should be good 
   const filteredRestaurants = await restaurantInfo.find(query);
   if((await restaurantInfo.find(query)) === 0){
     console.log("No restaurants found");
