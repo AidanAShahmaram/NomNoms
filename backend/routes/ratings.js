@@ -31,9 +31,8 @@ router.get('/$(id)/average_rating',async (req, res) => {
 });
 
 //creates or changes a rating made by a user
-router.post('/$(id)/user_rating',decodeToken, async (req, res) => {
-    const {username, newRating} = req.body;
-    restaurant_id = req.params.id;
+router.post('/user_rating',decodeToken, async (req, res) => {
+    const {username, newRating, restaurant_id} = req.body;
 
     //finds restaurant
     const restaurant = await Restaurant.findOne({ _id: restaurant_id});

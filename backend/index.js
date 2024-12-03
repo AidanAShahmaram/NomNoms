@@ -2,8 +2,12 @@
 // Handling errors
 const express = require('express');
 const errorHandler = require('./errors.js');
-
+const cors = require('cors');
 const app = express();
+
+app.use(cors({
+    origin: "http://localhost3000",
+}));
 
 //Request Body Reader
 const bodyParser = require('body-parser');

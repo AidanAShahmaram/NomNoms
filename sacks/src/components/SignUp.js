@@ -24,7 +24,7 @@ export const SignUp = () => {
 
 
         try {
-            const response = await axios.post('http://localhost:3001/entrance/signup/user', { username: username, password: password });
+            const response = await axios.post('http://localhost:3001/entrance/signup/user', { signUpFormData/* username: username, password: password */ });
             console.log("Response: " + response + "\n");
         } catch (error) {
             console.error(error.response);
