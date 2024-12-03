@@ -20,8 +20,8 @@ const restaurantData = new mongoose.Schema({
     type: String
   },
   image_link: {
-  type: String,
-  required: true
+   type: String,
+   required: true
   },
   tags: {
     types: [String], //array of strings

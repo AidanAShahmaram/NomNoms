@@ -15,18 +15,6 @@ const ownerData = new mongoose.Schema({
   restaurant: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Restaurant'
-  },
-  phone: {
-  type: string,
-  required: true
-  },
-  website: {
-  type: string,
-  required: true
-  },
-  image_link: {
-  type: string,
-  required: true
   }
 });
 

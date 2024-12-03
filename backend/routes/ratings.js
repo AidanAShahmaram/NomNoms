@@ -7,8 +7,8 @@ const Restaurant = require('../databases/restaurantDatabase');
 const decodeToken = require('../token_middleware.js')
 
 //gets the average rating for the given restaurant id
-router.get('/$(id)/average_rating',async (req, res) => {
-    restaurant_id = req.params.id;
+router.get('/average_rating',async (req, res) => {
+    const {restaurant_id} = req.query;
     
     //finds restaurant
     const restaurant = await Restaurant.findOne({ _id: restaurant_id});
@@ -58,9 +58,8 @@ router.post('/user_rating',decodeToken, async (req, res) => {
 
 });
 
-router.get('/$(id)/user_rating', async (req, res) => {
-     const {username} = req.body;
-    restaurant_id = req.params.id;
+router.get('/user_rating', async (req, res) => {
+    const {username, restaurant_id} = req.query;
 
     if(!username){
 	return res.status(400).json({msg: "username is required"});
