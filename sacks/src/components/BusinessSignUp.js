@@ -101,9 +101,13 @@ export const BusinessSignUp = () => {
 
 
         try {
-            const response = await axios.post('http://localhost:3000', { username: username, email: email, password: password, address: address, city: city, state: state, zipCode: zipCode, phoneNumber: phoneNumber, websiteLink: websiteLink, cuisine: selectedCuisineOptions, restaurantDescriptors: selectedRestaurantDescriptorsOptions });
+            const response = await axios.post('http://localhost:3001/entrance/signup/owner', { username: username, email: email, password: password, address: address, city: city, state: state, zipCode: zipCode, phoneNumber: phoneNumber, websiteLink: websiteLink, cuisine: selectedCuisineOptions, restaurantDescriptors: selectedRestaurantDescriptorsOptions });
             console.log("Response: " + response + "\n");
         } catch (error) {
+            if (error.response && error.response.status === 403) {
+                console.error('This username already exists. Please choose another one.');
+                alert('This username already exists. Please choose another one.');
+            }
             console.error(error.response);
         }
 

@@ -67,18 +67,25 @@ export function SelectTag() {
             alert("Please select at least one tag!");
             return;
         }
-
         
         try { // make API request
-            const response = await axios.get('/restaurants_filter', { // sends HTTP GET request 
+            const response = await axios.get('http://localhost:3001/user/restaurants_filter', { // sends HTTP GET request 
                 params: {tags: selectedTagList.join(',')}, // specifies query parameters, combines array into string of tags separated by commas
             });
-            setRestaurants(response.data); // updates the state of restaurants with data from API response
-            setError(null); // success, clears any previous error
+            console.log(response);
+            if (response.data.length === 0) {
+                alert('No matching restaurants found.');
+            }
+            else {
+                setRestaurants(response.data); // updates the state of restaurants with data from API response
+                setError(null); // success, clears any previous error
+            }
+            
         }
         catch(err) { // if request fails
-            console.error('Error fetching filtered restaurants');
-            setError('Failted to load restaurants. Please try again'); // updates state with error
+            console.error(err);
+            //console.error('Error fetching filtered restaurants');
+            setError('Failed to load restaurants. Please try again'); // updates state with error
         }
     };
 
@@ -112,8 +119,8 @@ export function SelectTag() {
                     <button className="submit-button" onClick={submitTags}>Submit</button>
                 </div>
             </div>
-{/* 
-            <div className="restaurant-cards">
+
+            {/* <div className="restaurant-cards">
                 {error && <p className="error">{error}</p>}
                 {restaurants.map((restaurant) => (
                     <RestaurantCard 
