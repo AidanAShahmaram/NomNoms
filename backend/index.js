@@ -5,9 +5,7 @@ const errorHandler = require('./errors.js');
 const cors = require('cors');
 const app = express();
 
-app.use(cors({
-    origin: "http://localhost3000",
-}));
+app.use(cors());
 
 //Request Body Reader
 const bodyParser = require('body-parser');
