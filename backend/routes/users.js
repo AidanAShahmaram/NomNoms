@@ -24,7 +24,7 @@ router.get('/login', async (req, res) => {
     if(!account)
 	return res.status(400).json({msg: "Invalid Username"});
 
-    const validPass = bcrypt.comare(password, account.password);
+    const validPass = bcrypt.compare(password, account.password);
 
     if(validPass){
 	res.status(200).json({content: "Success"}); 
@@ -50,6 +50,7 @@ router.post('/signup', async (req, res) => {
 //use sends us to a search url ex: http://test.com?name=John&age=21
 router.use('/restaurants_search', async (req, res, next) => { //Page for searching/filtering
     const filters = req.query; //user input
+    
     const foundRestaurants = restaurantInfo.filter(restaurants => {
       //can call restaurants like that?
       let isValid = true;
@@ -62,7 +63,9 @@ res.json(foundRestaurants); //sends as json file
 });
 
 //use sends us to a filter url
+
 router.use('/restaurants_filter', async (req, res, next) => { //Page for searching/filtering
+  
   const filters = req.query.tags ? req.query.tags.split(',') : []; 
   //get user input in key-value pairs and turn into an array of tags
   if (filters.length == 0){
@@ -71,8 +74,15 @@ router.use('/restaurants_filter', async (req, res, next) => { //Page for searchi
   const query = {
       tags: { $all: filters} //$all means we need all tags to be included
   }
-  const filteredRestaurants = await restauarantInfo.find(query);
-  res.json(filteredRestaurants); //sends as json file
+  const filteredRestaurants = await restaurantInfo.find(query);
+  if((await restaurantInfo.find(query)) === 0){
+    console.log("No restaurants found");
+  }
+  //Check:
+  for await (const doc of filteredRestaurants){
+    console.dir(doc);
+  }
+  res.json( filteredRestaurants /*{content: "processing"}*/); //sends as json file
 });
 
 
