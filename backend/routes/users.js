@@ -62,7 +62,7 @@ router.use('/restaurants_search', async (req, res, next) => { //Page for searchi
     if(foundRestaurants === 0){
       console.log("No restaurants found");
     }*/
-   if(Object.keys(filter).length === 0){
+   if(Object.keys(filters).length === 0){
     return res.status(400).json({error: "No search criteria provided"});
    }
    const foundRestaurants = await restaurantInfo.find(filters);

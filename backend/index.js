@@ -5,11 +5,15 @@ const errorHandler = require('./errors.js');
 const cors = require('cors');
 const app = express();
 
+<<<<<<< HEAD
 
 
 app.use(cors({
     origin: "http://localhost:3000",
 }));
+=======
+app.use(cors());
+>>>>>>> 3e3bd5794bd11dcddb0e38464a12a0fa3730e8dd
 
 
 //Request Body Reader

@@ -66,42 +66,71 @@ const restaurantDescriptors = [
 export const BusinessSignUp = () => {
 
     const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
+    const [restuarantName, setRestaurantName] = useState("");
     const [password, setPassword] = useState("");
     const [address, setAddress] = useState("");
-    const [city, setCity] = useState(""); 
-    const [state, setState] = useState("");
-    const [zipCode, setZipCode] = useState(""); 
+    // const [city, setCity] = useState(""); 
+    // const [state, setState] = useState("");
+    // const [zipCode, setZipCode] = useState(""); 
     const [phoneNumber, setPhoneNumber] = useState("");
     const [websiteLink, setWebsiteLink] = useState("");
     const [imageLink, setImageLink] = useState(""); 
     const [selectedCuisineOptions, setSelectedCuisineOptions] = useState([]);
     const [selectedRestaurantDescriptorsOptions, setSelectedRestaurantDescriptorsOptions] = useState([]);
-    
+    const [tags, setTags] = useState([]);
+
+    const [user, setUser] = useState({});
 
 
     const handleSubmitSignUp = async (e) => {
 
         e.preventDefault();
-        
+
+        console.log();
+
+        // this.setState(previousState => ({
+        //     tags: [...previousState.tags, 'new value']
+        // }));
+
+        // var newArray = this.state.arr.slice();    
+        // newArray.push("new value");   
+        // setTags({arr:newArray});
+
+        for(var i=0; i < selectedCuisineOptions.length; i++) {
+            tags.push(selectedCuisineOptions[i].label);
+        }
+
+        for (var j=0; j < selectedRestaurantDescriptorsOptions.length; j++) {
+            tags.push(selectedRestaurantDescriptorsOptions[j].label);
+        }
+
+        console.log("These are tags");
+        console.log(tags);
+
         const signUpFormData = {
             username, 
-            email,
+            restuarantName,
             password, 
             address,
-            city, 
-            state,
-            zipCode,
             phoneNumber,
             websiteLink,
             imageLink,
-            selectedCuisineOptions,
-            selectedRestaurantDescriptorsOptions
+            tags
         }
 
+        setUser(signUpFormData); 
 
         try {
-            const response = await axios.post('http://localhost:3001/entrance/signup/owner', { username: username, email: email, password: password, address: address, city: city, state: state, zipCode: zipCode, phoneNumber: phoneNumber, websiteLink: websiteLink, cuisine: selectedCuisineOptions, restaurantDescriptors: selectedRestaurantDescriptorsOptions });
+            const response = await axios.post('http://localhost:3001/entrance/signup/owner', 
+                {params: { username: username, 
+                restaurantName: restuarantName,
+                password: password, 
+                address: address,
+                phoneNumber: phoneNumber,
+                websiteLink: websiteLink,
+                imageLink: imageLink,
+                tags: tags
+            }});
             console.log("Response: " + response + "\n");
         } catch (error) {
             if (error.response && error.response.status === 403) {
@@ -115,7 +144,7 @@ export const BusinessSignUp = () => {
 
         
         console.log("JSON: " + jsonData + "\n \n");
-     
+        setTags([]);
     };
 
     const changeUsername = (event) => {
@@ -123,8 +152,8 @@ export const BusinessSignUp = () => {
         console.log("Username: " + event.target.value + "\n");
     }
 
-    const changeEmail = (event) => {
-        setEmail(event.target.value)
+    const changeRestaurantName = (event) => {
+        setRestaurantName(event.target.value)
         console.log("Email: " + event.target.value + "\n");
     }
 
@@ -137,7 +166,7 @@ export const BusinessSignUp = () => {
         setAddress(event.target.value)
         console.log("Address: " + event.target.value + "\n");
     }
-
+    /*
     const changeCity = (event) => {
         setCity(event.target.value)
         console.log("City: " + event.target.value + "\n");
@@ -152,7 +181,7 @@ export const BusinessSignUp = () => {
         setZipCode(event.target.value)
         console.log("Zip Code: " + event.target.value + "\n");
     }
-
+    */
     const changePhoneNumber = (event) => {
         setPhoneNumber(event.target.value)
         console.log("Phone Number: " + event.target.value + "\n");
@@ -168,18 +197,31 @@ export const BusinessSignUp = () => {
         console.log("Image Link: " + event.target.value + "\n");
     }
 
-    const handleCuisineSelection = (selectedOption) => {
-        setSelectedCuisineOptions(selectedOption);
+    const handleCuisineSelection = (selectedCuisineOption) => {
+        // console.log(event.target);
+
+        // // if (event.target !== 'undefined' && event.target.tagName === 'SELECT') {
+        // const options = Array.from(event.target.selectedOptions, option => option.value);
+        
+        // setSelectedCuisineOptions(options);
+        // console.log("Cuisine Options: " + options);
+
+        // const options = event.map(option => option.value);
+        setSelectedCuisineOptions(selectedCuisineOption);
+        console.log(selectedCuisineOption);
+        
+       
     }
 
     const handleRestaurantSelection = (selectedOption) => {
         setSelectedRestaurantDescriptorsOptions(selectedOption);
+        console.log(selectedOption);
     }
 
     const selectStyle = {
         control: (provided) => ({
           ...provided,
-          width: '40%',  
+          width: '100%',  
           margin: '0 auto',
           borderRadius: '20px',
           borderWidth: '2px',
@@ -189,7 +231,7 @@ export const BusinessSignUp = () => {
         }),
         menu: (provided) => ({
           ...provided,
-          width: '40%',  
+          width: '100%',  
           textAlign: 'center',
           
         }),
@@ -233,8 +275,8 @@ export const BusinessSignUp = () => {
             </div>
 
             <div className="input-div">
-                <label class="input-label" for="email"> Email </label>
-                <input class="input-box" type="email" value={email} onChange={changeEmail} placeholder="Email" id="email" required></input>
+                <label class="input-label" for="restuarant-name"> Restaurant Name </label>
+                <input class="input-box" type="restaurant-name" value={restuarantName} onChange={changeRestaurantName} placeholder="Restaurant Name" id="restaurant-name" required></input>
             </div>
 
             <div className="input-div">
@@ -247,6 +289,13 @@ export const BusinessSignUp = () => {
                 <label class="input-label" for="Address"> Address </label>
             </div> */}
             
+
+            <div className="input-div">
+                    <label class="input-label" for="Address"> Address </label>
+                    <input class="input-box" type="address" value={address} onChange={changeAddress} placeholder="Address" id="address" required></input>   
+            </div>
+            
+            {/*
             <div className="location-div">
                 <div className="address-div1">
                     <label class="input-label" for="Address"> Address </label>
@@ -258,6 +307,7 @@ export const BusinessSignUp = () => {
                 </div>
             </div>
             
+
             <div className="location-div">
             <div className="address-div3">
             <label class="input-label" for="state"> State </label>
@@ -328,6 +378,7 @@ export const BusinessSignUp = () => {
             </div>
 
             </div>
+            */}
 
             <div className="input-div">
                 <label class="input-label" for="phoneNumber"> Phone Number </label>
@@ -336,29 +387,29 @@ export const BusinessSignUp = () => {
             
             <div className="input-div">
                 <label class="input-label" for="link"> Website Link </label>
-                <input class="input-box" type="url" value={websiteLink} onChange={changeWebsiteLink} placeholder="website.com" id="websiteLink" required></input>
+                <input class="input-box" type="url" value={websiteLink} onChange={changeWebsiteLink} placeholder="https://website.com" id="websiteLink" required></input>
             </div>
          
 
             <div className="input-div">
                 <label class="input-label" for="link"> Image Link </label>
-                <input class="input-box" type="url" value={imageLink} onChange={changeImageLink} placeholder="website.com/image.png" id="websiteLink" required></input>
+                <input class="input-box" type="url" value={imageLink} onChange={changeImageLink} placeholder="https://website.com/image.png" id="websiteLink" required></input>
             </div>
             
            
 
             <div className="input-div">
                 <label class="input-label" for="cuisine"> Cuisine </label>
-                <div class="select">
-                    <Select options={cuisineOptions} value={selectedCuisineOptions} onChange={handleCuisineSelection} styles={selectStyle} isMulti={true}/>
-                </div>
+                
+                <Select options={cuisineOptions} value={selectedCuisineOptions} onChange={handleCuisineSelection} styles={selectStyle} isMulti={true}/>
+                
             </div>
             
             <div className="input-div">
                 <label class="input-label" for="restaurantDescriptionTags"> Restaurant Descriptors Tags </label>
-                <div class="select">
-                    <Select options={restaurantDescriptors} value={selectedRestaurantDescriptorsOptions} onChange={handleRestaurantSelection} styles={selectStyle} isMulti={true}/>
-                </div>
+                
+                <Select options={restaurantDescriptors} value={selectedRestaurantDescriptorsOptions} onChange={handleRestaurantSelection} styles={selectStyle} isMulti={true}/>
+                
             </div>
 
             <button class="submit">Sign Up</button>
