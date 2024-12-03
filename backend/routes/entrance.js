@@ -119,11 +119,11 @@ router.get('/login/owner', async (req, res) => {
 // POST owner sign up
 //status codes: 403 - already exists, 400 - invalid password creation
 router.post('/signup/owner', async (req, res) => {
-    const {username, password, phone, image, restaurant_name, address, website, description, image_link, tags} = req.body;
+    const {username, password, phone, restaurant_name, address, website, description, image_link, tags} = req.body;
 
     //checks that a username and password are given
    
-    if(!username || !password || !phone || !website || !image || !restaurant_name || !address || !website || !image_link || !tags){
+    if(!username || !password || !phone || !website || !restaurant_name || !address || !website || !image_link || !tags){
 	return res.status(400).json({msg: "Missing parameters: make sure the following parameters are provided: username, password, phone, website, image, restaurant_name, address, website, image_link, tags"})
     }
     
