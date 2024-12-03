@@ -78,6 +78,7 @@ export const BusinessSignUp = () => {
     const [selectedCuisineOptions, setSelectedCuisineOptions] = useState([]);
     const [selectedRestaurantDescriptorsOptions, setSelectedRestaurantDescriptorsOptions] = useState([]);
     
+    const [user, setUser] = useState({});
 
 
     const handleSubmitSignUp = async (e) => {
@@ -99,9 +100,10 @@ export const BusinessSignUp = () => {
             selectedRestaurantDescriptorsOptions
         }
 
+        setUser(signUpFormData); 
 
         try {
-            const response = await axios.post('http://localhost:3000', { username: username, email: email, password: password, address: address, city: city, state: state, zipCode: zipCode, phoneNumber: phoneNumber, websiteLink: websiteLink, cuisine: selectedCuisineOptions, restaurantDescriptors: selectedRestaurantDescriptorsOptions });
+            const response = await axios.post('http://localhost:3001/entrance/signup/owner', {params: { username: username, password: password }});
             console.log("Response: " + response + "\n");
         } catch (error) {
             console.error(error.response);

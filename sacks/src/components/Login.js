@@ -2,7 +2,9 @@ import "./Login.css"
 import React, { useState } from 'react';
 import axios from "axios";
 import logo from '../assets/logo-icononly.png';
+import { createContext } from 'react';
 
+const AuthContext = createContext(null);
 
 
 export const Login = () => {
