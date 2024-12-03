@@ -15,9 +15,6 @@ const restaurantData = new mongoose.Schema({
   tags: {
     types: [String], //array of strings
   },
-  description: {
-    type: String,
-  },
   comments: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Comment'
