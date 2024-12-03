@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './RestaurantCard.css'
+import './RestaurantCard.css';
+import axios from "axios";
 
 const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, tags, id, user }) => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -29,25 +30,17 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, tags,
         updateUserRating(newRating);
     }
 
-    //NEED TO ADD THE PROPER API LINKS!!!
     const updateUserRating = async (newRating) => {
         try {
             // update the current user's rating on the server
             // id is the restaurant's id
-            const response = await fetch('/api/restaurants/${id}/userrating', {
-                // this could be PUT depending on our database design
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userId: user.id, rating: newRating }),
-            });
+            const response = await axios.post('http://localhost:3001/rating/user_rating', { params: { username: user.name, newRating: newRating, restaurant_id: id } }, { headers: { Authorization: user.token } });
             if (!response.ok) {
                 throw new Error("Error Updating User's Rating");
             }
             // Update the card's displayed rating
             // grab rating from the backend
-            const ratingResponse = await fetch('/api/restaurants/${id}/rating');
+            const ratingResponse = await axios.get('http://localhost:3001/rating/average_rating', { params: { restaurant_id: id } });
             if (!ratingResponse.ok) {
                 throw new Error('Error While Fetching New Restaurant Rating');
             }
@@ -58,7 +51,6 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, tags,
         }
     };
     
-
     const renderStars = (rating) => {
         // Get the number of full stars by integer
         const fullStars = Math.floor(rating); 
@@ -82,7 +74,7 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, tags,
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await fetch('/api/restaurants/${id}/comments');
+                const response = await axios.get('http://localhost:3001/comments/all_comments', { params: { restaurant_id: id } });
                 if (!response.ok) {
                     throw new Error('Error While Fetching Comments');
                 }
@@ -102,13 +94,11 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, tags,
         } 
 
         try {
-            const response = await fetch('/api/restaurants/${id}/comments', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: user.id, comment: newComment }),
-            });
-            if (!response.ok) throw new Error('Error submitting comment');
-
+            const response = await axios.post('http://localhost:3001/comments/new_comment', { params: { username: user.name, message: newComment, restaurant_id: id } }, { headers: { Authorization: user.token } });
+            if (!response.ok)
+            {
+                throw new Error('Error submitting comment');
+            } 
             const data = await response.json();
             // append the new comments
             setComments((prevComments) => [...prevComments, data.newComment]);
