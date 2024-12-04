@@ -18,7 +18,7 @@ export const SignUp = () => {
         
         const signUpFormData = {
             username, 
-            // email,
+            // // email,
             password
         }
 

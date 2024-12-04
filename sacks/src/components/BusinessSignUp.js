@@ -134,6 +134,10 @@ export const BusinessSignUp = () => {
             console.log("Response: " + response + "\n");
             alert("Successfully created an account!");
         } catch (error) {
+            if (error.response && error.response.status === 403) {
+                console.error('This username already exists. Please choose another one.');
+                alert('This username already exists. Please choose another one.');
+            }
             console.error(error.response);
             alert(error.response.data.msg);
         }

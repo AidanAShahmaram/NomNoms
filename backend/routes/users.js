@@ -24,7 +24,7 @@ router.get('/login', async (req, res) => {
     if(!account)
 	return res.status(400).json({msg: "Invalid Username"});
 
-    const validPass = bcrypt.comare(password, account.password);
+    const validPass = bcrypt.compare(password, account.password);
 
     if(validPass){
 	res.status(200).json({content: "Success"}); 
@@ -47,32 +47,40 @@ router.post('/signup', async (req, res) => {
     
   });
   
-//use sends us to a search url ex: http://test.com?name=John&age=21
-router.use('/restaurants_search', async (req, res, next) => { //Page for searching/filtering
-    const filters = req.query; //user input
-    const foundRestaurants = restaurantInfo.filter(restaurants => {
-      //can call restaurants like that?
-      let isValid = true;
-      for(key in filters){ //query makes key-value pairs
-        isValid = isValid && restaurants[key] == filters[key];
-      }
-      return isValid;
-    });
-res.json(foundRestaurants); //sends as json file
-});
+//live searching: (search via name)
+router.post('/routes/users/search', async(req, res) => {
+  let payload = req.body.payload.trim();
+  //check
+  console.log(payload);
+  //the i flag means its case insensitive
+  let search = await liveSearch.find({name: {$regex: new RegExp('^'+payload+'.*','i')}}).exec();
+  res.send({payload:search});
+})
 
 //use sends us to a filter url
+
 router.use('/restaurants_filter', async (req, res, next) => { //Page for searching/filtering
+  
   const filters = req.query.tags ? req.query.tags.split(',') : []; 
   //get user input in key-value pairs and turn into an array of tags
   if (filters.length == 0){
     return res.status(400).json({error: "No tags provided"});
   }
   const query = {
-      tags: { $all: filters} //$all means we need all tags to be included
+      tags: { $in: filters} //$all means we need all tags to be included
+      //$in looks for values in the same field (like here, where all values are tags)
+      //Meanwhile $or is for different fields
   }
-  const filteredRestaurants = await restauarantInfo.find(query);
-  res.json(filteredRestaurants); //sends as json file
+  //.find is a database query function so should be good 
+  const filteredRestaurants = await restaurantInfo.find(query);
+  if((await restaurantInfo.find(query)) === 0){
+    console.log("No restaurants found");
+  }
+  //Check:
+  for await (const doc of filteredRestaurants){
+    console.dir(doc);
+  }
+  res.json( filteredRestaurants /*{content: "processing"}*/); //sends as json file
 });
 
 
