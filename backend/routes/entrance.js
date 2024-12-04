@@ -42,6 +42,7 @@ router.get('/login/user', async (req, res) => {
     });
 
 
+
     //creates token for client side
     //token will become inavlid after the time specified
     const token = jwt.sign({ "username": username,
@@ -105,6 +106,8 @@ router.get('/login/owner', async (req, res) => {
 	    return res.status(401).json({msg: "Incorrect Password"});
 	}
     });
+
+    console.log(validPass);
     //creates token for owner side -> need this for restaurants to be added to specific account
     //token will become invalid after the time specified
     const token = jwt.sign({
@@ -119,7 +122,7 @@ router.get('/login/owner', async (req, res) => {
 // POST owner sign up
 //status codes: 403 - already exists, 400 - invalid password creation
 router.post('/signup/owner', async (req, res) => {
-    const {username, password, phone, restaurant_name, address, website, description, image_link, tags} = req.body;
+    const {username, password, phone, restaurant_name, address, website, image_link, tags} = req.body;
 
     //checks that a username and password are given
    
@@ -140,8 +143,8 @@ router.post('/signup/owner', async (req, res) => {
     }
     
     const passhash = await bcrypt.hashSync(password, rounds);
-    const newRest = new Restaurant({name: restaurant_name, "address": address, "description": description, "website": website, "image_link": image_link, "tags": tags});
-    const newData = new Owner({"username": username, "password": passhash, "restaurant": restaurant});
+    const newRest = new Restaurant({name: restaurant_name, "address": address, "website": website, "image_link": image_link, "tags": tags});
+    const newData = new Owner({"username": username, "password": passhash, "restaurant": newRest});
     const savedRest = await newRest.save();
     const savedData = await newData.save();
     res.status(200).json({"account": savedData, "restaurant": savedRest});
