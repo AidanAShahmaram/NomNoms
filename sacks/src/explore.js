@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './explore.css';
 import RestaurantCard from './RestaurantCard';
+import axios from 'axios';
 
 export function Explore() {
       return (

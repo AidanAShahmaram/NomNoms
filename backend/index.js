@@ -5,7 +5,12 @@ const errorHandler = require('./errors.js');
 const cors = require('cors');
 const app = express();
 
-app.use(cors());
+
+
+app.use(cors({
+    origin: "http://localhost:3000",
+}));
+
 
 //Request Body Reader
 const bodyParser = require('body-parser');
@@ -53,8 +58,16 @@ app.use('/rating', ratingRoutes);
 const commentRoutes = require('./routes/comments');
 app.use('/comment', commentRoutes);
 
+const restaurantsFilterRoutes = require('./routes/users');
+const liveSearch = require('./routes/users');
+//app.use('/restaurants_filter', restaurantsFilterRoutes);
+
+
 // Use the error handling middleware
-app.use(errorHandler);
+/*app.use(errorHandler);
+const morgan = require('morgan');
+app.use(morgan('dev'));*/
+
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

@@ -43,6 +43,7 @@ router.get('/login/user', async (req, res) => {
 	return res.status(401).json({msg: "Incorrect Password"});
     }
 
+
     //creates token for client side
     //token will become inavlid after the time specified
     const token = jwt.sign({ "username": username,
@@ -106,6 +107,7 @@ router.get('/login/owner', async (req, res) => {
     if(!validPass){
 	return res.status(401).json({msg: "Incorrect Password"});
     }
+
     //creates token for owner side -> need this for restaurants to be added to specific account
     //token will become invalid after the time specified
     const token = jwt.sign({

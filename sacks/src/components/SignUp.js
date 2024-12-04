@@ -18,7 +18,7 @@ export const SignUp = () => {
         
         const signUpFormData = {
             username, 
-            // email,
+            // // email,
             password
         }
 
@@ -26,6 +26,7 @@ export const SignUp = () => {
         try {
             const response = await axios.post('http://localhost:3001/entrance/signup/user', { username: username, password: password });
             console.log("Response: " + response + "\n");
+            alert("Successfully created account!");
         } catch (error) {
             if (error.response && error.response.status === 403) {
                 console.error('This username already exists. Please choose another one.');
