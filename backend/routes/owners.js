@@ -36,10 +36,10 @@ router.post('/login', async (req, res) => {
   
 
 router.get('/view_restaurants', async (req, res) => {
-    res.send('View your restaurants');// this gets executed when user visit http://localhost:3000/owners/restaurant_mods
+    const owner = await ownerInfo.findOne({_id: req.owner_token}); //uses token to confirm owner
     try {
-        const allData = await ownerInfo.find();
-        res.json(ownerInfo.restaurants);
+        const restaurants_owned = await owner.restaurants;
+        res.json(restaurants_owned);
         //Can mod so vals get sent out in a different format if that's easier
       } catch (error) {
         res.json({ message: "No restaurants found"});
