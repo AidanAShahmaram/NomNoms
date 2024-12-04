@@ -143,10 +143,15 @@ router.post('/signup/owner', async (req, res) => {
     if(!p_check.valid){
 	return res.status(400).json({msg: p_check.msg});
     }
+    
+    let tag_list = [];
+    for(i = 0; i < tags.length; i++){
+	tag_list.push(tags[i]);
+    }
 
     
     const passhash = await bcrypt.hashSync(password, rounds);
-    const newRest = await new Restaurant({name: restaurant_name, "address": address, "phone": phone, "website": website, "image_link": image_link, "tags": {tags}, "comments": []});
+    const newRest = await new Restaurant({name: restaurant_name, "address": address, "phone": phone, "website": website, "image_link": image_link, "tags": {tag_list}, "comments": []});
     const newData = new Owner({"username": username, "password": passhash, "restaurant": newRest._id});
     await newRest.save();
     await newData.save();
