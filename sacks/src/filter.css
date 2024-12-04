@@ -109,3 +109,14 @@
 .padding {
     margin: 10px;
 }
+
+.cards-filter {
+    display: flex;
+    /* wrap to next row when space is filled */
+    flex-wrap: wrap;
+}
+
+.restaurant-card-filter {
+    /* Space between rows */
+    margin-bottom: 20px;
+}

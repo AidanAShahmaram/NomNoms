@@ -128,24 +128,24 @@ export function SelectTag() {
 
             <div className="restaurant-cards">
                 {error && <p className="error">{error}</p>}
-                {restaurants.map((restaurant) => (
-                    <RestaurantCard 
-                        key={restaurant.id} // fix this one
-                        className="restaurant-card"
-                        title={restaurant.name}
-                        pic={restaurant.image_link} // fix this one
-                        weblink={restaurant.website} 
-                        address={restaurant.address}
-                        phone={restaurant.phone} // fix this one
-                        ratingInit={(restaurant.rating_count / restaurant.rating_total ) * 5} 
-                        tags={restaurant.tags}
-                        id={restaurant.id} // fix this one
-                        user={restaurant.user} // fix this one
-                        // need to add description
-                    />
-                ))}
-            </div>  
-
+                <div className="cards-filter">
+                    {restaurants.map((restaurant) => (
+                        <RestaurantCard className="restaurant-card-filter"
+                            key={restaurant.id} // fix this one
+                            title={restaurant.name}
+                            pic={restaurant.image_link} // fix this one
+                            weblink={restaurant.website} 
+                            address={restaurant.address}
+                            phone={restaurant.phone} // fix this one
+                            ratingInit={(restaurant.rating_count / restaurant.rating_total ) * 5} 
+                            tags={restaurant.tags}
+                            id={restaurant.id} // fix this one
+                            user={restaurant.user} // fix this one
+                            // need to add description
+                        />
+                    ))}
+                </div>  
+            </div>
         </div>
     );
 }
