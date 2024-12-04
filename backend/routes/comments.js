@@ -8,7 +8,7 @@ const Comment = require('../databases/commentDatabase');
 const decodeToken = require('../token_middleware.js')
 
 //gets a list of comments for the given restaurant id
-router.get('/$(id)/all_comments',async (req, res) => {
+router.get('/all_comments',async (req, res) => {
     restaurant_id = req.params.id;
     
     //finds restaurant
@@ -23,7 +23,7 @@ router.get('/$(id)/all_comments',async (req, res) => {
 });
 
 //uploads a new comment for the specified restaurant
-router.post('/$(id)/new_comment',decodeToken, async (req, res) => {
+router.post('/new_comment',decodeToken, async (req, res) => {
     const {username, message} = req.body;
     restaurant_id = req.params.id;
 
