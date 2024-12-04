@@ -1,7 +1,7 @@
 // models/dataModel.js
 
 const mongoose = require('mongoose');
-const Restaurant = ('./restaurantDatabase')
+const Restaurant = require('./restaurantDatabase')
 
 const ownerData = new mongoose.Schema({
   username: {

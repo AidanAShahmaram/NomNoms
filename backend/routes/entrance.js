@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../databases/userDatabase');
-const Owner = require('../databases/userDatabase');
+const Owner = require('../databases/ownerDatabase');
 const Restaurant = require('../databases/restaurantDatabase');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -141,13 +141,14 @@ router.post('/signup/owner', async (req, res) => {
     if(!p_check.valid){
 	return res.status(400).json({msg: p_check.msg});
     }
+
     
     const passhash = await bcrypt.hashSync(password, rounds);
-    const newRest = new Restaurant({name: restaurant_name, "address": address, "description": description, "website": website, "image_link": image_link, "tags": tags, "comments": []});
-    const newData = new Owner({"username": username, "password": passhash, "restaurant": newRest});
-    const savedRest = await newRest.save();
-    const savedData = await newData.save();
-    res.status(200).json({"account": savedData, "restaurant": savedRest});
+    const newRest = await new Restaurant({name: restaurant_name, "address": address, "phone": phone, "website": website, "image_link": image_link, "tags": {tags}, "comments": []});
+    const newData = new Owner({"username": username, "password": passhash, "restaurant": newRest._id});
+    await newRest.save();
+    await newData.save();
+    res.status(200).json({"msg": "Success"});
     
 })
 
