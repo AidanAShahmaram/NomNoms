@@ -124,6 +124,8 @@ router.get('/login/owner', async (req, res) => {
 router.post('/signup/owner', async (req, res) => {
     const {username, password, phone, restaurant_name, address, website, image_link, tags} = req.body;
 
+    console.log(tags);
+
     //checks that a username and password are given
    
     if(!username || !password || !phone || !website || !restaurant_name || !address || !website || !image_link || !tags){
