@@ -4,7 +4,6 @@ import axios from "axios";
 import logo from '../assets/logo-icononly.png';
 import { createContext } from 'react';
 
-const AuthContext = createContext(null);
 
 
 export const Login = () => {
@@ -24,10 +23,18 @@ export const Login = () => {
 
 
         try {
-            const response = await axios.post('http://localhost:3000', { username: username, password: password });
+            const response = await axios.get('http://localhost:3001/entrance/login/user', {params: { username: username, password: password }});
             console.log("Response: " + response + "\n");
+            console.log("Response: " + response + "\n");
+            console.log(response.data.token);
+            const tokenValue = response.data.token;
+            sessionStorage.setItem("token", tokenValue);
+            const token = sessionStorage.getItem("token");
+            console.log("Token: " + token);
+
         } catch (error) {
             console.error(error.response);
+            alert(error.response.data.msg);
         }
 
         const jsonData = JSON.stringify(signUpFormData);
