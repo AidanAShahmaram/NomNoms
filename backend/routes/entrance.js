@@ -35,12 +35,13 @@ router.get('/login/user', async (req, res) => {
     if(!account)
 	return res.status(400).json({msg: "Invalid Username"});
 
-    const validPass = bcrypt.compare(password, account.password, (err, res) => {
-	if(err){
-	    return res.status(401).json({msg: "Incorrect Password"});
-	}
-    });
+    let cont = true
 
+    const validPass = await bcrypt.compare(password, account.password);
+
+    if(!validPass){
+	return res.status(401).json({msg: "Incorrect Password"});
+    }
 
     //creates token for client side
     //token will become inavlid after the time specified
@@ -59,7 +60,7 @@ router.post('/signup/user', async (req, res) => {
 
     //checks that a username and password are given
     if(!username || !password || !email){
-	return res.status(400).json({msg: "Missing parameters: requires a \"username\" and \"password\""})
+	return res.status(400).json({msg: "Missing parameters: requires a 'username', 'password', and 'email"})
     }
 
     //checks for existing user
@@ -100,11 +101,13 @@ router.get('/login/owner', async (req, res) => {
     if(!account)
 	return res.status(400).json({msg: "Username does not exist"});
 
-    const validPass = bcrypt.compare(password, account.password, (err, res) => {
-	if(err){
-	    return res.status(401).json({msg: "Incorrect Password"});
-	}
-    });
+    let cont = true;
+    
+    const validPass = await bcrypt.compare(password, account.password);
+
+    if(!validPass){
+	return res.status(401).json({msg: "Incorrect Password"});
+    }
     //creates token for owner side -> need this for restaurants to be added to specific account
     //token will become invalid after the time specified
     const token = jwt.sign({
