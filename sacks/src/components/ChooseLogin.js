@@ -23,7 +23,7 @@ export const ChooseLogin = () => {
                 <div className="h1-choose-login"> Welcome Back! </div>
                 <div className="p-choose-login"> Who are you logging in as today? </div>
                 <div className="choose-buttons">
-                    <Link to="/login"><button class="choose-button"> User </button></Link>
+                    <Link to="/login"><button class="choose-button"> Foodie </button></Link>
                     <Link to="/businesslogin"><button class="choose-button"> Business </button></Link> 
                 </div>
                 

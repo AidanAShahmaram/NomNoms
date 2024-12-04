@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import logo from '../assets/logo-icononly.png';
 import { createContext } from 'react';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -11,6 +12,7 @@ export const BusinessLogin = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate(); 
 
     const handleSubmitLogin = async (e) => {
 
@@ -21,6 +23,7 @@ export const BusinessLogin = () => {
             password
         }
 
+        
 
         try {
             const response = await axios.get('http://localhost:3001/entrance/login/owner', {params: { username: username, password: password }});
@@ -33,9 +36,10 @@ export const BusinessLogin = () => {
 
             console.log(response.status);
             if (response.status !== 200) {
-                alert("Incorrect Password");
-            } else {
                 alert(response.data.msg);
+            } else {
+                alert("Successfully logged in!");
+                navigate('/search');
             }
             
         } catch (error) {

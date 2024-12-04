@@ -4,7 +4,7 @@ import axios from 'axios';
 import Select from "react-select"
 import logo from '../assets/logo-icononly.png';
 import background from '../assets/business-signup-bg.jpg';
-
+import { useNavigate } from "react-router-dom";
 
 const cuisineOptions = [
     {value: "American", label: "American"},
@@ -79,8 +79,9 @@ export const BusinessSignUp = () => {
     const [selectedRestaurantDescriptorsOptions, setSelectedRestaurantDescriptorsOptions] = useState([]);
     const [tags, setTags] = useState([]);
 
-    const [user, setUser] = useState({});
+    //const [user, setUser] = useState({});
 
+    const navigate = useNavigate(); 
 
     const handleSubmitSignUp = async (e) => {
 
@@ -103,6 +104,7 @@ export const BusinessSignUp = () => {
         for (var j=0; j < selectedRestaurantDescriptorsOptions.length; j++) {
             tags.push(selectedRestaurantDescriptorsOptions[j].label);
         }
+        setTags(tags);
 
         console.log("These are tags");
         console.log(tags);
@@ -118,7 +120,7 @@ export const BusinessSignUp = () => {
             tags
         }
 
-        setUser(signUpFormData); 
+        // setUser(signUpFormData); 
 
         try {
             const response = await axios.post('http://localhost:3001/entrance/signup/owner', 
@@ -131,15 +133,22 @@ export const BusinessSignUp = () => {
                 image_link: imageLink,
                 tags: tags
             });
-            console.log("Response: " + response + "\n");
-            alert("Successfully created an account!");
-        } catch (error) {
-            if (error.response && error.response.status === 403) {
-                console.error('This username already exists. Please choose another one.');
-                alert('This username already exists. Please choose another one.');
+
+
+            console.log("Response: \n");
+            console.log(response);
+
+            if (response.status !== 200) {
+                alert("Successfully created an account!");
+                navigate("/businesslogin");
+            } else {
+                alert(response.data.msg);
             }
-            console.error(error.response);
-            alert(error.response.data.msg);
+            
+        } catch (error) {
+
+            alert("Error. Not connected to backend.");
+
         }
         
         //console.log("Status Code: " + statusCode);
