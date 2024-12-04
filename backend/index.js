@@ -57,15 +57,15 @@ const ratingRoutes = require('./routes/ratings');
 app.use('/rating', ratingRoutes);
 
 const restaurantsFilterRoutes = require('./routes/users');
-const restaurantsSearchRoutes = require('./routes/users');
+const liveSearch = require('./routes/users');
 //app.use('/restaurants_filter', restaurantsFilterRoutes);
 
 
 
 // Use the error handling middleware
-app.use(errorHandler);
+/*app.use(errorHandler);
 const morgan = require('morgan');
-app.use(morgan('dev'));
+app.use(morgan('dev'));*/
 
 
 const PORT = process.env.PORT || 3001;

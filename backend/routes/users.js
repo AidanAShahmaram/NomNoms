@@ -47,30 +47,15 @@ router.post('/signup', async (req, res) => {
     
   });
   
-//use sends us to a search url ex: http://test.com?name=John&age=21
-router.use('/restaurants_search', async (req, res, next) => { //Page for searching/filtering
-    const filters = req.query; //user input
-    //need to use find since filter isn't part of MongoDB
-    /*const foundRestaurants = restaurantInfo.find(restaurants => {
-      //can call restaurants like that?
-      let isValid = true;
-      for(key in filters){ //query makes key-value pairs
-        isValid = isValid && restaurants[key] == filters[key];
-      }
-      return isValid;
-    });
-    if(foundRestaurants === 0){
-      console.log("No restaurants found");
-    }*/
-   if(Object.keys(filters).length === 0){
-    return res.status(400).json({error: "No search criteria provided"});
-   }
-   const foundRestaurants = await restaurantInfo.find(filters);
-  if(foundRestaurants.length === 0){
-    console.log("No restaurants found");
-  }
-res.json(foundRestaurants); //sends as json file
-});
+//live searching: (search via name)
+router.post('/routes/users/search', async(req, res) => {
+  let payload = req.body.payload.trim();
+  //check
+  console.log(payload);
+  //the i flag means its case insensitive
+  let search = await liveSearch.find({name: {$regex: new RegExp('^'+payload+'.*','i')}}).exec();
+  res.send({payload:search});
+})
 
 //use sends us to a filter url
 
