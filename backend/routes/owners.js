@@ -53,7 +53,9 @@ router.post('/view_restaurants', decodeToken, async (req, res) => {
   try {
     const newRestaurant = new restaurantInfo({
       name: req.body.name,
-      address: req.body.address, 
+      address: req.body.address,
+      image: req.body.address,
+      website: req.body.website, 
       tags: req.body.tags,
       description: req.body.description});
 

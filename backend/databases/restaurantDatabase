@@ -12,6 +12,14 @@ const restaurantData = new mongoose.Schema({
     type: String,
     required: true,
   },
+  website: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
   tags: {
     types: [String], //array of strings
   },
