@@ -57,7 +57,7 @@ const ratingRoutes = require('./routes/ratings');
 app.use('/rating', ratingRoutes);
 
 const restaurantsFilterRoutes = require('./routes/users');
-const restaurantsSearchRoutes = require('./routes/users');
+const liveSearch = require('./routes/users');
 //app.use('/restaurants_filter', restaurantsFilterRoutes);
 
 
