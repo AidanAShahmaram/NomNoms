@@ -79,7 +79,7 @@ export const BusinessSignUp = () => {
     const [selectedRestaurantDescriptorsOptions, setSelectedRestaurantDescriptorsOptions] = useState([]);
     const [tags, setTags] = useState([]);
 
-    const [user, setUser] = useState({});
+    //const [user, setUser] = useState({});
 
     const navigate = useNavigate(); 
 
@@ -105,7 +105,7 @@ export const BusinessSignUp = () => {
             tags.push(selectedRestaurantDescriptorsOptions[j].label);
         }
         setTags(tags);
-        
+
         console.log("These are tags");
         console.log(tags);
 
@@ -120,7 +120,7 @@ export const BusinessSignUp = () => {
             tags
         }
 
-        setUser(signUpFormData); 
+        // setUser(signUpFormData); 
 
         try {
             const response = await axios.post('http://localhost:3001/entrance/signup/owner', 
@@ -133,12 +133,20 @@ export const BusinessSignUp = () => {
                 image_link: imageLink,
                 tags: tags
             });
-            console.log("Response: " + response + "\n");
-            alert("Successfully created an account!");
-            navigate("/businesslogin");
+
+
+            console.log("Response: \n");
+            console.log(response);
+
+            if (response.status !== 200) {
+                alert("Successfully created an account!");
+                navigate("/businesslogin");
+            } else {
+                alert(response.data.msg);
+            }
+            
         } catch (error) {
-            console.error(error.response);
-            alert(error.response.data.msg);
+            alert("Error. Not connected to backend.");
         }
         
         //console.log("Status Code: " + statusCode);

@@ -23,6 +23,13 @@ function App() {
   const location = useLocation();
   const noNavbarFooter = ['/choosesignup', '/chooselogin', '/signup', '/login', '/businesssignup', '/businesslogin'];
   /* Using location, navbar and footer will not show for signup/login pages */
+  
+  const token = sessionStorage.getItem("token");
+  console.log();
+  console.log("Token");
+  console.log(token);
+  console.log();
+
   return (
     <>
       {!noNavbarFooter.includes(location.pathname) && <Navbar />}

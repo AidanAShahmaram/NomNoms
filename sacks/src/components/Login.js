@@ -6,7 +6,8 @@ import { createContext } from 'react';
 import { useNavigate } from "react-router-dom";
 
 
-export const Login = () => {
+
+export const Login = () => { 
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -39,6 +40,7 @@ export const Login = () => {
             } else {
                 alert("Successfully logged in!");
                 navigate('/search');
+                
             }
             
         } catch (error) {

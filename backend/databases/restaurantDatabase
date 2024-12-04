@@ -39,6 +39,10 @@ const restaurantData = new mongoose.Schema({
   ratings: {
     type: Map,
     of: Number
+  },
+  phone: {
+    type: String,
+    required: true
   }
 });
 

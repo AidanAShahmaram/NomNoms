@@ -27,14 +27,19 @@ export const SignUp = () => {
         try {
             const response = await axios.post('http://localhost:3001/entrance/signup/user', { username: username, password: password, email: email });
             console.log("Response: " + response + "\n");
-            alert("Successfully created account!");
-            navigate("/login");
+            if (response.status !== 200) {
+                alert(response.data.msg);
+            } else {
+                alert("Successfully created account!");
+                navigate("/login");
+            }
+            
         } catch (error) {
             if (error.response && error.response.status === 403) {
                 console.error('This username already exists. Please choose another one.');
                 alert('This username already exists. Please choose another one.');
             }
-            alert(error.response.data.msg);
+            alert("Error. Not connected to backend.");
             console.error(error.response);
         }
 
