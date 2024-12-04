@@ -5,15 +5,11 @@ const errorHandler = require('./errors.js');
 const cors = require('cors');
 const app = express();
 
-<<<<<<< HEAD
 
 
 app.use(cors({
     origin: "http://localhost:3000",
 }));
-=======
-app.use(cors());
->>>>>>> 3e3bd5794bd11dcddb0e38464a12a0fa3730e8dd
 
 
 //Request Body Reader
@@ -67,9 +63,9 @@ const restaurantsSearchRoutes = require('./routes/users');
 
 
 // Use the error handling middleware
-app.use(errorHandler);
+/*app.use(errorHandler);
 const morgan = require('morgan');
-app.use(morgan('dev'));
+app.use(morgan('dev'));*/
 
 
 const PORT = process.env.PORT || 3001;
