@@ -72,6 +72,9 @@ export function SelectTag() {
             const response = await axios.get('http://localhost:3001/user/restaurants_filter', { // sends HTTP GET request 
                 params: {tags: selectedTagList.join(',')}, // specifies query parameters, combines array into string of tags separated by commas
             });
+
+            
+
             console.log(response);
             if (response.data.length === 0) {
                 alert('No matching restaurants found.');
@@ -88,6 +91,8 @@ export function SelectTag() {
             setError('Failed to load restaurants. Please try again'); // updates state with error
         }
     };
+
+
 
     // using map function, which iterates over the array to create a button for each tag
     return (
@@ -125,17 +130,18 @@ export function SelectTag() {
                 {error && <p className="error">{error}</p>}
                 {restaurants.map((restaurant) => (
                     <RestaurantCard 
-                        key={restaurant.id}
+                        key={restaurant.id} // fix this one
                         className="restaurant-card"
                         title={restaurant.name}
-                        pic={restaurant.pic}
-                        weblink={restaurant.weblink}
+                        pic={restaurant.image_link} // fix this one
+                        weblink={restaurant.website} 
                         address={restaurant.address}
-                        phone={restaurant.phone}
-                        ratingInit={restaurant.rating}
+                        phone={restaurant.phone} // fix this one
+                        ratingInit={(restaurant.rating_count / restaurant.rating_total ) * 5} 
                         tags={restaurant.tags}
-                        id={restaurant.id}
-                        user={restaurant.user}
+                        id={restaurant.id} // fix this one
+                        user={restaurant.user} // fix this one
+                        // need to add description
                     />
                 ))}
             </div>  
