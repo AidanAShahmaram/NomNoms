@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import logo from '../assets/logo-icononly.png';
 import img1 from '../assets/signup-img1.png';
+import { useNavigate } from "react-router-dom";
 
 export const SignUp = () => {
 
@@ -10,7 +11,7 @@ export const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-
+    const navigate = useNavigate(); 
 
     const handleSubmitSignUp = async (e) => {
 
@@ -24,14 +25,16 @@ export const SignUp = () => {
 
 
         try {
-            const response = await axios.post('http://localhost:3001/entrance/signup/user', { username: username, password: password });
+            const response = await axios.post('http://localhost:3001/entrance/signup/user', { username: username, password: password, email: email });
             console.log("Response: " + response + "\n");
             alert("Successfully created account!");
+            navigate("/login");
         } catch (error) {
             if (error.response && error.response.status === 403) {
                 console.error('This username already exists. Please choose another one.');
                 alert('This username already exists. Please choose another one.');
             }
+            alert(error.response.data.msg);
             console.error(error.response);
         }
 

@@ -4,7 +4,7 @@ import axios from 'axios';
 import Select from "react-select"
 import logo from '../assets/logo-icononly.png';
 import background from '../assets/business-signup-bg.jpg';
-
+import { useNavigate } from "react-router-dom";
 
 const cuisineOptions = [
     {value: "American", label: "American"},
@@ -81,6 +81,7 @@ export const BusinessSignUp = () => {
 
     const [user, setUser] = useState({});
 
+    const navigate = useNavigate(); 
 
     const handleSubmitSignUp = async (e) => {
 
@@ -103,7 +104,8 @@ export const BusinessSignUp = () => {
         for (var j=0; j < selectedRestaurantDescriptorsOptions.length; j++) {
             tags.push(selectedRestaurantDescriptorsOptions[j].label);
         }
-
+        setTags(tags);
+        
         console.log("These are tags");
         console.log(tags);
 
@@ -133,6 +135,7 @@ export const BusinessSignUp = () => {
             });
             console.log("Response: " + response + "\n");
             alert("Successfully created an account!");
+            navigate("/businesslogin");
         } catch (error) {
             console.error(error.response);
             alert(error.response.data.msg);
