@@ -12,11 +12,6 @@ const commentData = new mongoose.Schema({
   date: {
     type: String,
     required: true
-  },
-  rating: {
-    type: Number,
-    min: 1,
-    max: 5
   }
 });
 

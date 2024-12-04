@@ -146,7 +146,9 @@ export const BusinessSignUp = () => {
             }
             
         } catch (error) {
+
             alert("Error. Not connected to backend.");
+
         }
         
         //console.log("Status Code: " + statusCode);

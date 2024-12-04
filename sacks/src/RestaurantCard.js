@@ -74,7 +74,7 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, tags,
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/comments/all_comments', { params: { restaurant_id: id } });
+                const response = await axios.get('http://localhost:3001/comment/all_comments', { params: { restaurant_id: id } });
                 if (!response.ok) {
                     throw new Error('Error While Fetching Comments');
                 }

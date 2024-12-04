@@ -16,19 +16,19 @@ const restaurantData = new mongoose.Schema({
    type: String,
    required: true
   },
-  description: {
-    type: String
+  phone: { 
+    type: String,
+    required: true
   },
   image_link: {
    type: String,
    required: true
   },
   tags: {
-    types: [String], //array of strings
+    type: [String], //array of strings
   },
   comments: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment'
+  type: Comment.schema
   }],
   rating_total: {
     type: Number

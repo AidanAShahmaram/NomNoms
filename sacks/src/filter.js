@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import RestaurantCard from './RestaurantCard';
 import './filter.css'
 
 export function Filter() {
@@ -30,6 +32,8 @@ export function SelectTag() {
 
     // Use state to keep track of which tags are selected/not selected
     const [selectedTags, setSelectedTags] = useState({});
+    const [restaurants, setRestaurants] = useState([]); // stores restaurants that are filtered
+    const [error, setError] = useState(null); // error handling
 
     /* 
     Toggle the selection of tags
@@ -50,7 +54,45 @@ export function SelectTag() {
     // setSelectedTags({}) resets the entire state to an empty object, removes all the key-value pairs (tags) from selectedTags
     const resetTags = () => {
         setSelectedTags({});
-    }
+    };
+
+    // async - allows use of await, handle operations like API call
+    const submitTags = async () => {
+        // extracts the keys (tags) from selectedTags object and puts into a list of tags
+        // Object.keys(selectedTags) - gets the keys from selectedTags
+        // .filter((tag) => selectedTags[tags]) - filters to only include those that have been selected
+        const selectedTagList = Object.keys(selectedTags).filter((tag) => selectedTags[tag]);
+        
+        if (selectedTagList.length === 0) { // if there are no selected tags
+            alert("Please select at least one tag!");
+            return;
+        }
+        
+        try { // make API request
+            const response = await axios.get('http://localhost:3001/user/restaurants_filter', { // sends HTTP GET request 
+                params: {tags: selectedTagList.join(',')}, // specifies query parameters, combines array into string of tags separated by commas
+            });
+
+            
+
+            console.log(response);
+            if (response.data.length === 0) {
+                alert('No matching restaurants found.');
+            }
+            else {
+                setRestaurants(response.data); // updates the state of restaurants with data from API response
+                setError(null); // success, clears any previous error
+            }
+            
+        }
+        catch(err) { // if request fails
+            console.error(err);
+            //console.error('Error fetching filtered restaurants');
+            setError('Failed to load restaurants. Please try again'); // updates state with error
+        }
+    };
+
+
 
     // using map function, which iterates over the array to create a button for each tag
     return (
@@ -79,11 +121,31 @@ export function SelectTag() {
             <div className="manage-tags">
                 <div>
                     <button className="reset-button" onClick={resetTags}>Reset All</button>
-                    <button className="submit-button">Submit</button>
+                    <button className="submit-button" onClick={submitTags}>Submit</button>
                 </div>
-                {/* This should send get request for the correct restaurant cards*/}
-               
             </div>
+
+
+            <div className="restaurant-cards">
+                {error && <p className="error">{error}</p>}
+                {restaurants.map((restaurant) => (
+                    <RestaurantCard 
+                        key={restaurant.id} // fix this one
+                        className="restaurant-card"
+                        title={restaurant.name}
+                        pic={restaurant.image_link} // fix this one
+                        weblink={restaurant.website} 
+                        address={restaurant.address}
+                        phone={restaurant.phone} // fix this one
+                        ratingInit={(restaurant.rating_count / restaurant.rating_total ) * 5} 
+                        tags={restaurant.tags}
+                        id={restaurant.id} // fix this one
+                        user={restaurant.user} // fix this one
+                        // need to add description
+                    />
+                ))}
+            </div>  
+
         </div>
     );
 }
