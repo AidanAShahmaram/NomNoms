@@ -100,8 +100,6 @@ router.get('/login/owner', async (req, res) => {
     
     if(!account)
 	return res.status(400).json({msg: "Username does not exist"});
-
-    let cont = true;
     
     const validPass = await bcrypt.compare(password, account.password);
 
@@ -143,7 +141,7 @@ router.post('/signup/owner', async (req, res) => {
     }
     
     const passhash = await bcrypt.hashSync(password, rounds);
-    const newRest = new Restaurant({name: restaurant_name, "address": address, "description": description, "website": website, "image_link": image_link, "tags": tags});
+    const newRest = new Restaurant({name: restaurant_name, "address": address, "description": description, "website": website, "image_link": image_link, "tags": tags, "comments": []});
     const newData = new Owner({"username": username, "password": passhash, "restaurant": newRest});
     const savedRest = await newRest.save();
     const savedData = await newData.save();

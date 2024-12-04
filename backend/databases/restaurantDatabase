@@ -27,8 +27,7 @@ const restaurantData = new mongoose.Schema({
     types: [String], //array of strings
   },
   comments: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment'
+  type: Comment.schema
   }],
   rating_total: {
     type: Number

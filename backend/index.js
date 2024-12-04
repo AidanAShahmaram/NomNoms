@@ -49,7 +49,9 @@ app.use('/user', userRoutes);
 const entranceRoutes = require('./routes/entrance');
 app.use('/entrance', entranceRoutes);
 const ratingRoutes = require('./routes/ratings');
-app.use('/rating', ratingRoutes)
+app.use('/rating', ratingRoutes);
+const commentRoutes = require('./routes/comments');
+app.use('/comment', commentRoutes);
 
 // Use the error handling middleware
 app.use(errorHandler);
