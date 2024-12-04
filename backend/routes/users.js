@@ -82,7 +82,9 @@ router.use('/restaurants_filter', async (req, res, next) => { //Page for searchi
     return res.status(400).json({error: "No tags provided"});
   }
   const query = {
-      tags: { $or: filters} //$all means we need all tags to be included, $or means any
+      tags: { $in: filters} //$all means we need all tags to be included
+      //$in looks for values in the same field (like here, where all values are tags)
+      //Meanwhile $or is for different fields
   }
   //.find is a database query function so should be good 
   const filteredRestaurants = await restaurantInfo.find(query);
