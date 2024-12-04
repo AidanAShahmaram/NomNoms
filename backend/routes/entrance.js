@@ -149,7 +149,7 @@ router.post('/signup/owner', async (req, res) => {
 
     
     const passhash = await bcrypt.hashSync(password, rounds);
-    const newRest = await new Restaurant({name: restaurant_name, "address": address, "phone": phone, "website": website, "image_link": image_link, "tags": {tag_list}, "comments": []});
+    const newRest = await new Restaurant({name: restaurant_name, "address": address, "phone": phone, "website": website, "image_link": image_link, "tags": tag_list, "comments": []});
     const newData = new Owner({"username": username, "password": passhash, "restaurant": newRest._id});
     await newRest.save();
     await newData.save();
