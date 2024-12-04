@@ -119,7 +119,7 @@ router.get('/login/owner', async (req, res) => {
 // POST owner sign up
 //status codes: 403 - already exists, 400 - invalid password creation
 router.post('/signup/owner', async (req, res) => {
-    const {username, password, phone, restaurant_name, address, website, description, image_link, tags} = req.body;
+    const {username, password, phone, restaurant_name, address, website, image_link, tags} = req.body;
 
     //checks that a username and password are given
    
@@ -141,7 +141,7 @@ router.post('/signup/owner', async (req, res) => {
     
     const passhash = await bcrypt.hashSync(password, rounds);
     const newRest = new Restaurant({name: restaurant_name, "address": address, "description": description, "website": website, "image_link": image_link, "tags": tags});
-    const newData = new Owner({"username": username, "password": passhash, "restaurant": restaurant});
+    const newData = new Owner({"username": username, "password": passhash, "restaurant": newRest});
     const savedRest = await newRest.save();
     const savedData = await newData.save();
     res.status(200).json({"account": savedData, "restaurant": savedRest});
