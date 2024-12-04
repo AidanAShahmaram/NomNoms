@@ -122,22 +122,27 @@ export const BusinessSignUp = () => {
 
         try {
             const response = await axios.post('http://localhost:3001/entrance/signup/owner', 
-                {params: { username: username, 
-                restaurantName: restuarantName,
+                { username: username, 
                 password: password, 
+                phone: phoneNumber,
+                restaurant_name: restuarantName,
                 address: address,
-                phoneNumber: phoneNumber,
-                websiteLink: websiteLink,
-                imageLink: imageLink,
+                website: websiteLink,
+                image_link: imageLink,
                 tags: tags
-            }});
+            });
             console.log("Response: " + response + "\n");
+            alert("Successfully created an account!");
         } catch (error) {
             console.error(error.response);
+            alert(error.response.data.msg);
         }
+        
+        //console.log("Status Code: " + statusCode);
 
         const jsonData = JSON.stringify(signUpFormData);
 
+       
         
         console.log("JSON: " + jsonData + "\n \n");
         setTags([]);
