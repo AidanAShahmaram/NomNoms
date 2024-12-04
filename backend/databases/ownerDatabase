@@ -12,10 +12,10 @@ const ownerData = new mongoose.Schema({
     type: String,
     required: true,
   },
-  restaurants: [{
+  restaurant: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Restaurant'
-  }]
+  }
 });
 
 const ownerInfo = mongoose.model('ownerInfo', ownerData);
