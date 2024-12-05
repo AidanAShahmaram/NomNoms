@@ -8,6 +8,7 @@ import Search from './search';
 import Explore from './explore';
 
 import Navbar from './components/Navbar'
+import LoggedInNavbar from './components/LoggedInNavbar.js';
 import ChooseLogin from './components/ChooseLogin.js';
 import ChooseSignUp from './components/ChooseSignUp.js';
 
@@ -33,7 +34,9 @@ function App() {
 
   return (
     <>
-      {!noNavbarFooter.includes(location.pathname) && <Navbar />}
+      {!noNavbarFooter.includes(location.pathname) && !token && <Navbar />}
+      {!noNavbarFooter.includes(location.pathname) && token && <LoggedInNavbar />}
+
       <div className="container">
         <Routes>
           <Route path="/" element={

@@ -29,6 +29,7 @@ export const Login = () => {
             console.log(response.data.token);
             const tokenValue = response.data.token;
             sessionStorage.setItem("token", tokenValue);
+            sessionStorage.setItem("username", username);
             const token = sessionStorage.getItem("token");
             console.log("Token: " + token);
             console.log(response.status);
@@ -45,7 +46,7 @@ export const Login = () => {
             
         } catch (error) {
             console.error(error.response);
-            alert(error.response.data.msg);
+            alert("Error. Not connected to backend.");
         }
 
         
