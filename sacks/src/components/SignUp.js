@@ -30,7 +30,6 @@ export const SignUp = () => {
             if (response.status !== 200) {
                 alert(response.data.msg);
             } else {
-                alert("Successfully created account!");
                 navigate("/login");
             }
             

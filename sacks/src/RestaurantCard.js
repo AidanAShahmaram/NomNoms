@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import './RestaurantCard.css';
 import axios from "axios";
 
-const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, tags, id, user }) => {
+const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, userRatingInit, tags, id, user }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isComments, setIsComments] = useState(false);
     const [rating, setRating] = useState(ratingInit);
     // must track in case there is an error when grabbing data from the database
     const [error, setError] = useState(null);
-    const [userRating, setUserRating] = useState(null);
+    const [userRating, setUserRating] = useState(userRatingInit);
     // these next few variables are all related to comments (errors are stored in the same way as the other errors)
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
@@ -171,7 +171,7 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, tags,
                             ) : (
                                 comments.slice(0, numVisibleComments).map((comment, i) => (
                                     <div key={i} className="comments">
-                                        <div className="comment"><b>{comment.userName}:</b> {comment.text}</div>
+                                        <div className="comment"><b>{comment.username}:</b> {comment.message}</div>
                                     </div>
                                 ))
                             )
@@ -219,7 +219,7 @@ RestaurantCard.propTypes = {
     ratingInit: PropTypes.number.isRequired,
     tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     id: PropTypes.string.isRequired,
-    user: PropTypes.object
+    user: PropTypes.bool.isRequired
 };
   
 export default RestaurantCard;

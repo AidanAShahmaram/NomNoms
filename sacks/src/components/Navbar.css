@@ -130,3 +130,19 @@
     outline: none;
     box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.3);
 }
+
+.user-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+.user-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    height: 30%;
+}

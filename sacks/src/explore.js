@@ -18,7 +18,7 @@ export function Explore() {
                 ratingInit={3.7}
                 tags={["Cozy", "Family-Friendly", "Coffee"]}
                 id="Brewster's Cafe"
-                user="Johnny"
+                user={true}
                 />
                 <RestaurantCard className="restaurant-card"
                 title="Brewster's Cafe"
@@ -29,7 +29,7 @@ export function Explore() {
                 ratingInit={3.7}
                 tags={["Cozy", "Family-Friendly", "Coffee"]}
                 id="Brewster's Cafe"
-                user="Johnny"
+                user={true}
                 />
                 <RestaurantCard className="restaurant-card"
                 title="Brewster's Cafe"
@@ -40,6 +40,7 @@ export function Explore() {
                 ratingInit={3.7}
                 tags={["Cozy", "Family-Friendly", "Coffee"]}
                 id="Brewster's Cafe"
+                user={false}
                 />
             </div>
         </div>

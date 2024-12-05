@@ -1,12 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RestaurantCard from './RestaurantCard';
-import './search.css'
+import './search.css';
+import axios from 'axios';
 
 export function Search() {
       return (
         <SearchRestaurants/>
       );
 }
+
+async function getAverageRating(id) {
+    try {
+        // grab user's rating from the backend
+        const ratingResponse = await axios.get('http://localhost:3001/rating/average_rating', { params: { restaurant_id: id } });
+
+        if (!ratingResponse.ok) {
+            throw new Error('Error While Fetching New Restaurant Rating');
+        }
+        const { rating } = await ratingResponse.json();
+        return rating;
+    } catch (err) {
+        console.error(err.message);
+        console.error("restaurant_id:", id)
+        return 0;
+    }
+};
+
+async function getUserRating(id) {
+    try {
+        // grab user's rating from the backend
+        const ratingResponse = await axios.get('http://localhost:3001/rating/user_rating', { params: { restaurant_id: id } });
+        if (!ratingResponse.ok) {
+            throw new Error('Error While Fetching New Restaurant Rating');
+        }
+        const { rating } = await ratingResponse.json();
+        return rating;
+    } catch (error) {
+        console.error(error.message);
+        return 0;
+    }
+};
 
 export function SearchRestaurants() {
     // stores the restaurants get from backend
@@ -44,7 +77,6 @@ export function SearchRestaurants() {
                 });
         }
     }
-
   
     return (
         <div className="filter-div">
@@ -63,20 +95,23 @@ export function SearchRestaurants() {
                 {error && <p className="error">{error}</p>}
                 <div className="cards-filter">
                     {restaurants.length > 0 ? (
-                        restaurants.map((restaurant) => (
-                            <RestaurantCard
-                                key={restaurant.id}
-                                title={restaurant.name}
-                                pic={restaurant.image_link}
-                                weblink={restaurant.website}
-                                address={restaurant.address}
-                                phone={restaurant.phone}
-                                ratingInit={(restaurant.rating_count / restaurant.rating_total) * 5}
-                                tags={restaurant.tags}
-                                id={restaurant.id}
-                                user={restaurant.user}
-                            />
-                        ))
+                        restaurants.map((restaurant) => {
+                            const isUserLoggedIn = Boolean(sessionStorage.getItem("username"));
+                            return (
+                                <RestaurantCard
+                                    key={restaurant.id}
+                                    title={restaurant.name}
+                                    pic={restaurant.image_link}
+                                    weblink={restaurant.website}
+                                    address={restaurant.address}
+                                    phone={restaurant.phone}
+                                    ratingInit={getAverageRating(restaurant.id)}
+                                    tags={restaurant.tags}
+                                    id={restaurant.id}
+                                    user={isUserLoggedIn}
+                                />
+                            );
+                        })
                     ) : (
                         <p>No restaurants found.</p>
                     )}

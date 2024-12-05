@@ -139,7 +139,6 @@ export const BusinessSignUp = () => {
             console.log(response);
 
             if (response.status === 200) {
-                alert("Successfully created an account!");
                 navigate("/businesslogin");
             } else {
                 alert(response.data.msg);
