@@ -39,8 +39,14 @@ export const BusinessLogin = () => {
             if (response.status !== 200) {
                 alert(response.data.msg);
             } else {
+                alert("Successfully logged in!");
+                // localStorage.setItem('owner_token', token);
 
-                navigate('/search');
+                console.log('The username:');
+                console.log(username);
+                localStorage.setItem('username', username);
+
+                navigate('/mybusiness');
             }
             
         } catch (error) {

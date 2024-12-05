@@ -134,14 +134,16 @@ export const BusinessSignUp = () => {
                 tags: tags
             });
 
-
             console.log("Response: \n");
-            console.log(response);
+            console.log(response.data);
+            
+            localStorage.setItem('businessToken', response.data.msg); 
+           
 
             if (response.status === 200) {
                 navigate("/businesslogin");
             } else {
-                alert(response.data.msg);
+                alert(response.data.msg); // this is now the token 
             }
             
         } catch (error) {

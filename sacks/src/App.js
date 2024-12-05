@@ -17,13 +17,15 @@ import BusinessLogin from './components/BusinessLogin.js';
 import SignUp from './components/SignUp.js'
 import BusinessSignUp from './components/BusinessSignUp.js';
 
+import MyBusiness from './business';
+
 import { Routes, Route, useLocation} from 'react-router-dom';
 
 
 
 function App() {
   const location = useLocation();
-  const noNavbarFooter = ['/choosesignup', '/chooselogin', '/signup', '/login', '/businesssignup', '/businesslogin'];
+  const noNavbarFooter = ['/choosesignup', '/chooselogin', '/signup', '/login', '/businesssignup', '/businesslogin', '/mybusiness'];
   /* Using location, navbar and footer will not show for signup/login pages */
   
   const token = sessionStorage.getItem("token");
@@ -49,7 +51,7 @@ function App() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/filter" element={<Filter />} />
           <Route path="/search" element={<Search />} />
-
+          <Route path="/mybusiness" element={<MyBusiness />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/chooselogin" element={<ChooseLogin />} />

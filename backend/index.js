@@ -24,8 +24,6 @@ const mongoose = require('mongoose');
 const pass= 'SaxophoneDisco';
 const url = `mongodb+srv://sacks:${pass}@saxtest.vlggo.mongodb.net/?retryWrites=true&w=majority&appName=SAXTEST`;
 
-console.log(pass, url);
-
 mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -57,16 +55,6 @@ const ratingRoutes = require('./routes/ratings');
 app.use('/rating', ratingRoutes);
 const commentRoutes = require('./routes/comments');
 app.use('/comment', commentRoutes);
-
-const restaurantsFilterRoutes = require('./routes/users');
-const liveSearch = require('./routes/users');
-//app.use('/restaurants_filter', restaurantsFilterRoutes);
-
-
-// Use the error handling middleware
-/*app.use(errorHandler);
-const morgan = require('morgan');
-app.use(morgan('dev'));*/
 
 
 const PORT = process.env.PORT || 3001;
