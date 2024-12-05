@@ -32,7 +32,7 @@ export const Navbar = () => {
             
             <NavLink to="/" end activeClassName="active-link" className="nav-link">Home</NavLink>
             <NavLink to="explore" end activeClassName="active-link" className="nav-link">Explore</NavLink>
-            <NavLink to="search" end activeClassName="active-link" className="nav-link">Search</NavLink>
+            <NavLink to="search" end activeClassName="active-link" className="nav-link">Filter</NavLink>
            
            {/* Search Bar */}
            <form onSubmit={onSubmit} className="search-bar">

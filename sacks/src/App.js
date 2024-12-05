@@ -61,11 +61,3 @@ function App() {
 
 export default App;
 
-
-
-// {/* <Explore /> */}
-    //  {/* <Filter /> */}
-      // <HeaderDiv />
-      // <IntroBox />
-      // <PathDiv></PathDiv>
-      // <Footer />

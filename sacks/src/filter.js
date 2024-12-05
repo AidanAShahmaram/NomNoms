@@ -98,7 +98,7 @@ export function SelectTag() {
     return (
         <div className="filter-div">
             <div className="padding"></div>
-            <div className="h1-filter">Search</div>
+            <div className="h1-filter">Filter</div>
             <div className="padding"></div>
             <div className="h2-filter">Cuisine</div>
             <div className="tags-div">
@@ -131,17 +131,16 @@ export function SelectTag() {
                 <div className="cards-filter">
                     {restaurants.map((restaurant) => (
                         <RestaurantCard className="restaurant-card-filter"
-                            key={restaurant.id} // fix this one
+                            key={restaurant.id} 
                             title={restaurant.name}
-                            pic={restaurant.image_link} // fix this one
+                            pic={restaurant.image_link} 
                             weblink={restaurant.website} 
                             address={restaurant.address}
-                            phone={restaurant.phone} // fix this one
+                            phone={restaurant.phone} 
                             ratingInit={(restaurant.rating_count / restaurant.rating_total ) * 5} 
                             tags={restaurant.tags}
-                            id={restaurant.id} // fix this one
-                            user={restaurant.user} // fix this one
-                            // need to add description
+                            id={restaurant.id} 
+                            user={restaurant.user} 
                         />
                     ))}
                 </div>  
