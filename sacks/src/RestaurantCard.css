@@ -40,9 +40,11 @@
 .labels {
     /* Flexbox */
     display: flex;
+    flex-wrap: wrap;
     /* Distribute labels equally */
     justify-content: space-evenly;
-    padding: 5px;                
+    padding: 5px;      
+    gap: 10px;          
 }
 
 .label {
