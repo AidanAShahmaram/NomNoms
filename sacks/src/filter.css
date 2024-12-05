@@ -18,15 +18,6 @@
     font-weight: bold;
 }
 
-/* .h3-filter {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
-    margin: 0;
-    display: block;
-    font-weight: bold;
-} */
-
 .tag {
     background-color: transparent;
     border-radius: 20px;
@@ -88,18 +79,19 @@
     background-color: transparent;
 }
 
-.filter-div {
+.all-tags {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
+}
+
+.filter-div {
+    margin-bottom: 60px;
 }
 
 .tags-div {
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     margin-left: 20vw;
     margin-right: 20vw;
 }

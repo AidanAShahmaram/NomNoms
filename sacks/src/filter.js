@@ -150,6 +150,8 @@ export function SelectTag() {
     // using map function, which iterates over the array to create a button for each tag
     return (
         <div className="filter-div">
+            
+            <div className="all-tags">
             <div className="padding"></div>
             <div className="h1-filter">Filter</div>
             <div className="padding"></div>
@@ -176,6 +178,7 @@ export function SelectTag() {
                     <button className="reset-button" onClick={resetTags}>Reset All</button>
                     <button className="submit-button" onClick={submitTags}>Submit</button>
                 </div>
+            </div>
             </div>
 
 
