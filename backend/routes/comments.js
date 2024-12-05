@@ -13,16 +13,12 @@ router.get('/all_comments',async (req, res) => {
 
     
     //finds restaurant
-    let er = false;
-    try{
-	const restaurant = await Restaurant.findOne({ _id: restaurant_id});
-    } catch(error){
-	er = true;
-    }
-    //checks if there was an error trying to find restaurant
-    if(er){
-	return res.status(500).json({msg: "error trying to find restaurant. Please ensure a valid restaurant id is given"});
-    }
+  
+    const restaurant = await Restaurant.findOne({ _id: restaurant_id}).catch((error) => {
+	return res.status(500).json({
+            msg: "Error trying to find restaurant. Please ensure a valid restaurant ID is given."
+        });
+    });
     if(!restaurant){
 	return res.status(401).json({msg: "restaurant not found"});
     }
