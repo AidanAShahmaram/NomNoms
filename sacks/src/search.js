@@ -101,9 +101,9 @@ export function SearchRestaurants() {
     }
   
     return (
-        <div className="filter-div">
+        <div className="search-div">
             <div className="padding"></div>
-            <div className="h1-filter">Search</div>
+            <div className="h1-search">Search</div>
             <div className="padding"></div>
             <form className="search-bar">
                 <input type="text" onKeyUp={sendData} placeholder="Search for Restaurants" className="inner-search-bar" />
@@ -115,12 +115,12 @@ export function SearchRestaurants() {
             { /* using map function, which iterates over the array to create restaurant cards */ }
             <div className="restaurant-cards">
                 {error && <p className="error">{error}</p>}
-                <div className="cards-filter">
+                <div className="cards-search">
                     {restaurants.length > 0 ? (
                         restaurants.map((restaurant) => {
                             const isUserLoggedIn = Boolean(sessionStorage.getItem("username"));
                             return (
-                                <RestaurantCard
+                                <RestaurantCard className="restaurant-card-search"
                                     // key={restaurant._id}
                                     title={restaurant.name}
                                     pic={restaurant.image_link}

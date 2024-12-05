@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 
-.h1-filter {
+.h1-search {
     font-family: 'DM Sans', sans-serif;
     font-size: 30px;
     margin: 0;
@@ -10,7 +10,7 @@
     color: black;
 }
 
-.h2-filter {
+.h2-search {
     font-family: 'DM Sans', sans-serif;
     font-size: 20px;
     margin: 0;
@@ -18,7 +18,7 @@
     font-weight: bold;
 }
 
-/* .h3-filter {
+/* .h3-search {
     font-family: 'DM Sans', sans-serif;
     font-size: 20px;
     font-weight: 500;
@@ -27,7 +27,7 @@
     font-weight: bold;
 } */
 
-.filter-div {
+.search-div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,13 +39,13 @@
     margin: 10px;
 }
 
-.cards-filter {
+.cards-search {
     display: flex;
     /* wrap to next row when space is filled */
     flex-wrap: wrap;
 }
 
-.restaurant-card-filter {
+.restaurant-card-search {
     /* Space between rows */
     margin-bottom: 20px;
 }

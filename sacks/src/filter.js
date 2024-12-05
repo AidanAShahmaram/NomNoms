@@ -185,7 +185,7 @@ export function SelectTag() {
                     {restaurants.map((restaurant) => {
                         const isUserLoggedIn = Boolean(sessionStorage.getItem("username"));
                         return (
-                            <RestaurantCard
+                            <RestaurantCard className="restaurant-card-filter"
                                 // key={restaurant._id}
                                 title={restaurant.name}
                                 pic={restaurant.image_link}
