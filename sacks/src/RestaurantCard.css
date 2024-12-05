@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 .restaurant-card {
     display: flex;
     flex-direction: column;
@@ -17,7 +18,6 @@
 .title {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 24px;
-
     display: block;
     font-weight: bold;
     color: black;
@@ -76,6 +76,8 @@
     display: flex;
     flex-direction: column;
     font-size: 18px;
+    font-family: DM Sans;
+    font-weight: 500;
 }
 
 p0 {
@@ -83,21 +85,32 @@ p0 {
     font-style: italic;
     color: #ff5b49;
     text-align: center;
+    font-family: DM Sans;
+}
+
+p {
+    font-family: DM Sans;
+    font-weight: 500;
 }
 
 .additional {
     display: flex;
     flex-direction: column;
     padding-bottom: 8px;
+    font-family: DM Sans;
+    font-weight: 500;
 }
 
 .expand-button {
-    background-color: lightgray;
+    /* background-color: lightgray; */
+    background-color: orange;
     color: black;
     border: none;
     padding: 5px;
     border-radius: 5px;
     cursor: crosshair;
+    font-family: DM Sans;
+    font-weight: 500;
 }
 
 .expand-button:hover {
@@ -105,12 +118,15 @@ p0 {
 }
 
 .comments-button {
-    background-color: lightgray;
+    /* background-color: lightgray; */
+    background-color: orange;
     color: black;
     border: none;
     padding: 5px;
     border-radius: 5px;
     cursor: crosshair;
+    font-family: DM Sans;
+    font-weight: 500;
 }
 
 .comments-button:hover {
@@ -119,10 +135,13 @@ p0 {
 
 .comments-section {
     background-color: navajowhite;
+    font-family: DM Sans;
+    /* background-color: orange; */
 }
 
 .comments-header {
     text-decoration: underline;
+    font-family: DM Sans;
 }
 
 .comment {
@@ -132,4 +151,5 @@ p0 {
     margin: auto;
     padding: 2px;
     background-color: blanchedalmond;
+    font-family: DM Sans;
 }
