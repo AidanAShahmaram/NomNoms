@@ -16,10 +16,10 @@ function Footer() {
             </div>
             <div className="footer-padding"></div>
             <div className="footer-middle">
-                <NavLink to="/" end activeClassName="active-link" className="nav-link"> <p>Home</p> </NavLink>
-                <NavLink to="explore" end activeClassName="active-link" className="nav-link"> <p>Explore</p> </NavLink>
-                <NavLink to="filter" end activeClassName="active-link" className="nav-link"> <p>Filter</p> </NavLink>
-                <NavLink to="search" end activeClassName="active-link" className="nav-link"> <p>Search</p> </NavLink>    
+                <NavLink to="/" end activeClassName="active-link" className="nav-link-footer"> <p>Home</p> </NavLink>
+                <NavLink to="explore" end activeClassName="active-link" className="nav-link-footer"> <p>Explore</p> </NavLink>
+                <NavLink to="filter" end activeClassName="active-link" className="nav-link-footer"> <p>Filter</p> </NavLink>
+                <NavLink to="search" end activeClassName="active-link" className="nav-link-footer"> <p>Search</p> </NavLink>    
                
             </div>
             <div className="footer-right">

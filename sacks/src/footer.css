@@ -28,19 +28,29 @@
     padding-right: 600px;
 }
 
+.nav-link-footer {
+    margin: 0;
+    text-decoration: none;
+}
+
+.nav-link-active {
+    color: white;
+    text-decoration: none;
+
+}
+
 .footer-middle {
-    height: 200px;
-    width: 250px;
-    /* background-color: grey; */
-    align-self: flex-end;
-    margin-bottom: 50px;
-    margin-left: 10px;
+    height: 150px;
+    width: 200px;
+    padding-top: 90px;
+    margin-left: 10px; 
+    display: flex;
+    flex-direction: column;
 }
 
 .footer-right {
     height: 80px;
     width: 250px;
-    /* background-color: black; */
     align-self: flex-end;
     margin-bottom: 50px;
 }
@@ -57,7 +67,10 @@
         margin-right: 10px;
     }
     .footer-middle {
+        /* margin-top: 25px; */
+        height: 100px;
         margin-bottom: 30px;
+        padding-top: 35px;
     }
     .footer-right {
         margin-bottom: 30px;
