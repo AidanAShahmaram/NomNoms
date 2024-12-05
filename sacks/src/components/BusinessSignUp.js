@@ -134,6 +134,8 @@ export const BusinessSignUp = () => {
                 tags: tags
             });
 
+            
+
 
             console.log("Response: \n");
             console.log(response);
