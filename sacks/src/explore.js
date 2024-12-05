@@ -1,111 +1,119 @@
-import React, { useState } from 'react';
-import './explore.css';
-import RestaurantCard from './RestaurantCard';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import RestaurantCard from './RestaurantCard';
+import './explore.css';
 
 export function Explore() {
-      return (
-        <div className="explore-page">
-            <div className="h1-explore">Explore</div>
-            <CuisineCard />
-            <div className="cards">
-                <RestaurantCard className="restaurant-card"
-                title="Brewster's Cafe"
-                pic="https://sprudge.com/wp-content/uploads/2021/11/animal-crossing-the-roost-brianna-fox-priest.jpg"
-                weblink="https://animalcrossing.fandom.com/wiki/The_Roost"
-                address="Animal Crossing"
-                phone="(123) 456-7890"
-                ratingInit={3.7}
-                userRatingInit={(2)}
-                tags={["Cozy", "Family-Friendly", "Coffee"]}
-                id="Brewster's Cafe"
-                user={true}
-                />
-                <RestaurantCard className="restaurant-card"
-                title="Brewster's Cafe"
-                pic="https://sprudge.com/wp-content/uploads/2021/11/animal-crossing-the-roost-brianna-fox-priest.jpg"
-                weblink="https://animalcrossing.fandom.com/wiki/The_Roost"
-                address="Animal Crossing"
-                phone="(123) 456-7890"
-                ratingInit={3.7}
-                userRatingInit={(2)}
-                tags={["Cozy", "Family-Friendly", "Coffee"]}
-                id="Brewster's Cafe"
-                user={true}
-                />
-                <RestaurantCard className="restaurant-card"
-                title="Brewster's Cafe"
-                pic="https://sprudge.com/wp-content/uploads/2021/11/animal-crossing-the-roost-brianna-fox-priest.jpg"
-                weblink="https://animalcrossing.fandom.com/wiki/The_Roost"
-                address="Animal Crossing"
-                phone="(123) 456-7890"
-                ratingInit={3.7}
-                userRatingInit={(2)}
-                tags={["Cozy", "Family-Friendly", "Coffee"]}
-                id="Brewster's Cafe"
-                user={false}
-                />
-            </div>
-        </div>
-      );
-}
+    const [restaurants, setRestaurants] = useState([]); // stores restaurants
+    const [error, setError] = useState(null); // error handling
 
-export function CuisineCard() {
-    const cuisines = [
-        {
-            name: "Bulgarian",
-            image: "/bulgarian.png"
-        },
-        {
-            name: "Russian",
-            image: "/russian.png"
-        },
-        {
-            name: "Iranian",
-            image: "/iranian.png"
-        },
-        {
-            name: "Indian",
-            image: "/indian.png"
-        },
-        {
-            name: "Thai",
-            image: "/thai.png"
-        },
-        {
-            name: "Chinese",
-            image: "/chinese.png"
-        },
-        {
-            name: "Japanese",
-            image: "/japanese.png"
-        },
-        {
-            name: "Mexican",
-            image: "/mexican.png"
-        },
-        {
-            name: "French",
-            image: "/french.png"
+    // Function to get the average rating of a restaurant
+    async function getAverageRating(id) {
+        try {
+            const ratingResponse = await axios.get('http://localhost:3001/rating/average_rating', { params: { restaurant_id: id } });
+            const { rating } = ratingResponse.data;
+            return rating;
+        } catch (err) {
+            console.error(err.message);
+            return 0;
         }
-    ];
+    }
 
-    // make an array of cuisines, and add cards to each 
-    // dynamically generating html/css for each cuisine with their respective images
+    // Function to get the user's rating for a restaurant
+    async function getUserRating(id) {
+        try {
+            const ratingResponse = await axios.get('http://localhost:3001/rating/user_rating', { params: { username: sessionStorage.getItem("username"), restaurant_id: id } });
+            const { rating } = ratingResponse.data;
+            return rating;
+        } catch (error) {
+            console.error(error.message);
+            return 0;
+        }
+    }
+
+    useEffect(() => {
+        async function fetchTopRestaurants() {
+            setError(null);
+
+            try {
+                const response = await axios.get('http://localhost:3001/user/top5');
+                console.log('API Response:', response.data); // Log the response to see its structure
+                
+                // Access the top5_restaurants array from the response
+                const payload = response.data.top5_restaurants;
+    
+                if (Array.isArray(payload) && payload.length > 0) {
+                    const restaurantsWithRatings = payload.map((restaurant) => {
+                        const averageRatingPromise = getAverageRating(restaurant._id);
+                        const userRatingPromise = getUserRating(restaurant._id);
+    
+                        return Promise.all([averageRatingPromise, userRatingPromise]).then(([averageRating, userRating]) => {
+                            return {
+                                ...restaurant, 
+                                averageRating, 
+                                userRating
+                            };
+                        });
+                    });
+    
+                    // Once all ratings are fetched, update state
+                    Promise.all(restaurantsWithRatings)
+                        .then((updatedRestaurants) => {
+                            setRestaurants(updatedRestaurants);
+                        })
+                        .catch((ratingError) => {
+                            console.error('Error while fetching ratings:', ratingError);
+                            setError('Error while fetching ratings');
+                        });
+                } else {
+                    setError('No matching restaurants found.');
+                }
+            } catch (err) {
+                console.error(err);
+                setError('Failed to load restaurants. Please try again');
+            }
+        }
+    
+        fetchTopRestaurants();
+    }, []); // Empty dependency array ensures this runs once when the component mounts
+
     return (
-         <div className="cuisine-card">
-            {cuisines.map((cuisine, index) => (
-                <div class="image-container">
-                    <img src={cuisine.image} alt={cuisine.name}/>
-                    <div class="centered-text">{cuisine.name}</div>
-                </div>
-            ))}
+        <div className="filter-div">
+            <div className="all-tags">
+                <div className="padding"></div>
+                <div className="padding"></div>
+                <div className="h1-filter">Explore</div>
+                <div className="padding"></div>
+                <div className="h2-filter">Top Restaurants</div>
+                <div className="padding"></div>
+            </div>
+
+            <div className="explore-centered-div">{error && <p className="error">{error}</p>}</div>
+
+            <div className="restaurant-cards">
+                <div className="cards-filter">
+                    {restaurants.map((restaurant) => {
+                        const isUserLoggedIn = Boolean(sessionStorage.getItem("username"));
+                        return (
+                            <RestaurantCard className="restaurant-card-filter"
+                                key={restaurant._id}
+                                title={restaurant.name}
+                                pic={restaurant.image_link}
+                                weblink={restaurant.website}
+                                address={restaurant.address}
+                                phone={restaurant.phone}
+                                ratingInit={restaurant.averageRating}
+                                userRatingInit={restaurant.userRating}
+                                tags={restaurant.tags}
+                                id={restaurant._id}
+                                user={isUserLoggedIn}
+                            />
+                        );
+                    })}
+                </div>  
+            </div>
         </div>
     );
 }
 
 export default Explore;
-
-
-
-      

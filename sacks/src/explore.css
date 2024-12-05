@@ -67,3 +67,10 @@
     /* Space between rows */
     margin-bottom: 20px;
 }
+
+.explore-centered-div {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
