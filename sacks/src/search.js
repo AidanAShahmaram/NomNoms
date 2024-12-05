@@ -102,7 +102,7 @@ export function SearchRestaurants() {
                                     ratingInit={getAverageRating(restaurant._id)}
                                     userRatingInit={getUserRating(restaurant._id)}
                                     tags={restaurant.tags}
-                                    id={restaurant.id}
+                                    id={restaurant._id}
                                     user={isUserLoggedIn}
                                 />
                             );

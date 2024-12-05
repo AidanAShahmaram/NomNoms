@@ -41,9 +41,9 @@ router.post('/new_comment',decodeToken, async (req, res) => {
     //finds restaurant
     const restaurant = await Restaurant.findOne({ _id: restaurant_id});
     if(!restaurant){
-	return res.status(404).json({msg: "restaurant not found"});
+	return res.status(401).json({msg: "restaurant not found"});
     }
-
+	    
     //gets the current date and formats it
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -65,7 +65,7 @@ router.post('/new_comment',decodeToken, async (req, res) => {
 	return res.status(500).json({msg: "failed to upload comment: likely because restaurant was notgiven comments attribute. This should only appear if restaurant was not created through website signup"});
     }
 
-    res.status(200).json({ msg: "Rating Sucessfully Updated!" });
+    res.status(200).json({comment: new_comment });
 
 });
 

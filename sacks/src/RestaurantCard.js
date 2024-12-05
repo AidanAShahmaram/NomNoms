@@ -69,11 +69,8 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, userR
         const fetchComments = async () => {
             try {
                 const response = await axios.get('http://localhost:3001/comment/all_comments', { params: { restaurant_id: id } });
-                if (!response.ok) {
-                    throw new Error('Error While Fetching Comments');
-                }
-                const data = await response.json();
-                setComments(data.comments);
+                const {comments} = await response.data;
+                setComments(comments);
             } catch (error) {
                 setError(error.message);
             }
@@ -88,14 +85,10 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, userR
         } 
 
         try {
-            const response = await axios.post('http://localhost:3001/comments/new_comment', { params: { username: sessionStorage.getItem("username"), message: newComment, restaurant_id: id } }, { headers: { Authorization: sessionStorage.getItem("token") } });
-            if (!response.ok)
-            {
-                throw new Error('Error submitting comment');
-            } 
-            const data = await response.json();
+            const response = await axios.post('http://localhost:3001/comment/new_comment', { username: sessionStorage.getItem("username"), message: newComment, restaurant_id: id}, { headers: { Authorization: sessionStorage.getItem("token") } });
+            const {comment} = await response.data;
             // append the new comments
-            setComments((prevComments) => [...prevComments, data.newComment]);
+            setComments((prevComments) => [...prevComments, comment]);
             setNewComment('');
         } catch (error) {
             setError(error.message);

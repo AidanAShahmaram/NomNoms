@@ -31,14 +31,17 @@ const restaurantData = new mongoose.Schema({
   type: Comment.schema
   }],
   rating_total: {
-    type: Number
+    type: Number,
+    default: 0
   },
   rating_count: {
-    type: Number
+    type: Number,
+    default: 0
   },
   ratings: {
     type: Map,
-    of: Number
+    of: Number,
+    default: () => new Map()
   },
   phone: {
     type: String,

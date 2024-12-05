@@ -37,7 +37,7 @@ router.post('/user_rating',decodeToken, async (req, res) => {
     //finds restaurant
     const restaurant = await Restaurant.findOne({ _id: restaurant_id});
     if(!restaurant){
-	    return res.status(404).json({msg: "restaurant not found"});
+	    return res.status(401).json({msg: "restaurant not found"});
     }
 
     //checks for existing rating made by user
@@ -68,7 +68,7 @@ router.get('/user_rating', async (req, res) => {
     //finds restaurant
     const restaurant = await Restaurant.findOne({ _id: restaurant_id});
     if(!restaurant){
-	return res.status(404).json({msg: "restaurant not found"});
+	return res.status(401).json({msg: "restaurant not found"});
     }
 
     if(restaurant.ratings.has(username)){
@@ -76,7 +76,7 @@ router.get('/user_rating', async (req, res) => {
 	return res.status(200).json({ rating: user_rating});
     }
 
-    return res.status(404).json({ msg: "given user has not made a rating"})
+    return res.status(200).json({ rating: 0})
 });
 
 
