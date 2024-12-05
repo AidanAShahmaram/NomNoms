@@ -39,7 +39,6 @@ export const Login = () => {
             if (response.status !== 200) {
                 alert(response.data.msg);
             } else {
-                alert("Successfully logged in!");
                 navigate('/search');
                 
             }
