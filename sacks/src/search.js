@@ -40,25 +40,6 @@ export function SearchRestaurants() {
     const [restaurants, setRestaurants] = useState([]); 
     // stores errors
     const [error, setError] = useState(null); 
-    // misses initialize phase
-    // const [ratings, setRatings] = useState({});
-
-    // useEffect(() => {
-    //     // Fetch ratings for each restaurant after restaurants have been updated
-    //     async function fetchRatings() {
-    //       const ratingsData = {};
-    //       for (const restaurant of restaurants) {
-    //         const averageRating = await getAverageRating(restaurant._id);
-    //         const userRating = await getUserRating(restaurant._id);
-    //         ratingsData[restaurant._id] = { averageRating, userRating };
-    //       }
-    //       setRatings(ratingsData);
-    //     }
-    
-    //     if (restaurants.length > 0) {
-    //       fetchRatings();
-    //     }
-    //   }, [restaurants]);
 
     function sendData(e) {
         const query = e.target.value;
@@ -83,7 +64,8 @@ export function SearchRestaurants() {
                     const payload = data.payload;
                     console.log(payload);
                     // Fetch each restaurant's ratings
-                    const restaurantsWithRatingsPromises = payload.map((restaurant) => {
+                    // Promising that the data will be provided and promises that the ratings are numbers
+                    const restaurantsWithRatings = payload.map((restaurant) => {
                         // Fetch the average and user ratings in parallel for each restaurant
                         const averageRatingPromise = getAverageRating(restaurant._id);
                         const userRatingPromise = getUserRating(restaurant._id);
@@ -101,7 +83,7 @@ export function SearchRestaurants() {
                     });
 
                     // once all ratings are fetched, asynchronous
-                    Promise.all(restaurantsWithRatingsPromises)
+                    Promise.all(restaurantsWithRatings)
                         .then((updatedRestaurants) => {
                             // Store the restaurants with their respective ratings
                             setRestaurants(updatedRestaurants); 
