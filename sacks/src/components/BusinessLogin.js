@@ -31,6 +31,7 @@ export const BusinessLogin = () => {
             console.log(response.data.token);
             const tokenValue = response.data.token;
             sessionStorage.setItem("token", tokenValue);
+            sessionStorage.setItem("username", username);
             const token = sessionStorage.getItem("token");
             console.log("Token: " + token);
 
@@ -44,7 +45,7 @@ export const BusinessLogin = () => {
             
         } catch (error) {
             console.error(error.response);
-            alert(error.response.data.msg);
+            alert("Error. Not connected to backend.");
         }
 
         const jsonData = JSON.stringify(signUpFormData);

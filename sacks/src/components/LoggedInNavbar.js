@@ -7,7 +7,7 @@ export const LoggedInNavbar = () => {
 
     const token = sessionStorage.getItem('token');
     console.log("Logged In Navbar: " + token);
-    
+
     return (
         <div className="navbar">
             <div className="logo">
@@ -24,11 +24,11 @@ export const LoggedInNavbar = () => {
             
             <div className="login-signup">
                 <NavLink to="/chooselogin">
-                    <button className="login">Log in</button>
+                    <button className="login">Username</button>
                 </NavLink>
                 
                 <NavLink to="/choosesignup">
-                    <button className="signup">Sign Up</button>
+                    <button className="signup">User</button>
                 </NavLink>
             </div>
 
