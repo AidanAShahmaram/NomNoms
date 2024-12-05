@@ -7,22 +7,22 @@ import axios from "axios";
 
 export const Navbar = () => {
 
-    const [searchQuery, setSearchQuery] = useState('');
+    // const [searchQuery, setSearchQuery] = useState('');
     
-    const handleSearch = (valEvent) => {
-        setSearchQuery(valEvent.target.value);
-    }
+    // const handleSearch = (valEvent) => {
+    //     setSearchQuery(valEvent.target.value);
+    // }
 
-    const onSubmit = async (event) => {
-        {/* don't want the page reloading, so prevent default */}
-        event.preventDefault();
-        try {
-            const resp = await axios.get('ROUTE', { params: { query: searchQuery } });
-            console.log(resp.data);
-        } catch (err) {
-            console.error('Error fetching search results:', err);
-        }
-    };
+    // const onSubmit = async (event) => {
+    //     {/* don't want the page reloading, so prevent default */}
+    //     event.preventDefault();
+    //     try {
+    //         const resp = await axios.get('ROUTE', { params: { query: searchQuery } });
+    //         console.log(resp.data);
+    //     } catch (err) {
+    //         console.error('Error fetching search results:', err);
+    //     }
+    // };
 
     return (
         <div className="navbar">
@@ -32,16 +32,13 @@ export const Navbar = () => {
             
             <NavLink to="/" end activeClassName="active-link" className="nav-link">Home</NavLink>
             <NavLink to="explore" end activeClassName="active-link" className="nav-link">Explore</NavLink>
-            <NavLink to="search" end activeClassName="active-link" className="nav-link">Filter</NavLink>
+            <NavLink to="filter" end activeClassName="active-link" className="nav-link">Filter</NavLink>
+            <NavLink to="search" end activeClassName="active-link" className="nav-link">Search</NavLink>
            
-           {/* Search Bar */}
-           <form onSubmit={onSubmit} className="search-bar">
+           {/* <form onSubmit={onSubmit} className="search-bar">
                 <input type="text" value={searchQuery} onChange={handleSearch} placeholder="Search for Restaurants" className="inner-search-bar" />
                 <button type="submit" className="search-button">🔎</button>
-           </form>
-
-            {/* <a href="#AboutUs">About Us</a> */}
-            {/* <input type="searchbar" placeholder="Search for restaurants" id="searchbar"></input> */}
+           </form> */}
             
             <div className="login-signup">
                 <NavLink to="/chooselogin">
