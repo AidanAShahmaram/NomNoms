@@ -76,9 +76,9 @@ export function SearchRestaurants() {
                                 // original restaurant data
                                 ...restaurant, 
                                 // add the average rating
-                                averageRating, 
+                                averageRating: Number(averageRating), 
                                 // add the user rating
-                                userRating
+                                userRating: Number(userRating)
                             };
                         });
                     });
