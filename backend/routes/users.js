@@ -47,13 +47,14 @@ router.post('/signup', async (req, res) => {
     
   });
   
+//const liveSearch = require('./routes/users');
 //live searching: (search via name)
-router.post('/routes/users/search', async(req, res) => {
+router.post('/search', async(req, res) => {
   let payload = req.body.payload.trim();
   //check
   console.log(payload);
   //the i flag means its case insensitive
-  let search = await liveSearch.find({name: {$regex: new RegExp('^'+payload+'.*','i')}}).exec();
+  let search = await restaurantInfo.find({name: {$regex: new RegExp('^'+payload+'.*','i')}}).exec();
   res.send({payload:search});
 })
 

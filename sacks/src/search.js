@@ -12,35 +12,36 @@ export function Search() {
 }
 
 export function SearchRestaurants() {
-
+    const [restaurants, setRestaurants] = useState([]); 
+    const [error, setError] = useState(null); 
 
     function sendData(e) {
-        fetch('http://localhost:3001/routes/users/search', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({payload: e.value})
-        }).then(res => res.json()).then(data => {
-            let payload = data.payload;
-            console.log(payload);
-        });
+
+        const query = e.target.value;
+        // only if the query is not empty
+        if (query) {
+            fetch('http://localhost:3001/user/search', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ payload: query }), // sending the search query
+            })
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return res.json(); // Parse the response as JSON
+                })
+                .then(data => {
+                    const payload = data.payload;
+                    console.log(payload);
+                    setRestaurants(payload); // Assuming `payload` is an array of restaurant data
+                })
+                .catch(error => {
+                    setError(error.message);
+                    console.error('Error fetching search results:', error);
+                });
+        }
     }
-
-    // const [searchQuery, setSearchQuery] = useState('');
-    // const handleSearch = (valEvent) => {
-    //     setSearchQuery(valEvent.target.value);
-    // }
-
-    // const onSubmit = async (event) => {
-    //     {/* don't want the page reloading, so prevent default */}
-    //     event.preventDefault();
-    //     try {
-    //         const resp = await axios.get('ROUTE', { params: { query: searchQuery } });
-    //         console.log(resp.data);
-    //     } catch (err) {
-    //         console.error('Error fetching search results:', err);
-    //     }
-    // };
-
 
     // using map function, which iterates over the array to create a button for each tag
     return (
@@ -51,32 +52,33 @@ export function SearchRestaurants() {
             <form className="search-bar">
                 <input type="text" onKeyUp={sendData} /* value={searchQuery} onChange={handleSearch} */ placeholder="Search for Restaurants" className="inner-search-bar" />
                 <button type="submit" className="search-button">🔎</button>
-            </form>
-
-           
+            </form>   
            
             <div className="padding"></div>
-            
 
-            {/* <div className="restaurant-cards">
+            <div className="restaurant-cards">
                 {error && <p className="error">{error}</p>}
                 <div className="cards-filter">
-                    {restaurants.map((restaurant) => (
-                        <RestaurantCard className="restaurant-card-filter"
-                            key={restaurant.id} 
-                            title={restaurant.name}
-                            pic={restaurant.image_link} 
-                            weblink={restaurant.website} 
-                            address={restaurant.address}
-                            phone={restaurant.phone} 
-                            ratingInit={(restaurant.rating_count / restaurant.rating_total ) * 5} 
-                            tags={restaurant.tags}
-                            id={restaurant.id} 
-                            user={restaurant.user} 
-                        />
-                    ))}
-                </div>  
-            </div> */}
+                    {restaurants.length > 0 ? (
+                        restaurants.map((restaurant) => (
+                            <RestaurantCard
+                                key={restaurant.id}
+                                title={restaurant.name}
+                                pic={restaurant.image_link}
+                                weblink={restaurant.website}
+                                address={restaurant.address}
+                                phone={restaurant.phone}
+                                ratingInit={(restaurant.rating_count / restaurant.rating_total) * 5}
+                                tags={restaurant.tags}
+                                id={restaurant.id}
+                                user={restaurant.user}
+                            />
+                        ))
+                    ) : (
+                        <p>No restaurants to display. Please search for a restaurant.</p>
+                    )}
+                </div>
+            </div>
         </div>
     );
 }
