@@ -1,7 +1,6 @@
-
 import './Navbar.css';
 import logo from '../assets/logo-icononly.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import userProfile from "../assets/user.png";
 
 export const LoggedInNavbar = () => {
@@ -9,6 +8,14 @@ export const LoggedInNavbar = () => {
     const token = sessionStorage.getItem('token');
     const username = sessionStorage.getItem('username');
     console.log("Logged In Navbar: " + token);
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('username');
+        navigate('/');
+    }
 
     return (
         <div className="navbar">
@@ -20,15 +27,11 @@ export const LoggedInNavbar = () => {
             <NavLink to="explore" end activeClassName="active-link" className="nav-link">Explore</NavLink>
             <NavLink to="filter" end activeClassName="active-link" className="nav-link">Filter</NavLink>
             <NavLink to="search" end activeClassName="active-link" className="nav-link">Search</NavLink>
-           
-
-            {/* <a href="#AboutUs">About Us</a> */}
-            {/* <input type="searchbar" placeholder="Search for restaurants" id="searchbar"></input> */}
             
             <div className="user-profile">
-                <img class="user-image" src={userProfile} alt="user-profile" ></img> 
+                <img className="user-image" src={userProfile} alt="user-profile" ></img> 
                 <p>{username}</p>
-                
+                <button onClick={handleLogout} className="logout-button">Log out</button>
             </div>
 
         </div>
