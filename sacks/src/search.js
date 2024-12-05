@@ -6,31 +6,40 @@ import './search.css'
 export function Search() {
       return (
         <div className="filter-tags">
-            <SelectTag />
+            <SearchRestaurants/>
         </div>
       );
 }
 
-export function SelectTag() {
+export function SearchRestaurants() {
 
 
-
-    const [searchQuery, setSearchQuery] = useState('');
-    
-    const handleSearch = (valEvent) => {
-        setSearchQuery(valEvent.target.value);
+    function sendData(e) {
+        fetch('http://localhost:3001/routes/users/search', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({payload: e.value})
+        }).then(res => res.json()).then(data => {
+            let payload = data.payload;
+            console.log(payload);
+        });
     }
 
-    const onSubmit = async (event) => {
-        {/* don't want the page reloading, so prevent default */}
-        event.preventDefault();
-        try {
-            const resp = await axios.get('ROUTE', { params: { query: searchQuery } });
-            console.log(resp.data);
-        } catch (err) {
-            console.error('Error fetching search results:', err);
-        }
-    };
+    // const [searchQuery, setSearchQuery] = useState('');
+    // const handleSearch = (valEvent) => {
+    //     setSearchQuery(valEvent.target.value);
+    // }
+
+    // const onSubmit = async (event) => {
+    //     {/* don't want the page reloading, so prevent default */}
+    //     event.preventDefault();
+    //     try {
+    //         const resp = await axios.get('ROUTE', { params: { query: searchQuery } });
+    //         console.log(resp.data);
+    //     } catch (err) {
+    //         console.error('Error fetching search results:', err);
+    //     }
+    // };
 
 
     // using map function, which iterates over the array to create a button for each tag
@@ -39,8 +48,8 @@ export function SelectTag() {
             <div className="padding"></div>
             <div className="h1-filter">Search</div>
             <div className="padding"></div>
-            <form onSubmit={onSubmit} className="search-bar">
-                <input type="text" value={searchQuery} onChange={handleSearch} placeholder="Search for Restaurants" className="inner-search-bar" />
+            <form className="search-bar">
+                <input type="text" onKeyUp={sendData} /* value={searchQuery} onChange={handleSearch} */ placeholder="Search for Restaurants" className="inner-search-bar" />
                 <button type="submit" className="search-button">🔎</button>
             </form>
 
