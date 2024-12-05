@@ -102,11 +102,55 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const removedData = await Data.deleteOne({ _id: req.params.id });
-    res.json(removedData);
+    return res.json(removedData);
   } catch (error) {
-    res.json({ message: error.message });
+    return res.json({ message: error.message });
   }
 });
+
+router.get('/top5', async (req, res) => {
+    const restaurants = await restaurantInfo.find();
+    if(!restaurants){
+	return res.status(401).json({msg: "no restaurants have been uploaded yet"});
+    } else if(restaurants.length < 6){
+	return res.status(401).json({msg: "not enough restaurants to produce result"});
+    }
+    let top5 = [];
+
+    for(let i = 0; i < restaurants.length; i++) {
+	const total = restaurants[i].rating_total;
+	const count = restaurants[i].rating_count;
+	if(!count){
+	    continue;
+	}
+	const result = (total/count).toFixed(1);
+
+	if(top5.length < 6){
+	    top5.push({rest: restaurants[i], rating: result});
+	    continue;
+	}
+	let low = -1;
+	for(let j = 0; j < top5.length; j++) {
+	    if(top5[i].rating < result){
+		low = j;
+	    }
+	}
+
+	if(low != -1){
+	    top5[low].rest = restaurants[i];
+	    top5[low].rating = result;
+	}
+	
+    }
+    top5.sort((a, b) => b.rating - a.rating);
+    let top_restaurants = [];
+    for(k = 0; k < top5.length; k++){
+	top_restaurants.push(top5[k].rest);
+    }
+
+    return res.status(200).json({top5_restaurants: top_restaurants});
+
+})
 
 
 // export the router module so that server.js file can use it
