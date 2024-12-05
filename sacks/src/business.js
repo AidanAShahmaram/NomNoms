@@ -21,24 +21,39 @@ export function MyRestaurant() {
     const fetchRestaurants = async () => {
         try {
             // const ownerToken = localStorage.getItem('owner_token');  // Retrieve the token from localStorage
-            console.log('Owner Token:', ownerToken);  // Debugging: Check if token is retrieved
+            // console.log('Owner Token:', ownerToken);  // Debugging: Check if token is retrieved
 
-            if (!ownerToken) {
-                setError('Owner token is missing');
-                return;
-            }
+            // if (!ownerToken) {
+            //     setError('Owner token is missing');
+            //     return;
+            // }
+
+
+            // const token = localStorage.getItem('businessToken');
+            // console.log('Business Token:');
+            // console.log(token);
+            const business_username = localStorage.getItem('username');
+            console.log("got business username");
+            console.log(business_username);
 
             // Make the GET request with the token in the Authorization header
 
+            // const response = await axios.get('http://localhost:3001/data/view_restaurants', token);
+            // console.log("There is a response");
+
             const response = await axios.get('http://localhost:3001/data/view_restaurants', {
-                headers: {
-                    Authorization: ownerToken  // Correct header format
-                }
+                params: { username: business_username }  // Send the username as a query parameter
             });
-            console.log("There is a response");
+
+           
+
+            // const response = await axios.get('http://localhost:3001/data/view_restaurants', business_username);
+
+            console.log("Response data");
+            console.log(response.data);
             // If successful, set the restaurants
 
-            if (response.data !== 200) {
+            if (response.data === 200) {
                 console.log("No restaurant found.");
                 setError('No restaurant found.')
             }
@@ -60,8 +75,8 @@ export function MyRestaurant() {
                 {error && <p className="error">{error}</p>}
 
                 <p>{restaurant.name}</p>
-                {/* <div className="cards-filter">
-                        <RestaurantCard className="restaurant-card-filter"
+                <div className="cards-filter">
+                        {/* <RestaurantCard className="restaurant-card-filter"
                             key={restaurant.id} 
                             title={restaurant.name}
                             pic={restaurant.image_link} 
@@ -72,8 +87,28 @@ export function MyRestaurant() {
                             tags={restaurant.tags}
                             id={restaurant.id} 
                             user={restaurant.user} 
-                        />
-                </div>   */}
+                        /> */}
+
+{restaurant.length > 0 ? (
+          restaurant.map((restaurant) => (
+            <RestaurantCard 
+              key={restaurant._id}  // Use ObjectId as key
+              className="restaurant-card-filter"
+              title={restaurant.name}
+              pic={restaurant.image_link}
+              weblink={restaurant.website}
+              address={restaurant.address}
+              phone={restaurant.phone}
+              ratingInit={(restaurant.rating_count / restaurant.rating_total) * 5}  // Calculating rating
+              tags={restaurant.tags}
+              id={restaurant._id}
+              user={restaurant.user}  // Assuming the restaurant object has a 'user' field
+            />
+          ))
+        ) : (
+          <p>No restaurants available.</p>  // Display message if no restaurants
+        )}
+                </div>  
             </div>
         </div>
     );

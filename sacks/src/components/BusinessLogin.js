@@ -40,7 +40,12 @@ export const BusinessLogin = () => {
                 alert(response.data.msg);
             } else {
                 alert("Successfully logged in!");
-                localStorage.setItem('owner_token', token);
+                // localStorage.setItem('owner_token', token);
+
+                console.log('The username:');
+                console.log(username);
+                localStorage.setItem('username', username);
+
                 navigate('/mybusiness');
             }
             
