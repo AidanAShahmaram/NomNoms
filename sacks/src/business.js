@@ -46,9 +46,12 @@ export function MyRestaurant() {
 
     return (
         <div className="filter-div">
-            <div className="padding"></div>
-            <div className="h1-filter">My Restaurant</div>
-            <div className="padding"></div>
+            <div className="business-text">
+                <div className="padding"></div>
+                <div className="h1-filter">My Restaurant</div>
+                <div className="padding"></div>
+            </div>
+           
             <div className="restaurant-cards">
                 {error && <p className="error">{error}</p>}
                 {restaurant.length > 0 ? (
