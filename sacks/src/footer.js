@@ -25,7 +25,7 @@ function Footer() {
             <div className="footer-right">
                 <p>Stay Connected</p>
                 <div className="logos">
-                    <a href="https://www.youtube.com" target="_blank">
+                    <a href="https://www.youtube.com/@UCLAengineering/featured" target="_blank">
                         <img src={youtube} alt="youtube"/>
                     </a>
                     <a href="https://www.instagram.com/ucla_engineering/" target="_blank">
