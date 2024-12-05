@@ -4,6 +4,7 @@ import './App.css';
 import {HeaderDiv, IntroBox, PathDiv} from './home';
 import Footer from './footer';
 import Filter from './filter';
+import Search from './search';
 import Explore from './explore';
 
 import Navbar from './components/Navbar'
@@ -46,7 +47,8 @@ function App() {
             </>
             } />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/search" element={<Filter />} />
+          <Route path="/filter" element={<Filter />} />
+          <Route path="/search" element={<Search />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
@@ -64,11 +66,3 @@ function App() {
 
 export default App;
 
-
-
-// {/* <Explore /> */}
-    //  {/* <Filter /> */}
-      // <HeaderDiv />
-      // <IntroBox />
-      // <PathDiv></PathDiv>
-      // <Footer />

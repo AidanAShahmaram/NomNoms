@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+
+.h1-filter {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 30px;
+    margin: 0;
+    display: block;
+    font-weight: bold;
+    color: black;
+}
+
+.h2-filter {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    margin: 0;
+    display: block;
+    font-weight: bold;
+}
+
+/* .h3-filter {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+    display: block;
+    font-weight: bold;
+} */
+
+.filter-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.padding {
+    margin: 10px;
+}
+
+.cards-filter {
+    display: flex;
+    /* wrap to next row when space is filled */
+    flex-wrap: wrap;
+}
+
+.restaurant-card-filter {
+    /* Space between rows */
+    margin-bottom: 20px;
+}
+
+.inner-search-bar {
+    width: 500px;
+}
+.search-bar {
+    width: 500px;
+}
