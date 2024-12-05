@@ -42,6 +42,7 @@ export function SearchRestaurants() {
     const [error, setError] = useState(null); 
 
     function sendData(e) {
+        setError(null);
         const query = e.target.value;
 
         if (query === '') { // empty query
@@ -116,6 +117,9 @@ export function SearchRestaurants() {
 
             { /* using map function, which iterates over the array to create restaurant cards */ }
             <div className="restaurant-cards">
+                <div className="centered-search-div">
+                    {error && <p>{error}</p>}
+                </div>
                 <div className="cards-search">
                     {restaurants.length > 0 ? (
                         restaurants.map((restaurant) => {

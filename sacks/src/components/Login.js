@@ -23,7 +23,6 @@ export const Login = () => {
             password
         }
 
-
         try {
             const response = await axios.get('http://localhost:3001/entrance/login/user', {params: { username: username, password: password }});
             console.log(response.data.token);
@@ -33,8 +32,6 @@ export const Login = () => {
             const token = sessionStorage.getItem("token");
             console.log("Token: " + token);
             console.log(response.status);
-
-            
 
             if (response.status !== 200) {
                 alert(response.data.msg);
@@ -51,14 +48,8 @@ export const Login = () => {
                 alert("Error. No response from backend.");
             }
         }
-
-        
-        
         const jsonData = JSON.stringify(signUpFormData);
-
-        
         console.log("JSON: " + jsonData + "\n \n");
-     
     };
 
 
