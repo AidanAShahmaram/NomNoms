@@ -9,16 +9,20 @@ const decodeToken = require('../token_middleware.js')
 
 //gets a list of comments for the given restaurant id
 router.get('/all_comments',async (req, res) => {
-    
     const {restaurant_id} = req.query;
 
-    //checks if id is of correct length, if not mongo db will cause an error and crash the server
-    if(restaurant_id.length != 24){
-	return res.status(400).json({msg: "invalid restaurant id given"});
-    }
     
     //finds restaurant
-    const restaurant = await Restaurant.findOne({ _id: restaurant_id});
+    let er = false;
+    try{
+	const restaurant = await Restaurant.findOne({ _id: restaurant_id});
+    } catch(error){
+	er = true;
+    }
+    //checks if there was an error trying to find restaurant
+    if(er){
+	return res.status(500).json({msg: "error trying to find restaurant. Please ensure a valid restaurant id is given"});
+    }
     if(!restaurant){
 	return res.status(401).json({msg: "restaurant not found"});
     }
