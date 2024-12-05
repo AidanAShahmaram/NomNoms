@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import RestaurantCard from './RestaurantCard';
 import './search.css';
 import axios from 'axios';
@@ -21,7 +21,7 @@ async function getAverageRating(id) {
         return rating;
     } catch (err) {
         console.error(err.message);
-        console.error("restaurant_id:", id)
+        // console.error("restaurant_id:", id)
         return 0;
     }
 };
@@ -99,14 +99,14 @@ export function SearchRestaurants() {
                             const isUserLoggedIn = Boolean(sessionStorage.getItem("username"));
                             return (
                                 <RestaurantCard
-                                    key={restaurant.id}
+                                    // key={restaurant._id}
                                     title={restaurant.name}
                                     pic={restaurant.image_link}
                                     weblink={restaurant.website}
                                     address={restaurant.address}
                                     phone={restaurant.phone}
-                                    ratingInit={getAverageRating(restaurant.id)}
-                                    userRatingInit={getUserRating(sessionStorage.getItem("username"))}
+                                    ratingInit={getAverageRating(restaurant._id)}
+                                    userRatingInit={getUserRating(restaurant._id)}
                                     tags={restaurant.tags}
                                     id={restaurant.id}
                                     user={isUserLoggedIn}
