@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import RestaurantCard from './RestaurantCard';
 import './search.css'
 
 export function Search() {
       return (
-        <div className="filter-tags">
-            <SearchRestaurants/>
-        </div>
+        <SearchRestaurants/>
       );
 }
 
 export function SearchRestaurants() {
+    // stores the restaurants get from backend
     const [restaurants, setRestaurants] = useState([]); 
+    // stores errors
     const [error, setError] = useState(null); 
 
     function sendData(e) {
         const query = e.target.value;
-        // only if the query is not empty
-        if (query) {
-            fetch('http://localhost:3001/user/search', {
+
+        if (query === '') { // empty query
+            setRestaurants([]); // show no restaurants
+            return;
+        }
+        else {
+            fetch('http://localhost:3001/user/search', { // post search string (query)
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ payload: query }), // sending the search query
@@ -79,6 +82,7 @@ export function SearchRestaurants() {
                     )}
                 </div>
             </div>
+            <div className="padding2"></div>
         </div>
     );
 }
