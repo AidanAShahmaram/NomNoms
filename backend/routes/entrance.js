@@ -157,7 +157,7 @@ router.post('/signup/owner', async (req, res) => {
     const newData = new Owner({"username": username, "password": passhash, "restaurant": newRest._id});
     await newRest.save();
     await newData.save();
-    res.status(200).json({"msg": "Success"});
+    res.status(200).json({"msg": newData._id});
     
 })
 
