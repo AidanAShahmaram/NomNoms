@@ -102,14 +102,16 @@ export function SearchRestaurants() {
   
     return (
         <div className="search-div">
-            <div className="padding"></div>
-            <div className="h1-search">Search</div>
-            <div className="padding"></div>
-            <form className="search-bar">
-                <input type="text" onKeyUp={sendData} placeholder="Search for Restaurants" className="inner-search-bar" />
-                <button type="submit" className="search-button">🔎</button>
-            </form>   
-           
+
+            <div className="search-feature">
+                <div className="padding"></div>
+                <div className="h1-search">Search</div>
+                <div className="padding"></div>
+                <form className="search-bar">
+                    <input type="text" onKeyUp={sendData} placeholder="Search for Restaurants" className="inner-search-bar" />
+                    <button type="submit" className="search-button">🔎</button>
+                </form>   
+                </div>
             <div className="padding"></div>
 
             { /* using map function, which iterates over the array to create restaurant cards */ }

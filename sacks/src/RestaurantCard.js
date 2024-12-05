@@ -135,8 +135,8 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, userR
                 <div className="additional">
                     {/*Explains how it should open the other webpage*/}
                     <a href={weblink} target="_blank" rel="noopener noreferrer" className="link">Visit Their Website</a>
-                    <div className="address"><b>Location:</b> {address}</div>
-                    <div className="phone"><b>Phone Number:</b> {phone}</div>
+                    <div className="address"><b>📍</b> {address}</div>
+                    <div className="phone"><b>📞</b> {phone}</div>
                 </div>
             ) : (
                 <div className="add-additional">

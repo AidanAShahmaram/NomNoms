@@ -17,10 +17,10 @@
 
 .title {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 24px;
+    font-size: 25px;
     display: block;
     font-weight: bold;
-    color: black;
+    color: rgb(37, 21, 21);
     margin-top: 0.67em;
     margin-bottom: 0.67em;
     margin-left: 0;
@@ -28,7 +28,9 @@
 }
 
 .pic {
-    border: 2px solid darkslategray;
+    /* border: 2px solid rgb(255, 255, 255); */
+    /* border:  solid orange; */
+    border-radius: 10px;
     /* margin: 10px; */
     margin-top: 10px;
     margin-bottom: 10px;
@@ -44,18 +46,22 @@
     /* Distribute labels equally */
     justify-content: space-evenly;
     padding: 5px;      
-    gap: 10px;          
+    gap: 10px;      
+    margin-bottom: 10px;    
 }
 
 .label {
-    background-color: #7ecbff; 
+    background-color: orange; 
+    /* background-color: rgb(163, 230, 255); */
     color: rgb(0, 0, 0);
+    margin: 0px;
     /* Create oval shape dimensions */
-    padding: 10px 20px;           
+    padding: 10px 15px;           
     /* Create oval shaped corners */
     border-radius: 30px;
-    font-size: 18px;  
-    font-weight: bold;
+    font-size: 20px;  
+    font-weight: 700;
+    font-family: DM Sans;
     /* Make everything uppercase */
     text-transform: uppercase;
     /* Light shadow for depth */
@@ -103,7 +109,7 @@ p {
 
 .expand-button {
     /* background-color: lightgray; */
-    background-color: orange;
+    background-color: rgb(254, 190, 105);
     color: black;
     border: none;
     padding: 5px;
@@ -114,12 +120,13 @@ p {
 }
 
 .expand-button:hover {
-    background-color: #acdeff; 
+    /* background-color: #acdeff;  */
+    background-color: darkorange; 
 }
 
 .comments-button {
     /* background-color: lightgray; */
-    background-color: orange;
+    background-color:  rgb(254, 190, 105);
     color: black;
     border: none;
     padding: 5px;
@@ -130,11 +137,12 @@ p {
 }
 
 .comments-button:hover {
-    background-color: #ffacae; 
+    /* background-color: #ffacae;  */
+    background-color: darkorange;
 }
 
 .comments-section {
-    background-color: navajowhite;
+    background-color: rgb(255, 230, 193);
     font-family: DM Sans;
     /* background-color: orange; */
 }
