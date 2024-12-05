@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RestaurantCard from './RestaurantCard';
 import './search.css';
 import axios from 'axios';
@@ -40,6 +40,24 @@ export function SearchRestaurants() {
     const [restaurants, setRestaurants] = useState([]); 
     // stores errors
     const [error, setError] = useState(null); 
+    // const [ratings, setRatings] = useState({});
+
+    // useEffect(() => {
+    //     // Fetch ratings for each restaurant after restaurants have been updated
+    //     async function fetchRatings() {
+    //       const ratingsData = {};
+    //       for (const restaurant of restaurants) {
+    //         const averageRating = await getAverageRating(restaurant._id);
+    //         const userRating = await getUserRating(restaurant._id);
+    //         ratingsData[restaurant._id] = { averageRating, userRating };
+    //       }
+    //       setRatings(ratingsData); // Store all ratings
+    //     }
+    
+    //     if (restaurants.length > 0) {
+    //       fetchRatings();
+    //     }
+    //   }, [restaurants]); // Run this effect when the 'restaurants' array changes
 
     function sendData(e) {
         const query = e.target.value;
@@ -60,10 +78,37 @@ export function SearchRestaurants() {
                     }
                     return res.json(); // parse response as json
                 })
-                .then(data => {
+                .then((data) => {
                     const payload = data.payload;
-                    console.log(payload);
-                    setRestaurants(payload); // stores the restaurants from backend
+                    
+                    // Fetch ratings for each restaurant
+                    const restaurantsWithRatingsPromises = payload.map((restaurant) => {
+                        // Fetch average and user ratings in parallel for each restaurant
+                        const averageRatingPromise = getAverageRating(restaurant._id);
+                        const userRatingPromise = getUserRating(restaurant._id);
+                        
+                        return Promise.all([averageRatingPromise, userRatingPromise]).then(([averageRating, userRating]) => {
+                            return {
+                                // original restaurant data
+                                ...restaurant, 
+                                // add the average rating
+                                averageRating, 
+                                // add the user rating
+                                userRating
+                            };
+                        });
+                    });
+
+                    // Wait for all ratings to be fetched
+                    Promise.all(restaurantsWithRatingsPromises)
+                        .then((updatedRestaurants) => {
+                            // Store the restaurants with their respective ratings
+                            setRestaurants(updatedRestaurants); 
+                        })
+                        .catch((ratingError) => {
+                            console.error('Error fetching ratings:', ratingError);
+                            setError('Error fetching ratings');
+                        });
                 })
                 .catch(error => {
                     setError(error.message);
@@ -99,8 +144,8 @@ export function SearchRestaurants() {
                                     weblink={restaurant.website}
                                     address={restaurant.address}
                                     phone={restaurant.phone}
-                                    ratingInit={getAverageRating(restaurant._id)}
-                                    userRatingInit={getUserRating(restaurant._id)}
+                                    ratingInit={restaurant.averageRating}
+                                    userRatingInit={restaurant.userRating}
                                     tags={restaurant.tags}
                                     id={restaurant._id}
                                     user={isUserLoggedIn}
