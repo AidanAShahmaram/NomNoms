@@ -13,11 +13,7 @@ async function getAverageRating(id) {
     try {
         // grab user's rating from the backend
         const ratingResponse = await axios.get('http://localhost:3001/rating/average_rating', { params: { restaurant_id: id } });
-
-        if (!ratingResponse.ok) {
-            throw new Error('Error While Fetching New Restaurant Rating');
-        }
-        const { rating } = await ratingResponse.json();
+        const { rating } = await ratingResponse.data;
         return rating;
     } catch (err) {
         console.error(err.message);
@@ -30,10 +26,8 @@ async function getUserRating(id) {
     try {
         // grab user's rating from the backend
         const ratingResponse = await axios.get('http://localhost:3001/rating/user_rating', { params: { username: sessionStorage.getItem("username"), restaurant_id: id } });
-        if (!ratingResponse.ok) {
-            throw new Error('Error While Fetching New Restaurant Rating');
-        }
-        const { rating } = await ratingResponse.json();
+	
+        const { rating } = await ratingResponse.data;
         return rating;
     } catch (error) {
         console.error(error.message);

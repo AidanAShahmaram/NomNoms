@@ -34,17 +34,11 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, userR
         try {
             // update the current user's rating on the server
             // id is the restaurant's id
-            const response = await axios.post('http://localhost:3001/rating/user_rating', { params: { username: sessionStorage.getItem("username"), newRating: newRating, restaurant_id: id } }, { headers: { Authorization: sessionStorage.getItem("token") } });
-            if (!response.ok) {
-                throw new Error("Error Updating User's Rating");
-            }
+            const response = await axios.post('http://localhost:3001/rating/user_rating', { username: sessionStorage.getItem("username"), newRating: newRating, restaurant_id: id }, { headers: { Authorization: sessionStorage.getItem("token") } });
             // Update the card's displayed rating
             // grab rating from the backend
             const ratingResponse = await axios.get('http://localhost:3001/rating/average_rating', { params: { restaurant_id: id } });
-            if (!ratingResponse.ok) {
-                throw new Error('Error While Fetching New Restaurant Rating');
-            }
-            const { rating } = await ratingResponse.json();
+            const { rating } = await ratingResponse.data;
             setRating(rating);
         } catch (err) {
             setError(err.message);
