@@ -54,6 +54,7 @@ export function SelectTag() {
     // setSelectedTags({}) resets the entire state to an empty object, removes all the key-value pairs (tags) from selectedTags
     const resetTags = () => {
         setSelectedTags({});
+        setRestaurants([]);
     };
 
     // async - allows use of await, handle operations like API call
@@ -72,8 +73,6 @@ export function SelectTag() {
             const response = await axios.get('http://localhost:3001/user/restaurants_filter', { // sends HTTP GET request 
                 params: {tags: selectedTagList.join(',')}, // specifies query parameters, combines array into string of tags separated by commas
             });
-
-            
 
             console.log(response);
             if (response.data.length === 0) {
