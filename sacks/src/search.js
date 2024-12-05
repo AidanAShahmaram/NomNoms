@@ -116,7 +116,6 @@ export function SearchRestaurants() {
 
             { /* using map function, which iterates over the array to create restaurant cards */ }
             <div className="restaurant-cards">
-                {error && <p className="error">{error}</p>}
                 <div className="cards-search">
                     {restaurants.length > 0 ? (
                         restaurants.map((restaurant) => {
@@ -138,7 +137,9 @@ export function SearchRestaurants() {
                             );
                         })
                     ) : (
-                        <p>No restaurants found.</p>
+                        <div className="centered-search-div">
+                            <p>No restaurants found.</p>
+                        </div>
                     )}
                 </div>
             </div>
