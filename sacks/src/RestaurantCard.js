@@ -171,7 +171,7 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, tags,
                             ) : (
                                 comments.slice(0, numVisibleComments).map((comment, i) => (
                                     <div key={i} className="comments">
-                                        <div className="comment"><b>{comment.userName}:</b> {comment.text}</div>
+                                        <div className="comment"><b>{comment.username}:</b> {comment.message}</div>
                                     </div>
                                 ))
                             )

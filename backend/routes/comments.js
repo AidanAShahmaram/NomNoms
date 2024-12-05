@@ -34,7 +34,6 @@ router.post('/new_comment',decodeToken, async (req, res) => {
 
     //finds restaurant
     const restaurant = await Restaurant.findOne({ _id: restaurant_id});
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     if(!restaurant){
 	return res.status(404).json({msg: "restaurant not found"});
     }
