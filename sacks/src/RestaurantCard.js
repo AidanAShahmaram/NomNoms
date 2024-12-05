@@ -115,7 +115,7 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, tags,
             {/*Tags - they are an array prop*/}
             {/*Tags className is labels - they are an array prop*/}
             <div className="labels">
-                {tags.length > 0 ? (
+                {tags && tags.length > 0 ? (
                 tags.map((tag, index) => (
                     <span key={index} className="label">
                         {tag}

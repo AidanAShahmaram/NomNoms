@@ -16,7 +16,6 @@ export function SearchRestaurants() {
     const [error, setError] = useState(null); 
 
     function sendData(e) {
-
         const query = e.target.value;
         // only if the query is not empty
         if (query) {
@@ -27,14 +26,14 @@ export function SearchRestaurants() {
             })
                 .then(res => {
                     if (!res.ok) {
-                        throw new Error('Network response was not ok');
+                        throw new Error('Network response error');
                     }
-                    return res.json(); // Parse the response as JSON
+                    return res.json(); // parse response as json
                 })
                 .then(data => {
                     const payload = data.payload;
                     console.log(payload);
-                    setRestaurants(payload); // Assuming `payload` is an array of restaurant data
+                    setRestaurants(payload); // stores the restaurants from backend
                 })
                 .catch(error => {
                     setError(error.message);
@@ -43,19 +42,20 @@ export function SearchRestaurants() {
         }
     }
 
-    // using map function, which iterates over the array to create a button for each tag
+  
     return (
         <div className="filter-div">
             <div className="padding"></div>
             <div className="h1-filter">Search</div>
             <div className="padding"></div>
             <form className="search-bar">
-                <input type="text" onKeyUp={sendData} /* value={searchQuery} onChange={handleSearch} */ placeholder="Search for Restaurants" className="inner-search-bar" />
+                <input type="text" onKeyUp={sendData} placeholder="Search for Restaurants" className="inner-search-bar" />
                 <button type="submit" className="search-button">🔎</button>
             </form>   
            
             <div className="padding"></div>
 
+            { /* using map function, which iterates over the array to create restaurant cards */ }
             <div className="restaurant-cards">
                 {error && <p className="error">{error}</p>}
                 <div className="cards-filter">
@@ -75,7 +75,7 @@ export function SearchRestaurants() {
                             />
                         ))
                     ) : (
-                        <p>No restaurants to display. Please search for a restaurant.</p>
+                        <p>No restaurants found.</p>
                     )}
                 </div>
             </div>
