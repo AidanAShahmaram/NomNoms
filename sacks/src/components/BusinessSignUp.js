@@ -145,9 +145,14 @@ export const BusinessSignUp = () => {
             }
             
         } catch (error) {
-
-            alert("Error. Not connected to backend.");
-
+            console.error(error.response);
+            // alert("Error. Not connected to backend.");
+            if (error.response) {
+                alert(error.response.data.msg);
+            } else {
+                alert("Error. No response from backend.");
+            }
+            // alert("Error. Not connected to backend.");
         }
         
         //console.log("Status Code: " + statusCode);

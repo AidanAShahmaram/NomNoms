@@ -38,7 +38,14 @@ export const SignUp = () => {
                 console.error('This username already exists. Please choose another one.');
                 alert('This username already exists. Please choose another one.');
             }
-            alert("Error. Not connected to backend.");
+            console.error(error.response);
+            // alert("Error. Not connected to backend.");
+            if (error.response) {
+                alert(error.response.data.msg);
+            } else {
+                alert("Error. No response from backend.");
+            }
+            // alert("Error. Not connected to backend.");
             console.error(error.response);
         }
 
