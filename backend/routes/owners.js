@@ -35,16 +35,39 @@ router.post('/login', async (req, res) => {
   });
   
 
-router.get('/view_restaurants', async (req, res) => {
-    const owner = await ownerInfo.findOne({_id: req.owner_token}); //uses token to confirm owner
-    try {
-        const restaurants_owned = await owner.restaurants;
-        res.json(restaurants_owned);
-        //Can mod so vals get sent out in a different format if that's easier
-      } catch (error) {
-        res.json({ message: "No restaurants found"});
-      }
+// router.get('/view_restaurants', async (req, res) => {
+//     const owner = await ownerInfo.findOne({_id: req.owner_token}); //uses token to confirm owner
+//     try {
+//         const restaurants_owned = await owner.restaurants;
+//         res.json(restaurants_owned);
+//         //Can mod so vals get sent out in a different format if that's easier
+//       } catch (error) {
+//         // res.json({ message: "No restaurants found"});
+//         res.status(200).json({message: "No restaurants found"});
+//       }
 
+// });
+
+router.use('/view_restaurants', async (req, res, next) => {
+  try {
+    const { username } = req.query;
+    const owner = await ownerInfo.findOne({ username: username });
+    if (!owner) {
+      return res.status(404).json({ message: 'Owner not found' });
+    }
+    const restaurantIds = owner.restaurant;  
+    if (!restaurantIds || restaurantIds.length === 0) {
+      return res.status(404).json({ message: 'No restaurants found for this owner' });
+    }
+    const foundRestaurants = await restaurantInfo.find({ '_id': { $in: restaurantIds } });
+    if (foundRestaurants.length === 0) {
+      return res.status(404).json({ message: 'No restaurants found in the database for this owner' });
+    }
+    res.json(foundRestaurants);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error fetching restaurants' });
+  }
 });
 
 // POST new data
