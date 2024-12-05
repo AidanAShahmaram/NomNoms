@@ -37,14 +37,14 @@ router.post('/user_rating',decodeToken, async (req, res) => {
     //finds restaurant
     const restaurant = await Restaurant.findOne({ _id: restaurant_id});
     if(!restaurant){
-	return res.status(404).json({msg: "restaurant not found"});
+	    return res.status(404).json({msg: "restaurant not found"});
     }
 
     //checks for existing rating made by user
     if(restaurant.ratings.has(username)){
-	old_rating  = restaurant.ratings.get(username);
-	restaurant.rating_total = restaurant.rating_total - old_rating;
-	restaurant.rating_count = restaurant.rating_count - 1;
+        old_rating  = restaurant.ratings.get(username);
+        restaurant.rating_total = restaurant.rating_total - old_rating;
+        restaurant.rating_count = restaurant.rating_count - 1;
     }
 
     //updates restaurant ratings

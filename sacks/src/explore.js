@@ -16,6 +16,7 @@ export function Explore() {
                 address="Animal Crossing"
                 phone="(123) 456-7890"
                 ratingInit={3.7}
+                userRatingInit={(2)}
                 tags={["Cozy", "Family-Friendly", "Coffee"]}
                 id="Brewster's Cafe"
                 user={true}
@@ -27,6 +28,7 @@ export function Explore() {
                 address="Animal Crossing"
                 phone="(123) 456-7890"
                 ratingInit={3.7}
+                userRatingInit={(2)}
                 tags={["Cozy", "Family-Friendly", "Coffee"]}
                 id="Brewster's Cafe"
                 user={true}
@@ -38,6 +40,7 @@ export function Explore() {
                 address="Animal Crossing"
                 phone="(123) 456-7890"
                 ratingInit={3.7}
+                userRatingInit={(2)}
                 tags={["Cozy", "Family-Friendly", "Coffee"]}
                 id="Brewster's Cafe"
                 user={false}

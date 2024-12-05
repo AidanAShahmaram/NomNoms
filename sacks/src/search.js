@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import RestaurantCard from './RestaurantCard';
 import './search.css';
 import axios from 'axios';
@@ -21,7 +21,7 @@ async function getAverageRating(id) {
         return rating;
     } catch (err) {
         console.error(err.message);
-        console.error("restaurant_id:", id)
+        // console.error("restaurant_id:", id)
         return 0;
     }
 };
@@ -29,7 +29,7 @@ async function getAverageRating(id) {
 async function getUserRating(id) {
     try {
         // grab user's rating from the backend
-        const ratingResponse = await axios.get('http://localhost:3001/rating/user_rating', { params: { restaurant_id: id } });
+        const ratingResponse = await axios.get('http://localhost:3001/rating/user_rating', { params: { username: sessionStorage.getItem("username"), restaurant_id: id } });
         if (!ratingResponse.ok) {
             throw new Error('Error While Fetching New Restaurant Rating');
         }
@@ -99,13 +99,14 @@ export function SearchRestaurants() {
                             const isUserLoggedIn = Boolean(sessionStorage.getItem("username"));
                             return (
                                 <RestaurantCard
-                                    key={restaurant.id}
+                                    // key={restaurant._id}
                                     title={restaurant.name}
                                     pic={restaurant.image_link}
                                     weblink={restaurant.website}
                                     address={restaurant.address}
                                     phone={restaurant.phone}
-                                    ratingInit={getAverageRating(restaurant.id)}
+                                    ratingInit={getAverageRating(restaurant._id)}
+                                    userRatingInit={getUserRating(restaurant._id)}
                                     tags={restaurant.tags}
                                     id={restaurant.id}
                                     user={isUserLoggedIn}
