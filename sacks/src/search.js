@@ -29,7 +29,7 @@ async function getAverageRating(id) {
 async function getUserRating(id) {
     try {
         // grab user's rating from the backend
-        const ratingResponse = await axios.get('http://localhost:3001/rating/user_rating', { params: { restaurant_id: id } });
+        const ratingResponse = await axios.get('http://localhost:3001/rating/user_rating', { params: { username: sessionStorage.getItem("username"), restaurant_id: id } });
         if (!ratingResponse.ok) {
             throw new Error('Error While Fetching New Restaurant Rating');
         }
@@ -106,6 +106,7 @@ export function SearchRestaurants() {
                                     address={restaurant.address}
                                     phone={restaurant.phone}
                                     ratingInit={getAverageRating(restaurant.id)}
+                                    userRatingInit={getUserRating(sessionStorage.getItem("username"))}
                                     tags={restaurant.tags}
                                     id={restaurant.id}
                                     user={isUserLoggedIn}

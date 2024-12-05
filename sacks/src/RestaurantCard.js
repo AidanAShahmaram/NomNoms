@@ -34,7 +34,7 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, userR
         try {
             // update the current user's rating on the server
             // id is the restaurant's id
-            const response = await axios.post('http://localhost:3001/rating/user_rating', { params: { username: user.name, newRating: newRating, restaurant_id: id } }, { headers: { Authorization: user.token } });
+            const response = await axios.post('http://localhost:3001/rating/user_rating', { params: { username: sessionStorage.getItem("username"), newRating: newRating, restaurant_id: id } }, { headers: { Authorization: sessionStorage.getItem("token") } });
             if (!response.ok) {
                 throw new Error("Error Updating User's Rating");
             }
@@ -94,7 +94,7 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, userR
         } 
 
         try {
-            const response = await axios.post('http://localhost:3001/comments/new_comment', { params: { username: user.name, message: newComment, restaurant_id: id } }, { headers: { Authorization: user.token } });
+            const response = await axios.post('http://localhost:3001/comments/new_comment', { params: { username: sessionStorage.getItem("username"), message: newComment, restaurant_id: id } }, { headers: { Authorization: sessionStorage.getItem("token") } });
             if (!response.ok)
             {
                 throw new Error('Error submitting comment');
@@ -130,7 +130,7 @@ const RestaurantCard = ({ title, pic, weblink, address, phone, ratingInit, userR
                 <div className="averageRating"><i>Average Rating:</i> { } {renderStars(rating)}</div>
                 {/*Add your rating if you are signed in*/}
                 {user && (
-                            <div className="yourRating"><i>{user}'s Rating:</i> { }
+                            <div className="yourRating"><i>{sessionStorage.getItem("username")}'s Rating:</i> { }
                             {[1, 2, 3, 4, 5].map(chosenStars => (
                                 <span key={chosenStars} onClick={() => updateMyRating(chosenStars)} style={{ cursor: 'pointer' }}>
                                     {/*Indicates what stars should be filled in or not*/}
@@ -217,6 +217,7 @@ RestaurantCard.propTypes = {
     address: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
     ratingInit: PropTypes.number.isRequired,
+    userRatingInit: PropTypes.number.isRequired,
     tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     id: PropTypes.string.isRequired,
     user: PropTypes.bool.isRequired
