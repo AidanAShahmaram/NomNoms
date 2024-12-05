@@ -1,5 +1,5 @@
 .footer {
-    height: 200px;
+    height: 250px;
     width: 100%;
     background-color: #FF6024;
     display: flex;
@@ -29,7 +29,7 @@
 }
 
 .footer-middle {
-    height: 80px;
+    height: 200px;
     width: 250px;
     /* background-color: grey; */
     align-self: flex-end;
