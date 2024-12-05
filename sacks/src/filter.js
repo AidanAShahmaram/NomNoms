@@ -70,6 +70,8 @@ export function SelectTag() {
         }
         
         try { // make API request
+            setRestaurants([]);
+
             const response = await axios.get('http://localhost:3001/user/restaurants_filter', { // sends HTTP GET request 
                 params: {tags: selectedTagList.join(',')}, // specifies query parameters, combines array into string of tags separated by commas
             });
