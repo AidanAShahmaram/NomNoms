@@ -40,12 +40,16 @@ export const Login = () => {
                 alert(response.data.msg);
             } else {
                 navigate('/search');
-                
             }
             
         } catch (error) {
             console.error(error.response);
-            alert("Error. Not connected to backend.");
+            // alert("Error. Not connected to backend.");
+            if (error.response) {
+                alert(error.response.data.msg);
+            } else {
+                alert("Error. No response from backend.");
+            }
         }
 
         
