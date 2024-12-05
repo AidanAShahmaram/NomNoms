@@ -11,6 +11,32 @@ export function Filter() {
       );
 }
 
+async function getAverageRating(id) {
+    try {
+        // grab user's rating from the backend
+        const ratingResponse = await axios.get('http://localhost:3001/rating/average_rating', { params: { restaurant_id: id } });
+        const { rating } = await ratingResponse.data;
+        return rating;
+    } catch (err) {
+        console.error(err.message);
+        // console.error("restaurant_id:", id)
+        return 0;
+    }
+};
+
+async function getUserRating(id) {
+    try {
+        // grab user's rating from the backend
+        const ratingResponse = await axios.get('http://localhost:3001/rating/user_rating', { params: { username: sessionStorage.getItem("username"), restaurant_id: id } });
+	
+        const { rating } = await ratingResponse.data;
+        return rating;
+    } catch (error) {
+        console.error(error.message);
+        return 0;
+    }
+};
+
 export function SelectTag() {
     // array of cuisine tag names
     const cuisineTags = [
@@ -81,10 +107,36 @@ export function SelectTag() {
                 alert('No matching restaurants found.');
             }
             else {
-                setRestaurants(response.data); // updates the state of restaurants with data from API response
-                setError(null); // success, clears any previous error
+                // setRestaurants(response.data); // updates the state of restaurants with data from API response
+                const payload = response.data;
+                console.log(payload);
+                const restaurantsWithRatings = payload.map((restaurant) => {
+                    const averageRatingPromise = getAverageRating(restaurant._id);
+                    const userRatingPromise = getUserRating(restaurant._id);
+                        
+                    return Promise.all([averageRatingPromise, userRatingPromise]).then(([averageRating, userRating]) => {
+                        return {
+                            // original restaurant data
+                            ...restaurant, 
+                            // add the average rating
+                            averageRating, 
+                            // add the user rating
+                            userRating
+                        };
+                    });
+                });
+                // once all ratings are fetched, asynchronous
+                Promise.all(restaurantsWithRatings)
+                    .then((updatedRestaurants) => {
+                        // Store the restaurants with their respective ratings
+                        setRestaurants(updatedRestaurants); 
+                    })
+                    .catch((ratingError) => {
+                        console.error('Error while fetching ratings:', ratingError);
+                        setError('Error while fetching ratings');
+                    });
+                // setError(null); // success, clears any previous error
             }
-            
         }
         catch(err) { // if request fails
             console.error(err);
@@ -130,20 +182,23 @@ export function SelectTag() {
             <div className="restaurant-cards">
                 {error && <p className="error">{error}</p>}
                 <div className="cards-filter">
-                    {restaurants.map((restaurant) => (
-                        <RestaurantCard className="restaurant-card-filter"
-                            key={restaurant.id} 
-                            title={restaurant.name}
-                            pic={restaurant.image_link} 
-                            weblink={restaurant.website} 
-                            address={restaurant.address}
-                            phone={restaurant.phone} 
-                            ratingInit={(restaurant.rating_count / restaurant.rating_total ) * 5} 
-                            tags={restaurant.tags}
-                            id={restaurant.id} 
-                            user={restaurant.user} 
-                        />
-                    ))}
+                    {restaurants.map((restaurant) => {
+                        const isUserLoggedIn = Boolean(sessionStorage.getItem("username"));
+                        return (
+                            <RestaurantCard
+                                // key={restaurant._id}
+                                title={restaurant.name}
+                                pic={restaurant.image_link}
+                                weblink={restaurant.website}
+                                address={restaurant.address}
+                                phone={restaurant.phone}
+                                ratingInit={restaurant.averageRating}
+                                userRatingInit={restaurant.userRating}
+                                tags={restaurant.tags}
+                                id={restaurant._id}
+                                user={isUserLoggedIn}
+                            />
+                    )})}
                 </div>  
             </div>
         </div>
