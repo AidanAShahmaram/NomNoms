@@ -138,7 +138,7 @@ export const BusinessSignUp = () => {
             console.log("Response: \n");
             console.log(response);
 
-            if (response.status !== 200) {
+            if (response.status === 200) {
                 alert("Successfully created an account!");
                 navigate("/businesslogin");
             } else {
@@ -146,6 +146,7 @@ export const BusinessSignUp = () => {
             }
             
         } catch (error) {
+            console.log(error.response);
 
             alert("Error. Not connected to backend.");
 

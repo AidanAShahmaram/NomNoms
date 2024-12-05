@@ -40,7 +40,8 @@ export const BusinessLogin = () => {
                 alert(response.data.msg);
             } else {
                 alert("Successfully logged in!");
-                navigate('/search');
+                localStorage.setItem('owner_token', token);
+                navigate('/mybusiness');
             }
             
         } catch (error) {
