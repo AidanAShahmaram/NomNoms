@@ -39,7 +39,7 @@ export const BusinessLogin = () => {
             if (response.status !== 200) {
                 alert(response.data.msg);
             } else {
-                alert("Successfully logged in!");
+                // alert("Successfully logged in!");
                 // localStorage.setItem('owner_token', token);
 
                 console.log('The username:');
@@ -50,11 +50,12 @@ export const BusinessLogin = () => {
             }
             
         } catch (error) {
-            // console.error(error.response);
+            
             // alert("Error. Not connected to backend.");
             console.error(error.response);
-            // if (error.response) {
-            //     alert(error.response.data.msg);
+            
+            //if (error.response) {
+                 alert(error.response.data.msg);
             // } else {
                 alert("Error. No response from backend.");
             //}

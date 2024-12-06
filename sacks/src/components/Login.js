@@ -40,13 +40,15 @@ export const Login = () => {
             }
             
         } catch (error) {
-            console.error(error.response);
-            // alert("Error. Not connected to backend.");
-            // if (error.response) {
-            //     alert(error.response.data.msg);
-            // } else {
+            if (error.response && error.response.status === 401) {
+                console.error("Incorrect Password");
+                alert("Incorrect Password.");
+            } else if (error.response && error.response.status === 400) {
+                console.error("Invalid Username");
+                alert("Invalid Username");
+            } else {
                 alert("Error. No response from backend.");
-            //}
+            }
         }
         const jsonData = JSON.stringify(signUpFormData);
         console.log("JSON: " + jsonData + "\n \n");

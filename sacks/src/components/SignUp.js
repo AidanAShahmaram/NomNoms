@@ -34,16 +34,21 @@ export const SignUp = () => {
             }
             
         } catch (error) {
-            // if (error.response && error.response.status === 403) {
-            //     console.error('This username already exists. Please choose another one.');
-            //     alert('This username already exists. Please choose another one.');
-            // }
+            if (error.response && error.response.status === 400) {
+                console.error('Password must be between 8-20 characters.');
+                alert('Password must be between 8-20 characters.');
+            } else if (error.response && error.response.status === 403) {
+                console.error('This username already exists. Please choose another one.');
+                alert('This username already exists. Please choose another one.');
+            } else {
+                alert("Error. No response from backend.");
+            }
             console.error(error.response);
             // // alert("Error. Not connected to backend.");
             // if (error.response) {
             //     alert(error.response.data.msg);
             // } else {
-                alert("Error. No response from backend.");
+                
             //}
             // alert("Error. Not connected to backend.");
             
