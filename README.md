@@ -42,6 +42,7 @@
   npm install express
   npm install mongoose
   npm install bcrypt
+  npm install cors
   npm install dotenv
 </code></pre>
 <p>The server is set to run on port 3001 by default. As said before, you're welcome to modify the index.js file to utilize a different port</p>
