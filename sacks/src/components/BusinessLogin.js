@@ -53,11 +53,11 @@ export const BusinessLogin = () => {
             // console.error(error.response);
             // alert("Error. Not connected to backend.");
             console.error(error.response);
-            if (error.response) {
-                alert(error.response.data.msg);
-            } else {
+            // if (error.response) {
+            //     alert(error.response.data.msg);
+            // } else {
                 alert("Error. No response from backend.");
-            }
+            //}
         }
 
         const jsonData = JSON.stringify(signUpFormData);
