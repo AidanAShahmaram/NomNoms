@@ -66,7 +66,11 @@
 <pre><code>
   npm start
 </code></pre>
-<p>Now if you head to the browser of your choice, you can access the program by entering the following path:</p>
-<pre><code>
-  http://localhost:3000
-</code></pre>
+<p>Now if you head to the browser of your choice, you can access the program by entering the following path: http://localhost:3000</p>
+
+<h2>SACKS</h2>
+<p>Sean Silver</p>
+<p>Aidan Shahmaram</p>
+<p>Charlene Huang</p>
+<p>Katie Chung</p>
+<p>Sofia Behzadi</p>
