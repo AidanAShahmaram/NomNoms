@@ -36,14 +36,35 @@
   MongoKey= (input here)
   PassEncryptKey= (input here)
 </code></pre>
-<p> Currently the program is set up to use a MongoDB database that was initialized by our team. If you would like access to our database you may contact a team member. However, we withhold the right to refuse. If you would like to use your own MongoDB database, you are welcome to modify the index.js file to utilize your specific Mongo URL. Once this is done we can exit the .env file</p>
-<p> Before we move on, there are a few downloads necessary for the server to function. These can be seen below</p>
+<p> Currently the program is set up to use a MongoDB database that was initialized by our team. If you would like access to our database, you may contact a team member. However, we withhold the right to refuse. If you'd like to use your own MongoDB database, you're welcome to modify the index.js file to use your specific Mongo URL. Once this is done we can exit the .env file</p>
+<p> Before we move on, a few downloads are necessary for the server to function. These can be seen below:</p>
 <pre><code>
+  npm install express
   npm install mongoose
   npm install bcrypt
-  npm install 
+  npm install dotenv
 </code></pre>
+<p>The server is set to run on port 3001 by default. As said before, you're welcome to modify the index.js file to utilize a different port</p>
 <p>Now we can finally run our server using the following command.</p>
 <pre><code>
   node index.js
+</code></pre>
+
+<h3>Frontend</h3>
+<p>Now we move onto the front end of the app. To begin we want to open a new instance of our terminal, as our server is currently being run by the previous window. Now we need to get back to the repository, and after doing so we need to move into the sacks directory. Assuming you have navigated back to the repository, you may use the following command: </p>
+<pre><code>
+  cd sacks
+</code></pre>
+<p>Like before there are some installations which are necessary for the frontend to function. These can be seen below:</p>
+<pre><code>
+  npm install
+  npm install axios
+</code></pre>
+<p>Now our program is ready to run and can be done so using the following command:</p>
+<pre><code>
+  npm start
+</code></pre>
+<p>Now if you head to the browser of your choice, you can access the program by entering the following path:</p>
+<pre><code>
+  http://localhost:3000
 </code></pre>
