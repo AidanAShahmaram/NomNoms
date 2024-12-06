@@ -3,8 +3,9 @@ import logo from '../assets/logo-icononly.png';
 import { NavLink } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
+/* Default NavBar at the top of the page
+Includes home, explore, filter, search, and login/signup buttons */
 export const Navbar = () => {
-
     return (
         <div className="navbar">
             <div className="logo">
@@ -19,13 +20,11 @@ export const Navbar = () => {
             <div className="login-signup">
                 <NavLink to="/chooselogin">
                     <button className="login">Log in</button>
-                </NavLink>
-                
+                </NavLink> 
                 <NavLink to="/choosesignup">
                     <button className="signup">Sign Up</button>
                 </NavLink>
             </div>
-
         </div>
     )
 }

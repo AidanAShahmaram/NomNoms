@@ -44,18 +44,9 @@ export const SignUp = () => {
                 alert("Error. No response from backend.");
             }
             console.error(error.response);
-            
-            
         }
-
-
-        
-
         const jsonData = JSON.stringify(signUpFormData);
-
-        
         console.log("JSON: " + jsonData + "\n \n");
-     
     };
 
     const changeUsername = (event) => {
@@ -79,13 +70,10 @@ export const SignUp = () => {
     };
 
     return (
-        
         <div className="signup-page">
             <div className="signup-img" style={divStyle}></div>
             <div className="signup-right">
             <div className="signup-form">
-
-           
             <center><img src={logo} alt="logo" className="signup-logo"></img></center>
 
             <form onSubmit={handleSubmitSignUp}>
@@ -110,11 +98,8 @@ export const SignUp = () => {
                 <button class="submit">Sign Up</button>
              
         </form>
-
         </div>
-        
         </div>
-        
         </div>
     )
 
