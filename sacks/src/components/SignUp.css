@@ -15,15 +15,6 @@ form {
    
 }
 
-.signup-form {
-    /* background-color: white; */
-    /* background-color: white;
-    max-width: 50vw;
-    /* height: 500px;
-    padding-left: 50px;
-    padding-right: 50px; */ 
-}
-
 .business-signup-form {
     display: grid;
     justify-content: center;
@@ -81,19 +72,9 @@ form {
 .location-div {
     display: flex;
     flex-direction: row;
-
-    /* display: grid;
-    grid-template-columns: repeat(1fr 1fr);
-    width: 100%; */
-    /* gap: 50px; */
 }
 
 .address-div1 {
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 50px; */
     width: 220px;
     margin-right: 35px;
 }
@@ -168,16 +149,3 @@ form {
 .signup-logo {
     width: 80px;
 }
-
-.select {
-}
-
-/* Light gray color for the default "Select a state" option
-#state option[value=""] {
-    color: lightgray;
-}
-
-When a valid state is selected, the text color should be black
-#state:valid {
-    color: black;
-} */

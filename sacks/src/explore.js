@@ -7,7 +7,7 @@ export function Explore() {
     const [restaurants, setRestaurants] = useState([]); // stores restaurants
     const [error, setError] = useState(null); // error handling
 
-    // Function to get the average rating of a restaurant
+    // function to get the average rating of a restaurant
     async function getAverageRating(id) {
         try {
             const ratingResponse = await axios.get('http://localhost:3001/rating/average_rating', { params: { restaurant_id: id } });
@@ -19,7 +19,7 @@ export function Explore() {
         }
     }
 
-    // Function to get the user's rating for a restaurant
+    // function to get the user's rating for a restaurant
     async function getUserRating(id) {
         try {
             const ratingResponse = await axios.get('http://localhost:3001/rating/user_rating', { params: { username: sessionStorage.getItem("username"), restaurant_id: id } });
@@ -36,10 +36,9 @@ export function Explore() {
             setError(null);
 
             try {
-                const response = await axios.get('http://localhost:3001/user/top5');
-                console.log('API Response:', response.data); // Log the response to see its structure
-                
-                // Access the top5_restaurants array from the response
+                const response = await axios.get('http://localhost:3001/user/top5'); // get request to backend
+                console.log('API Response:', response.data); // for testing
+                // access the top5_restaurants array from the response
                 const payload = response.data.top5_restaurants;
     
                 if (Array.isArray(payload) && payload.length > 0) {
@@ -56,7 +55,7 @@ export function Explore() {
                         });
                     });
     
-                    // Once all ratings are fetched, update state
+                    // once all ratings are fetched, update state
                     Promise.all(restaurantsWithRatings)
                         .then((updatedRestaurants) => {
                             setRestaurants(updatedRestaurants);
@@ -75,21 +74,21 @@ export function Explore() {
         }
     
         fetchTopRestaurants();
-    }, []); // Empty dependency array ensures this runs once when the component mounts
+    }, []); 
 
+    // displays the top restaurants on the explore page
     return (
         <div className="filter-div">
-            <div className="all-tags">
+            <div className="explore-centered-div">
                 <div className="padding"></div>
                 <div className="padding"></div>
                 <div className="h1-filter">Explore</div>
                 <div className="padding"></div>
-                <div className="h2-filter">Top Restaurants</div>
+                <div className="h2-explore">Top Restaurants</div>
                 <div className="padding"></div>
             </div>
 
             <div className="explore-centered-div">{error && <p className="error">{error}</p>}</div>
-
             <div className="restaurant-cards">
                 <div className="cards-filter">
                     {restaurants.map((restaurant) => {

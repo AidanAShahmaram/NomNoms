@@ -34,8 +34,6 @@ function Footer() {
                     <a href="mailto:mingao@cs.ucla.edu?subject=CS 35L Project&body=Hello, this is an automated email showing that the CS 35L Project has been accessed." target="_blank">
                         <img src={mail} alt="mail"/>
                     </a>
-                    
-                    
                 </div>
             </div>
         </div>

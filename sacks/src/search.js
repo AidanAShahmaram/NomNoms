@@ -64,10 +64,10 @@ export function SearchRestaurants() {
                 .then((data) => {
                     const payload = data.payload;
                     console.log(payload);
-                    // Fetch each restaurant's ratings
-                    // Promising that the data will be provided and promises that the ratings are numbers
+                    // fetch each restaurant's ratings
+                    // promising that the data will be provided and promises that the ratings are numbers
                     const restaurantsWithRatings = payload.map((restaurant) => {
-                        // Fetch the average and user ratings in parallel for each restaurant
+                        // fetch the average and user ratings in parallel for each restaurant
                         const averageRatingPromise = getAverageRating(restaurant._id);
                         const userRatingPromise = getUserRating(restaurant._id);
                         
@@ -86,7 +86,7 @@ export function SearchRestaurants() {
                     // once all ratings are fetched, asynchronous
                     Promise.all(restaurantsWithRatings)
                         .then((updatedRestaurants) => {
-                            // Store the restaurants with their respective ratings
+                            // store the restaurants with their respective ratings
                             setRestaurants(updatedRestaurants); 
                         })
                         .catch((ratingError) => {
@@ -103,7 +103,6 @@ export function SearchRestaurants() {
   
     return (
         <div className="search-div">
-
             <div className="search-feature">
                 <div className="padding"></div>
                 <div className="h1-search">Search</div>

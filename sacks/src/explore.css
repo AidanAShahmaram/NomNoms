@@ -4,7 +4,6 @@
     font-weight: bold;
     color: black;
     margin-top: 0.67em;
-    /* margin-bottom: 0.67em; */
     margin-left: 0;
     margin-right: 0;
 }
@@ -73,4 +72,10 @@
     width: 100vw;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.h2-explore {
+    font-size: 22px;
+    font-weight: 500;
 }

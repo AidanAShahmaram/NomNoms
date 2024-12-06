@@ -1,27 +1,24 @@
-// import { useEffect, useState } from 'react';
-
 import './App.css';
-import {HeaderDiv, IntroBox, PathDiv} from './home';
-import Footer from './footer';
+
+import Home from './home';
+import Explore from './explore';
 import Filter from './filter';
 import Search from './search';
-import Explore from './explore';
+import Footer from './footer';
 
 import Navbar from './components/Navbar'
 import LoggedInNavbar from './components/LoggedInNavbar.js';
+
 import ChooseLogin from './components/ChooseLogin.js';
 import ChooseSignUp from './components/ChooseSignUp.js';
-
 import Login from './components/Login.js'
-import BusinessLogin from './components/BusinessLogin.js';
 import SignUp from './components/SignUp.js'
-import BusinessSignUp from './components/BusinessSignUp.js';
 
+import BusinessLogin from './components/BusinessLogin.js';
+import BusinessSignUp from './components/BusinessSignUp.js';
 import MyBusiness from './business';
 
 import { Routes, Route, useLocation} from 'react-router-dom';
-
-
 
 function App() {
   const location = useLocation();
@@ -41,13 +38,7 @@ function App() {
 
       <div className="container">
         <Routes>
-          <Route path="/" element={
-            <>
-              <HeaderDiv />
-              <IntroBox />
-              <PathDiv />
-            </>
-            } />
+          <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/filter" element={<Filter />} />
           <Route path="/search" element={<Search />} />
