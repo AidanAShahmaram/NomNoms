@@ -150,6 +150,9 @@ export const BusinessSignUp = () => {
             if (error.response && error.response.status === 403) {
                 console.error('This username or restaurant already exists');
                 alert('This username or restaurant already exists');
+            } else if (error.response && error.response.status === 400) {
+                console.error('Password must be between 8-20 characters.');
+                alert('Password must be between 8-20 characters.');
             } else {
                 alert("Error. Problem communicating with backend.");
             }
