@@ -59,7 +59,10 @@
 <p>Like before there are some installations which are necessary for the frontend to function. These can be seen below:</p>
 <pre><code>
   npm install
+  npm install react-axios
   npm install axios
+  npm install react
+  npm install prop-types
   npm install react react-dom
   npm install react-router-dom
   npm i --save react-select
