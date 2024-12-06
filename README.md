@@ -59,6 +59,8 @@
 <pre><code>
   npm install
   npm install axios
+  npm install react react-dom
+  npm install react-router-dom
 </code></pre>
 <p>Now our program is ready to run and can be done so using the following command:</p>
 <pre><code>
