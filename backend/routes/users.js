@@ -131,7 +131,7 @@ router.get('/top5', async (req, res) => {
 	}
 	let low = -1;
 	for(let j = 0; j < top5.length; j++) {
-	    if(top5[i].rating < result){
+	    if(top5[j].rating < result){
 		low = j;
 	    }
 	}
