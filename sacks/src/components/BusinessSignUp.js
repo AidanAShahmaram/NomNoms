@@ -147,13 +147,16 @@ export const BusinessSignUp = () => {
             }
             
         } catch (error) {
-            console.log(error.response);
+            if (error.response && error.response.status === 403) {
+                console.error('This username or restaurant already exists');
+                alert('This username or restaurant already exists');
+            } else {
+                alert("Error. Problem communicating with backend.");
+            }
             
-            alert("Error. Problem communicating with backend.");
+            
         }
         
-        //console.log("Status Code: " + statusCode);
-
         const jsonData = JSON.stringify(signUpFormData);
 
        

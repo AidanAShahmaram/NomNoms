@@ -44,13 +44,7 @@ export const SignUp = () => {
                 alert("Error. No response from backend.");
             }
             console.error(error.response);
-            // // alert("Error. Not connected to backend.");
-            // if (error.response) {
-            //     alert(error.response.data.msg);
-            // } else {
-                
-            //}
-            // alert("Error. Not connected to backend.");
+            
             
         }
 
