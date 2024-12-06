@@ -26,17 +26,17 @@
 </code></pre>
 
 <h3>Backend</h3>
-<p> Next we want to set up our backend. To begin, we need to set up the environment variables. These are private variables that are specific to you and should not be shared. This can be done using the following commands. </p>
+<p> Next we want to set up our backend. To begin, we need to set up the environment variables. These are private variables that are specific to you and should not be shared. Let's create the file we will use to store the variables using: </p>
 <pre><code>
   cd backend
   touch .env
 </code></pre>
-<p> Enter the .env file using the text editor of your choice and add values for the following variables</p>
+<p> Enter the .env file using a text editor of your choice and add values for the following variables.</p>
 <pre><code>
   MongoKey= (input here)
   PassEncryptKey= (input here)
 </code></pre>
-<p> Currently the program is set up to use a MongoDB database that was initialized by our team. If you would like access to our database, you may contact a team member. However, we withhold the right to refuse. If you'd like to use your own MongoDB database, you're welcome to modify the index.js file to use your specific Mongo URL. Once this is done we can exit the .env file</p>
+<p> Currently the program is set up to use a MongoDB database that was initialized by our team. If you would like access to our database, you may contact a team member. However, we withhold the right to refuse. If you'd like to use your own MongoDB database, you're welcome to modify the index.js file to access your specific Mongo URL. Once this is done we can exit the .env file.</p>
 <p> Before we move on, a few downloads are necessary for the server to function. These can be seen below:</p>
 <pre><code>
   npm install express
@@ -46,7 +46,7 @@
   npm install dotenv
 </code></pre>
 <p>The server is set to run on port 3001 by default. As said before, you're welcome to modify the index.js file to utilize a different port</p>
-<p>Now we can finally run our server using the following command.</p>
+<p>Now we can finally run our server through the index.js file:</p>
 <pre><code>
   node index.js
 </code></pre>
@@ -67,7 +67,7 @@
 <pre><code>
   npm start
 </code></pre>
-<p>Now if you head to the browser of your choice, you can access the program by entering the following path: http://localhost:3000</p>
+<p>Now if you head to your browser, you can access the program through the following path: http://localhost:3000</p>
 
 <h2>SACKS</h2>
 <p>Sean Silver</p>
