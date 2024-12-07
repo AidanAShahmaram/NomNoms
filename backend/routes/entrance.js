@@ -11,7 +11,7 @@ const rounds = 10;
 
 //When server is run, token_key should be placed in the .env file
 //however for testing a fake key will be used
-const REPLACE = "fakeKey";
+const encrypt_key  = process.env.PassEncryptKey;
 
 
 // Define a route

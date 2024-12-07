@@ -1,3 +1,4 @@
+require('dotenv').config();
 
 // Handling errors
 const express = require('express');
@@ -20,9 +21,11 @@ const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 
+const mongoKey = process.env.MongoKey;
+
 // Connect to MongoDB
 const pass= 'SaxophoneDisco';
-const url = `mongodb+srv://sacks:${pass}@saxtest.vlggo.mongodb.net/?retryWrites=true&w=majority&appName=SAXTEST`;
+const url = `mongodb+srv://sacks:${mongoKey}@saxtest.vlggo.mongodb.net/?retryWrites=true&w=majority&appName=SAXTEST`;
 
 mongoose.connect(url, {
   useNewUrlParser: true,

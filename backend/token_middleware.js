@@ -6,7 +6,7 @@ function decodeToken(req, res, next){
     const token = req.header('Authorization');
   //Authorization = request header
   try{
-      const decoded = jwt.verify(token, 'fakeKey');
+      const decoded = jwt.verify(token, process.env.PassEncryptKey);
       req.owner_token = decoded.owner_token;
       next(); //need next to continue to route handler/next middleware
   } catch(error){
