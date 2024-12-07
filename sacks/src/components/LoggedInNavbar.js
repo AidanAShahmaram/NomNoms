@@ -7,7 +7,6 @@ export const LoggedInNavbar = () => {
 
     const token = sessionStorage.getItem('token');
     const username = sessionStorage.getItem('username');
-    console.log("Logged In Navbar: " + token);
 
     const navigate = useNavigate();
 

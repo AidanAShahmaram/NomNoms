@@ -37,7 +37,6 @@ export function Explore() {
 
             try {
                 const response = await axios.get('http://localhost:3001/user/top5'); // get request to backend
-                console.log('API Response:', response.data); // for testing
                 // access the top5_restaurants array from the response
                 const payload = response.data.top5_restaurants;
     

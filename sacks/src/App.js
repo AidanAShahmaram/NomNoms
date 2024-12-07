@@ -26,10 +26,6 @@ function App() {
   /* Using location, navbar and footer will not show for signup/login pages */
   
   const token = sessionStorage.getItem("token");
-  console.log();
-  console.log("Token");
-  console.log(token);
-  console.log();
 
   return (
     <>

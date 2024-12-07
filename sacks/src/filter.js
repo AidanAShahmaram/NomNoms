@@ -101,14 +101,12 @@ export function SelectTag() {
                 params: {tags: selectedTagList.join(',')}, // specifies query parameters, combines array into string of tags separated by commas
             });
 
-            console.log(response);
             if (response.data.length === 0) {
                 alert('No matching restaurants found.');
             }
             else {
                 // setRestaurants(response.data); // updates the state of restaurants with data from API response
                 const payload = response.data;
-                console.log(payload);
                 const restaurantsWithRatings = payload.map((restaurant) => {
                     const averageRatingPromise = getAverageRating(restaurant._id);
                     const userRatingPromise = getUserRating(restaurant._id);
