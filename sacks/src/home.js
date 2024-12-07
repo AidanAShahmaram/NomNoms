@@ -6,6 +6,16 @@ import introBackground from './assets/intro-rectangle-background.png';
 import pathBackground from './assets/how-it-works.png';
 import {NavLink} from 'react-router-dom';
 
+export function Home() {
+  return (
+    <>
+      <HeaderDiv />
+      <IntroBox />
+      <PathDiv />
+    </>
+  );
+}
+
 export function HeaderDiv() {
     const divStyle = {
         backgroundImage: `url(${backgroundImage})`, 
@@ -59,3 +69,4 @@ export function PathDiv() {
       );
 }
 
+export default Home;

@@ -70,7 +70,9 @@
     transition: transform 0.25s ease-in-out;
 }
 
-
+.more-comments-button {
+    font-family: DM Sans;
+}
 
 /* Hover effect */
 .label:hover {

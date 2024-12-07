@@ -19,7 +19,6 @@ async function getAverageRating(id) {
         return rating;
     } catch (err) {
         console.error(err.message);
-        // console.error("restaurant_id:", id)
         return 0;
     }
 };
@@ -189,7 +188,6 @@ export function SelectTag() {
                         const isUserLoggedIn = Boolean(sessionStorage.getItem("username"));
                         return (
                             <RestaurantCard className="restaurant-card-filter"
-                                // key={restaurant._id}
                                 title={restaurant.name}
                                 pic={restaurant.image_link}
                                 weblink={restaurant.website}
