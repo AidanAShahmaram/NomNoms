@@ -48,7 +48,7 @@ router.get('/login/user', async (req, res) => {
     //token will become inavlid after the time specified
     const token = jwt.sign({ "username": username,
 			    msg: "Successful Login"},
-			   REPLACE,
+			   encrypt_key,
 			   { expiresIn: '1h'});
 			   
     return res.status(200).json({ "token": token });
@@ -113,7 +113,7 @@ router.get('/login/owner', async (req, res) => {
     const token = jwt.sign({
             owner_token: account._id, //_id automatically created by mongo database
             msg: "Successful Login"},
-       REPLACE,
+       encrypt_key,
        { expiresIn: '1h'});
        
     return res.status(200).json({ token });
